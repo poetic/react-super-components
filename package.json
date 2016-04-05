@@ -1,10 +1,10 @@
 {
-  "name": "react-komposer",
-  "version": "1.7.2",
-  "description": "Compose React containers and feed data into components.",
+  "name": "react-super-components",
+  "version": "0.0.1",
+  "description": "react super components",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kadirahq/react-komposer.git"
+    "url": "https://github.com/poetic/react-super-components"
   },
   "license": "MIT",
   "options": {
