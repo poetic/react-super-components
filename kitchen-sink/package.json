@@ -2,12 +2,20 @@
   "name": "kitchen-sink",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "test": "npm run lint",
+    "lint": "eslint ./**/*.js ./**/*.jsx",
+    "lint:fix": "eslint --fix ./**/*.js ./**/*.jsx"
   },
   "dependencies": {
     "meteor-node-stubs": "~0.2.0",
+    "param-store": "^0.3.0",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-super-components": "file:.."
+  },
+  "devDependencies": {
+    "eslint": "^2.7.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.2.3"
   }
 }
