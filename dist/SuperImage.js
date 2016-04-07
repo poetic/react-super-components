@@ -84,14 +84,19 @@ var SuperImage = function (_React$Component) {
       var _props = this.props;
       var src = _props.src;
       var style = _props.style;
+      var loading = _props.loading;
+      var error = _props.error;
       var status = this.state.status;
 
 
+      var LoadingComponent = loading;
+      var ErrorComponent = error;
+
       switch (status) {
         case 'NOT_IN_VIEW':
-          return _react2.default.createElement(ImageLoading, null);
+          return _react2.default.createElement(LoadingComponent, null) || _react2.default.createElement(ImageLoading, null);
         case 'ERROR':
-          return _react2.default.createElement(ImageError, null);
+          return _react2.default.createElement(ErrorComponent, null) || _react2.default.createElement(ImageError, null);
         case 'SHOW':
           return _react2.default.createElement('img', { style: style, src: src });
         default:

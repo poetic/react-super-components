@@ -1,13 +1,25 @@
 import React from 'react';
 import { SuperImage } from 'react-super-components';
 
-export default class App extends React.Component {
+
+class ImageLoading extends React.Component {
   render() {
-    return (
-      <SuperImage
-        src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg"
-        style={{}} />
-    )
+    return <div>Image LOADING Component passed in as prop</div>;
   }
 }
 
+class ImageError extends React.Component {
+  render() {
+    return <div>Image ERROR Component passed in as a prop</div>;
+  }
+}
+
+export default (
+  <div>
+    <SuperImage
+      src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg"
+      loadingComponent={ ImageLoading}
+      errorComponent={ ImageError }
+      style={{}} />
+  </div>
+);
