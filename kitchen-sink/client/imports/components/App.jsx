@@ -1,5 +1,5 @@
 import React from 'react';
-import { SuperImage } from 'react-super-components';
+import SuperImage from './SuperImage.js';
 
 const ImageLoading = () => (
   <div className="LOADING">Loading component test</div>
