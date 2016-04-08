@@ -11,7 +11,8 @@
     "param-store": "^0.3.0",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
-    "react-super-components": "file:.."
+    "react-super-components": "file:..",
+    "react-virtualized": "^6.0.8"
   },
   "devDependencies": {
     "eslint": "^2.7.0",
