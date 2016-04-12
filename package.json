@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "jquery": "^2.2.2",
-    "jquery-inview": "^1.1.2"
+    "jquery-inview": "^1.1.2",
+    "react-virtualized": "^6.1.2"
   }
 }
