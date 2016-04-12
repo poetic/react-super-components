@@ -1,5 +1,5 @@
 import React from 'react';
-import { SuperImage } from 'react-super-components';
+import { SuperImage } from '../lib/index';
 
 export default class App extends React.Component {
   render() {

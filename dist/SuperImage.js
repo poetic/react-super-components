@@ -4,25 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -40,19 +22,25 @@ require('jquery-inview');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var SuperImage = function (_React$Component) {
-  (0, _inherits3.default)(SuperImage, _React$Component);
+  _inherits(SuperImage, _React$Component);
 
   function SuperImage(props) {
-    (0, _classCallCheck3.default)(this, SuperImage);
+    _classCallCheck(this, SuperImage);
 
-    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(SuperImage).call(this, props));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SuperImage).call(this, props));
 
     _this.state = { status: 'NOT_IN_VIEW' };
     return _this;
   }
 
-  (0, _createClass3.default)(SuperImage, [{
+  _createClass(SuperImage, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.isInView();
@@ -99,6 +87,7 @@ var SuperImage = function (_React$Component) {
       }
     }
   }]);
+
   return SuperImage;
 }(_react2.default.Component);
 
@@ -111,14 +100,15 @@ SuperImage.propTypes = {
 };
 
 var ImageLoading = function (_React$Component2) {
-  (0, _inherits3.default)(ImageLoading, _React$Component2);
+  _inherits(ImageLoading, _React$Component2);
 
   function ImageLoading() {
-    (0, _classCallCheck3.default)(this, ImageLoading);
-    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ImageLoading).apply(this, arguments));
+    _classCallCheck(this, ImageLoading);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ImageLoading).apply(this, arguments));
   }
 
-  (0, _createClass3.default)(ImageLoading, [{
+  _createClass(ImageLoading, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -128,18 +118,20 @@ var ImageLoading = function (_React$Component2) {
       );
     }
   }]);
+
   return ImageLoading;
 }(_react2.default.Component);
 
 var ImageError = function (_React$Component3) {
-  (0, _inherits3.default)(ImageError, _React$Component3);
+  _inherits(ImageError, _React$Component3);
 
   function ImageError() {
-    (0, _classCallCheck3.default)(this, ImageError);
-    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ImageError).apply(this, arguments));
+    _classCallCheck(this, ImageError);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ImageError).apply(this, arguments));
   }
 
-  (0, _createClass3.default)(ImageError, [{
+  _createClass(ImageError, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -149,6 +141,7 @@ var ImageError = function (_React$Component3) {
       );
     }
   }]);
+
   return ImageError;
 }(_react2.default.Component);
 

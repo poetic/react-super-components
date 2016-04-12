@@ -7,19 +7,17 @@
     "url": "https://github.com/poetic/react-super-components"
   },
   "license": "MIT",
-  "options": {
-    "mocha": "--require scripts/mocha_runner lib/**/__tests__/**/*.js"
-  },
   "scripts": {
-    "prepublish": ". ./scripts/prepublish.sh",
+    "prepublish": "babel lib --ignore __tests__ --out-dir ./dist",
     "lint": "eslint ./lib",
     "lintfix": "eslint ./lib --fix",
-    "testonly": "mocha $npm_package_options_mocha",
+    "testonly": "mocha",
     "test": "npm run lint && npm run testonly",
-    "test-watch": "npm run testonly -- --watch"
+    "watch": "mocha --watch"
   },
   "react-native": "./dist/index.js",
   "devDependencies": {
+    "babel-runtime": "6.x.x",
     "nodemon": "1.7.x",
     "mocha": "2.x.x",
     "chai": "3.x.x",
@@ -47,7 +45,6 @@
     "react": "^0.14.3"
   },
   "dependencies": {
-    "babel-runtime": "6.x.x",
     "jquery": "^2.2.2",
     "jquery-inview": "^1.1.2"
   }
