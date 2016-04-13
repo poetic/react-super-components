@@ -21,13 +21,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var LoadingComponent = function (_React$Component) {
   _inherits(LoadingComponent, _React$Component);
 
-  function LoadingComponent(props) {
+  function LoadingComponent() {
     _classCallCheck(this, LoadingComponent);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(LoadingComponent).call(this, props));
-
-    console.log();
-    return _this;
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(LoadingComponent).apply(this, arguments));
   }
 
   _createClass(LoadingComponent, [{

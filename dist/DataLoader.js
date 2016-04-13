@@ -10,11 +10,11 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _LoadingComponent = require('./LoadingComponent.jsx');
+var _LoadingComponent = require('./LoadingComponent');
 
 var _LoadingComponent2 = _interopRequireDefault(_LoadingComponent);
 
-var _ErrorComponent = require('./ErrorComponent.jsx');
+var _ErrorComponent = require('./ErrorComponent');
 
 var _ErrorComponent2 = _interopRequireDefault(_ErrorComponent);
 
