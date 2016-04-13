@@ -29,7 +29,7 @@ const list = ['item1', 'item2', 'item3', ...];
 SuperList defaults to rendering `<div>{list[index]}</div>` but it can also iterate over a given listItem component or use a rowRenderer
 function to determine what to render in each row.
 
-##### Prop Types
+#### SuperList Prop Types
 
 | Property | Type | Required? | Description |
 |:---|:---|:---:|:---|
