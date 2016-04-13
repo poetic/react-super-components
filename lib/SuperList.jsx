@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { AutoSizer, VirtualScroll } from 'react-virtualized';
+//import 'react-virtualized/styles.css';
 
 class SuperList extends React.Component {
   constructor() {
