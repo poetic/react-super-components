@@ -37,8 +37,8 @@ function to determine what to render in each row.
 | list | Array | ✓ | The list you want to use. |
 | listItem | Object |  | Component to use for each row/listItem. Will receive index and the list itself as props. |
 | noRowsRenderer | Function |  | Callback used to render placeholder content when your list is empty |
-| rowHeight | Number or Function | ✓ | Either a fixed row height (number) or a function that returns the height of a row given its index: `(index: number): number` |
-| rowRenderer | Function |  | Responsbile for rendering a row given an index. Should look like `(index, list) => React.PropTypes.node` |
+| rowHeight | Number or Function | ✓ | Either a fixed row height (number) or a function that returns the height of a row given its index: `(index: number) => number` |
+| rowRenderer | Function |  | Responsbile for rendering a row given an index. Should look like `(index: number, list: array) => React.PropTypes.node` |
 | scrollToIndex | Number |  | Row index to ensure visible (by forcefully scrolling if necessary) |
 | thresholdRows | Number |  | Number of rows to render above/below the visible bounds of the list. This can help reduce flickering during scrolling on certain browers/devices. |
 
