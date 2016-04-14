@@ -2,9 +2,11 @@
   "name": "kitchen-sink",
   "private": true,
   "scripts": {
-    "test": "npm run lint",
-    "lint": "eslint ./**/*.js ./**/*.jsx",
-    "lint:fix": "eslint --fix ./**/*.js ./**/*.jsx"
+    "test": "npm run lint && chimp --mocha --path=tests",
+    "lint": "eslint . --ext .jsx, js",
+    "lint:fix": "eslint --fix ./**/*.js ./**/*.jsx",
+    "fix": "eslint . --ext .jsx, js --fix",
+    "watch": "chimp --ddp=http://localhost:3000 --watch --mocha --path=tests"
   },
   "dependencies": {
     "jquery": "^2.2.3",
