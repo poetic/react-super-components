@@ -36,7 +36,7 @@ var SuperImage = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SuperImage).call(this, props));
 
-    _this.state = { status: 'NOT_IN_VIEW' };
+    _this.state = { status: 'LOADING' };
     return _this;
   }
 
@@ -78,7 +78,7 @@ var SuperImage = function (_React$Component) {
 
 
       switch (status) {
-        case 'NOT_IN_VIEW':
+        case 'LOADING':
           return loadingComponent || _react2.default.createElement(ImageLoading, null);
         case 'ERROR':
           return errorComponent || _react2.default.createElement(ImageError, null);

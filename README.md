@@ -10,5 +10,9 @@ import {SuperImage} from 'react-super-components';
 ```
 
 ## Testing
-1. run npm test-watch
-2. there is a meteor app under kitchen-sink, cd into it and run meteor
+```
+run kitchen-sink
+meteor run
+// another shell
+npm run watch
+```

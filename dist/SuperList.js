@@ -26,10 +26,7 @@ var SuperList = function (_React$Component) {
   function SuperList() {
     _classCallCheck(this, SuperList);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SuperList).call(this));
-
-    _this.rowRenderer = _this.rowRenderer.bind(_this);
-    return _this;
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(SuperList).apply(this, arguments));
   }
 
   _createClass(SuperList, [{
