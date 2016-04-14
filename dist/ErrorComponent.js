@@ -21,13 +21,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ErrorComponent = function (_React$Component) {
   _inherits(ErrorComponent, _React$Component);
 
-  function ErrorComponent(props) {
+  function ErrorComponent() {
     _classCallCheck(this, ErrorComponent);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ErrorComponent).call(this, props));
-
-    console.log();
-    return _this;
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ErrorComponent).apply(this, arguments));
   }
 
   _createClass(ErrorComponent, [{
@@ -48,4 +45,5 @@ var ErrorComponent = function (_React$Component) {
 ErrorComponent.propTypes = {
   error: _react2.default.PropTypes.object
 };
+
 exports.default = ErrorComponent;

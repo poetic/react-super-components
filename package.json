@@ -2,6 +2,7 @@
   "name": "react-super-components",
   "version": "0.3.0",
   "description": "react super components",
+  "main": "./dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/poetic/react-super-components"
@@ -12,31 +13,20 @@
     "lint": "eslint ./lib",
     "fix": "eslint ./lib --fix"
   },
-  "react-native": "./dist/index.js",
   "devDependencies": {
-    "babel-runtime": "6.x.x",
-    "nodemon": "1.7.x",
-    "mocha": "2.x.x",
-    "chai": "3.x.x",
-    "eslint": "1.7.x",
-    "babel-eslint": "4.x.x",
-    "eslint-plugin-babel": "2.x.x",
     "babel-cli": "6.x.x",
     "babel-core": "6.x.x",
-    "babel-polyfill": "6.x.x",
+    "babel-eslint": "4.x.x",
     "babel-preset-es2015": "6.x.x",
-    "babel-preset-stage-2": "6.x.x",
     "babel-preset-react": "6.x.x",
-    "babel-plugin-transform-runtime": "6.x.x",
+    "babel-preset-stage-2": "6.x.x",
+    "babel-runtime": "6.x.x",
+    "eslint": "^2.7.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.2.3",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3",
     "react-addons-test-utils": "^0.14.3",
-    "browserify": "12.x.x",
-    "eslint-plugin-react": "3.x.x",
-    "enzyme": "1.x.x",
-    "uglifyify": "3.x.x",
-    "exposify": "0.5.x",
-    "rx": "4.x.x"
+    "react-dom": "^0.14.3"
   },
   "peerDependencies": {
     "react": "^0.14.3"
@@ -44,6 +34,7 @@
   "dependencies": {
     "jquery": "^2.2.2",
     "jquery-inview": "^1.1.2",
+    "react-addons-shallow-compare": "^0.14.3",
     "react-virtualized": "^6.1.1"
   }
 }

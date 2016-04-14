@@ -38,7 +38,6 @@ var DataLoader = function (_React$Component) {
       renderState: 'loading',
       error: null
     };
-    console.log();
     return _this;
   }
 
