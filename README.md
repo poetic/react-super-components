@@ -2,11 +2,13 @@
 
 ## API
 ```
-import {SuperImage} from 'react-super-components';
+import { SuperImage, SuperSubscriptions } from 'react-super-components';
 
-<SuperImage
-  src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg"
-  style={{}} />
+const image = <SuperImage
+  src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
+
+const subscriptions = <SuperSubscriptions
+  subscriptions={[Meteor.subscribe('users')]} />
 ```
 
 ## Testing
