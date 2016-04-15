@@ -24,17 +24,17 @@
     "eslint": "^2.7.0",
     "eslint-config-airbnb": "^6.2.0",
     "eslint-plugin-react": "^4.2.3",
-    "react": "^0.14.3",
-    "react-addons-test-utils": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react": "^15.0.1",
+    "react-addons-test-utils": "^15.0.1",
+    "react-dom": "^15.0.1"
   },
   "peerDependencies": {
-    "react": "^0.14.3"
+    "react": "^15.0.1"
   },
   "dependencies": {
     "jquery": "^2.2.2",
     "jquery-inview": "^1.1.2",
-    "react-addons-shallow-compare": "^0.14.3",
+    "react-addons-shallow-compare": "^15.0.1",
     "react-virtualized": "^6.1.1"
   }
 }

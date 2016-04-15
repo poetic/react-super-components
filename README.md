@@ -4,10 +4,10 @@
 ```
 import { SuperImage, SuperSubscriptions } from 'react-super-components';
 
-const image = <SuperImage
+const image = <Image
   src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
 
-const subscriptions = <SuperSubscriptions
+const subscriptions = <Subscriptions
   subscriptions={[Meteor.subscribe('users')]} />
 ```
 
