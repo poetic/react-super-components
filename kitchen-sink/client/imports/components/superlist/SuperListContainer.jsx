@@ -1,6 +1,5 @@
 import React from 'react';
 import Options from './Options';
-import ListItem from './ListItem';
 import { SuperList } from '../../lib/index';
 
 class SuperListContainer extends React.Component {
@@ -46,6 +45,22 @@ class SuperListContainer extends React.Component {
   }
 
 
+  renderRows(index, list) {
+    if (this.state.images) {
+      return (
+        <div key={index}>
+          <img src={index % 2 === 0 ? '/images/Frog.jpg' : '/images/Castle.jpg'} />
+        </div>
+      );
+    }
+
+    return (
+      <div key={index}>
+        %{list[index]}
+      </div>
+    );
+  }
+
   render() {
     const { list, images } = this.state;
 
@@ -60,7 +75,7 @@ class SuperListContainer extends React.Component {
           className="SuperList"
           rowHeight={ images ? 240 : 18 }
           list={ list }
-          listItem={ <ListItem images={images} /> }
+          rowRenderer={ this.renderRows }
         />
       </div>
     );
@@ -70,27 +85,18 @@ class SuperListContainer extends React.Component {
 export default SuperListContainer;
 
 /* Using rowRenderer function for rows
-    <SuperList
-      className="SuperList"
-      rowHeight={ images ? 240 : 18 }
-      list={ list }
-      rowRenderer={ (index) => <div> {index + index}</div> }
-    />
+  <SuperList
+    className="SuperList"
+    rowHeight={ images ? 240 : 18 }
+    list={ list }
+    rowRenderer={ (index) => <div> {index + index}</div> }
+  />
 */
 
 /* Using default renderer for rows
-    <SuperList
-      className="SuperList"
-      rowHeight={ images ? 240 : 18 }
-      list={ list }
-    />
-*/
-
-/* Using given ListItem for rows
-    <SuperList
-      className="SuperList"
-      rowHeight={ images ? 240 : 18 }
-      list={ list }
-      ListItem={ <ListItem images={images} /> }
-    />
+  <SuperList
+    className="SuperList"
+    rowHeight={ images ? 240 : 18 }
+    list={ list }
+  />
 */

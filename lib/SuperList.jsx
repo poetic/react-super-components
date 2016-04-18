@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { AutoSizer, VirtualScroll } from 'react-virtualized';
-//import 'react-virtualized/styles.css';
 
 class SuperList extends React.Component {
   constructor() {
@@ -9,19 +8,10 @@ class SuperList extends React.Component {
   }
 
   rowRenderer(index, list) {
-    const { rowRenderer, listItem } = this.props;
+    const { rowRenderer } = this.props;
 
     if (rowRenderer) {
       return rowRenderer(index, list);
-    }
-
-    if (listItem) {
-      return (
-        React.cloneElement(
-          listItem,
-          { index, list }
-        )
-      );
     }
 
     return list[index];
@@ -47,9 +37,7 @@ class SuperList extends React.Component {
             rowsCount={ list.length }
             rowHeight={ rowHeight }
             rowRenderer={ index => (this.rowRenderer(index, list)) }
-            noRowsRenderer={ noRowsRenderer }
             overscanRows={ thresholdRows }
-            scrollToIndex={ scrollToIndex }
           />
         )}
       </AutoSizer>
@@ -59,15 +47,12 @@ class SuperList extends React.Component {
 
 SuperList.propTypes = {
   className: PropTypes.string,
-  noRowsRenderer: PropTypes.func,
-  thresholdRows: PropTypes.number,
+  list: PropTypes.array.isRequired,
   rowHeight: PropTypes.oneOfType(
               [PropTypes.string, PropTypes.number]
              ).isRequired,
-  list: PropTypes.array.isRequired,
   rowRenderer: PropTypes.func,
-  listItem: PropTypes.object,
-  scrollToIndex: PropTypes.func,
+  thresholdRows: PropTypes.number,
 };
 
 export default SuperList;
