@@ -8,40 +8,39 @@ class ListDemo extends React.Component {
     this.state = {
       images: false,
       list: [],
+      thresholdRows: 10,
     };
     this.componentWillMount = this.componentWillMount.bind(this);
+    this.setListLength = this.setListLength.bind(this);
+    this.setListThreshold = this.setListThreshold.bind(this);
     this.addImages = this.addImages.bind(this);
-    this.changeListLength = this.changeListLength.bind(this);
-    this.changeListThreshold = this.changeListThreshold.bind(this);
   }
 
   componentWillMount() {
-    const list = Array.from(Array(Number(1000)).keys());
-
-    this.setState({ list });
+    this.setListLength(1000);
   }
 
-  addImages() {
-    this.setState({ images: !this.state.images });
-  }
-
-  changeListLength(value) {
+  setListLength(value) {
     const list = Array.from(Array(Number(value)).keys());
 
     this.setState({ list });
   }
 
-  changeListThreshold(value) {
+  setListThreshold(value) {
     const numberValue = Number(value);
-    let overscanRows;
+    let thresholdRows;
 
     if (this.state.images) {
-      overscanRows = Math.ceil(numberValue / 240);
+      thresholdRows = Math.ceil(numberValue / 240);
     } else {
-      overscanRows = Math.ceil(numberValue / 18);
+      thresholdRows = Math.ceil(numberValue / 18);
     }
 
-    this.setState({ threshold: numberValue, overscanRows });
+    this.setState({ thresholdRows });
+  }
+
+  addImages() {
+    this.setState({ images: !this.state.images });
   }
 
   renderRows(index, list, images) {
@@ -61,20 +60,21 @@ class ListDemo extends React.Component {
   }
 
   render() {
-    const { list, images } = this.state;
+    const { images, list, thresholdRows } = this.state;
 
     return (
-      <div style={{ height: '100vh' }}>
+      <div>
         <Options
           addImages={this.addImages}
-          changeListLength={this.changeListLength}
-          changeListThreshold={this.changeListThreshold}
+          setListLength={this.setListLength}
+          setListThreshold={this.setListThreshold}
         />
         <List
           className="SuperList"
           rowHeight={ images ? 240 : 18 }
           list={ list }
           rowRenderer={ (index) => this.renderRows(index, list, images) }
+          thresholdRows={ thresholdRows }
         />
       </div>
     );
@@ -95,7 +95,7 @@ export default ListDemo;
 /* Using default renderer for rows
   <SuperList
     className="SuperList"
-    rowHeight={ images ? 240 : 18 }
+    rowHeight={ 18 }
     list={ list }
   />
 */

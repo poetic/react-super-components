@@ -14,7 +14,7 @@ const Options = (props) => (
             <div key={option}>
               <RadioButton
                 value={option}
-                setOptionCallback={props.changeListLength}
+                setOptionCallback={props.setListLength}
               />
             </div>
           ))
@@ -29,7 +29,7 @@ const Options = (props) => (
             <div key={option}>
               <RadioButton
                 value={option}
-                setOptionCallback={props.changeListThreshold}
+                setOptionCallback={props.setListThreshold}
               />
             </div>
           ))
@@ -51,8 +51,8 @@ const Options = (props) => (
 
 Options.propTypes = {
   addImages: React.PropTypes.func,
-  changeListLength: React.PropTypes.func,
-  changeListThreshold: React.PropTypes.func,
+  setListLength: React.PropTypes.func,
+  setListThreshold: React.PropTypes.func,
 };
 
 export default Options;
