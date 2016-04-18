@@ -11,8 +11,11 @@ https://react-super-components.herokuapp.com/
  * Props:
  * - src (required)
  * - loadingSrc
- * - LoadingComponent (LoadingComponent take precedence over loadingSrc)
+ * - LoadingComponent (LoadingComponent takes precedence over loadingSrc)
  * - ErrorComponent
+ *
+ * Other props will be pass to LoadingComponent and ErrorComponent.
+ * When error happens, an error prop will be passed to ErrorComponent.
  */
 
 import { Image } from 'react-super-components';
