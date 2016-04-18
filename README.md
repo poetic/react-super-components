@@ -8,13 +8,18 @@ https://react-super-components.herokuapp.com/
 ### Image
 ```
 /**
+ * Image component is a wrapper for <img/> with lazy loading and error
+ * handling support.
+ *
  * Props:
  * - src (required)
  * - loadingSrc
  * - LoadingComponent (LoadingComponent takes precedence over loadingSrc)
  * - ErrorComponent
  *
- * Other props will be pass to LoadingComponent and ErrorComponent.
+ * Other props will be pass to the html native img commponent,
+ * LoadingComponent and ErrorComponent.
+ *
  * When error happens, an error prop will be passed to ErrorComponent.
  */
 
