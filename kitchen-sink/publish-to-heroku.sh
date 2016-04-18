@@ -1,7 +1,10 @@
 rm client/imports/lib
 cp -r ../lib client/imports/
+
+rm -rf .git
+git init
 git add -A
-git commit -m 'please revert me after push to heroku'
-# You can ctrl-c to shut heroku push, it will run at the background
-git push heroku
-git reset --hard HEAD~1
+git commit -m 'init'
+
+heroku git:remote -a react-super-components
+git push heroku master --force &> /dev/null &

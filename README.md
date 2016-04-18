@@ -1,5 +1,8 @@
 # react super components
 
+## Demo
+https://react-super-components.herokuapp.com/
+
 ## API
 ```
 import { SuperImage, SuperSubscriptions } from 'react-super-components';
