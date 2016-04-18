@@ -18,3 +18,7 @@ meteor run
 // another shell
 npm run watch
 ```
+
+## TODO
+- setup a heroku demo page
+- image show error state
