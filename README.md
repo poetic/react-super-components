@@ -13,12 +13,14 @@ const subscriptions = <Subscriptions
 
 ## Testing
 ```
-run kitchen-sink
+cd kitchen-sink
 meteor run
-// another shell
-npm run watch
 ```
 
 ## TODO
 - setup a heroku demo page
 - image show error state
+
+- Image component research
+  - https://github.com/jasonslyvia/react-lazyload
+  - https://github.com/loktar00/react-lazy-load
