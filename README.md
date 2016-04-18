@@ -11,8 +11,8 @@ https://react-super-components.herokuapp.com/
  * Props:
  * - src (required)
  * - loadingSrc
- * - loadingComponent (loadingComponent take precedence over loadingSrc)
- * - errorComponent
+ * - LoadingComponent (LoadingComponent take precedence over loadingSrc)
+ * - ErrorComponent
  */
 
 import { Image } from 'react-super-components';
@@ -25,8 +25,8 @@ import { Image } from 'react-super-components';
   src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
 
 <Image
-  loadingComponent={MyLoadingComponent}
-  errorComponent={MyErrorComponent}
+  LoadingComponent={MyLoadingComponent}
+  ErrorComponent={MyErrorComponent}
   src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
 ```
 
