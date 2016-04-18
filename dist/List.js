@@ -20,20 +20,29 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SuperList = function (_React$Component) {
-  _inherits(SuperList, _React$Component);
+var List = function (_React$Component) {
+  _inherits(List, _React$Component);
 
-  function SuperList() {
-    _classCallCheck(this, SuperList);
+  function List() {
+    _classCallCheck(this, List);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(SuperList).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this));
+
+    _this.rowRenderer = _this.rowRenderer.bind(_this);
+    return _this;
   }
 
-  _createClass(SuperList, [{
+  _createClass(List, [{
     key: 'rowRenderer',
     value: function rowRenderer(index, list) {
-      var item = list[index];
-      return item;
+      var rowRenderer = this.props.rowRenderer;
+
+
+      if (rowRenderer) {
+        return rowRenderer(index, list);
+      }
+
+      return list[index];
     }
   }, {
     key: 'render',
@@ -43,10 +52,9 @@ var SuperList = function (_React$Component) {
       var _props = this.props;
       var className = _props.className;
       var thresholdRows = _props.thresholdRows;
-      var scrollToIndex = _props.scrollToIndex;
       var list = _props.list;
       var rowHeight = _props.rowHeight;
-      var noRowsRenderer = _props.noRowsRenderer;
+
 
       return _react2.default.createElement(
         _reactVirtualized.AutoSizer,
@@ -63,27 +71,22 @@ var SuperList = function (_React$Component) {
             rowRenderer: function rowRenderer(index) {
               return _this2.rowRenderer(index, list);
             },
-            noRowsRenderer: noRowsRenderer,
-            overscanRows: thresholdRows,
-            scrollToIndex: scrollToIndex
+            overscanRows: thresholdRows
           });
         }
       );
     }
   }]);
 
-  return SuperList;
+  return List;
 }(_react2.default.Component);
 
-SuperList.PropTypes = {
+List.propTypes = {
   className: _react.PropTypes.string,
-  noRowsRenderer: _react.PropTypes.func,
-  thresholdRows: _react.PropTypes.number,
-  rowHeight: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]).isRequired,
   list: _react.PropTypes.array.isRequired,
+  rowHeight: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]).isRequired,
   rowRenderer: _react.PropTypes.func,
-  listItem: _react.PropTypes.object,
-  scrollToIndex: _react.PropTypes.func
+  thresholdRows: _react.PropTypes.number
 };
 
-exports.default = SuperList;
+exports.default = List;

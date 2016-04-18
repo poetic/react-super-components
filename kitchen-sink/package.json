@@ -2,17 +2,19 @@
   "name": "kitchen-sink",
   "private": true,
   "scripts": {
-    "test": "npm run lint",
-    "lint": "eslint ./**/*.js ./**/*.jsx",
-    "lint:fix": "eslint --fix ./**/*.js ./**/*.jsx"
+    "test": "npm run lint && chimp --mocha --path=tests",
+    "lint": "eslint . --ext .jsx,.js",
+    "fix": "eslint . --ext .jsx,.js --fix",
+    "watch": "chimp --ddp=http://localhost:3000 --watch --mocha --path=tests"
   },
   "dependencies": {
     "jquery": "^2.2.3",
     "jquery-inview": "^1.1.2",
     "meteor-node-stubs": "~0.2.0",
     "param-store": "^0.3.0",
-    "react": "^0.14.8",
-    "react-dom": "^0.14.8",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "react-router": "^2.2.4",
     "react-super-components": "file:.."
   },
   "devDependencies": {

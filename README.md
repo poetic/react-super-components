@@ -5,11 +5,13 @@
 ### SuperImage
 
 ```
-import {SuperImage} from 'react-super-components';
+import { SuperImage, SuperSubscriptions } from 'react-super-components';
 
-<SuperImage
-  src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg"
-  style={{}} />
+const image = <Image
+  src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
+
+const subscriptions = <Subscriptions
+  subscriptions={[Meteor.subscribe('users')]} />
 ```
 
 ### SuperList
@@ -41,5 +43,9 @@ function to determine what to render in each row.
 
 
 ## Testing
-1. run npm test-watch
-2. there is a meteor app under kitchen-sink, cd into it and run meteor
+```
+run kitchen-sink
+meteor run
+// another shell
+npm run watch
+```

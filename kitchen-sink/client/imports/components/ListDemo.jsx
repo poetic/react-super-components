@@ -1,8 +1,8 @@
 import React from 'react';
-import Options from './Options';
-import { SuperList } from '../../lib/index';
+import Options from './superlist/Options';
+import { List } from '../lib/index.js';
 
-class SuperListContainer extends React.Component {
+class ListDemo extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -44,9 +44,8 @@ class SuperListContainer extends React.Component {
     this.setState({ threshold: numberValue, overscanRows });
   }
 
-
-  renderRows(index, list) {
-    if (this.state.images) {
+  renderRows(index, list, images) {
+    if (images) {
       return (
         <div key={index}>
           <img src={index % 2 === 0 ? '/images/Frog.jpg' : '/images/Castle.jpg'} />
@@ -65,24 +64,24 @@ class SuperListContainer extends React.Component {
     const { list, images } = this.state;
 
     return (
-      <div>
+      <div style={{ height: '100vh' }}>
         <Options
           addImages={this.addImages}
           changeListLength={this.changeListLength}
           changeListThreshold={this.changeListThreshold}
         />
-        <SuperList
+        <List
           className="SuperList"
           rowHeight={ images ? 240 : 18 }
           list={ list }
-          rowRenderer={ this.renderRows }
+          rowRenderer={ (index) => this.renderRows(index, list, images) }
         />
       </div>
     );
   }
 }
 
-export default SuperListContainer;
+export default ListDemo;
 
 /* Using rowRenderer function for rows
   <SuperList
