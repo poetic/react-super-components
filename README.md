@@ -15,7 +15,8 @@ https://react-super-components.herokuapp.com/
  * - src (required)
  * - loadingSrc
  * - LoadingComponent (LoadingComponent takes precedence over loadingSrc)
- * - ErrorComponent
+ * - errorSrc
+ * - ErrorComponent (ErrorComponent takes precedence over errorSrc)
  *
  * Other props will be pass to the html native img commponent,
  * LoadingComponent and ErrorComponent.
