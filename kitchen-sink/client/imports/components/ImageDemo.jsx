@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 import Image from '../lib/Image';
 
 export default class ImageDemo extends React.Component {
-  render () {
+  render() {
     const style = {
       width: '400px',
       height: '300px',
-      objectFit: 'cover'
-    }
+      objectFit: 'cover',
+    };
 
     return (
       <div>
@@ -25,7 +25,7 @@ export default class ImageDemo extends React.Component {
           style={style}
         />
 
-        <div style={{height: '100vh'}}></div>
+        <div style={{ height: '100vh' }}></div>
         <h2>Lazy loading by default</h2>
         <Image
           src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"

@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import List from '../lib/List';
 
 const list = Array.from(Array(1000).keys());
 
 export default class ListDemo extends React.Component {
-  render () {
+  render() {
     return (
       <div style={{ height: '100vh' }}>
         <List
