@@ -1,6 +1,7 @@
 import React from 'react';
 import Options from './superlist/Options';
-import { List } from '../lib/index.js';
+import { List } from 'react-super-components'; // this currently does not work, same with image
+//import { List } from '../lib/index.js'; // this does work
 
 class ListDemo extends React.Component {
   constructor() {
@@ -89,6 +90,7 @@ export default ListDemo;
     rowHeight={ images ? 240 : 18 }
     list={ list }
     rowRenderer={ (index) => <div>{list[index]}</div> }
+    thresholdRows={ thresholdRows }
   />
 */
 
@@ -97,5 +99,6 @@ export default ListDemo;
     className="SuperList"
     rowHeight={ 18 }
     list={ list }
+    thresholdRows={ thresholdRows }
   />
 */

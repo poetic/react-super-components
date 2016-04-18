@@ -19,17 +19,26 @@ const subscriptions = <Subscriptions
 ```
 import {SuperList} from 'react-super-components';
 
-const list = ['item1', 'item2', 'item3', ...];
+const listToBeRendered = ['item1', 'item2', 'item3', ...];
+
+// using default settings
 
 <SuperList
   rowHeight={50}
-  list={ list }
+  list={ listToBeRendered }
+/>
+
+// or using rowRenderer function
+
+<SuperList
+  rowHeight={ 50 }
+  list={ listToBeRendered }
+  rowRenderer={ (index, list) => <div>{list[index]}</div> } // return react node
 />
 
 ```
 
-SuperList defaults to rendering `<div>{list[index]}</div>` but it can also iterate over a given listItem component or use a rowRenderer
-function to determine what to render in each row.
+SuperList defaults to rendering `<div>{list[index]}</div>`.
 
 #### SuperList Prop Types
 
@@ -38,7 +47,7 @@ function to determine what to render in each row.
 | className | String |  | CSS class name |
 | list | Array | ✓ | The list you want to use. |
 | rowHeight | Number or Function | ✓ | Either a fixed row height (number) or a function that returns the height of a row given its index: `(index: number) => number` |
-| rowRenderer | Function |  | Responsbile for rendering a row given an index. Should look like `(index: number, list: array) => React.PropTypes.node` |
+| rowRenderer | Function |  | Responsible for rendering a row given an index. Should look like `(index: number, list: array) => React.PropTypes.node` |
 | thresholdRows | Number |  | Number of rows to render above/below the visible bounds of the list. This can help reduce flickering during scrolling on certain browers/devices. |
 
 
