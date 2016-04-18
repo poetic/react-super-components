@@ -4,13 +4,29 @@
 https://react-super-components.herokuapp.com/
 
 ## API
-```
-import { SuperImage, SuperSubscriptions } from 'react-super-components';
 
-const image = <Image
+### Image
+```
+import { Image } from 'react-super-components';
+
+<Image
   src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
 
-const subscriptions = <Subscriptions
+<Image
+  defaultSrc="/local-image.jpg"
+  src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
+
+<Image
+  loadingComponent={MyLoadingComponent}
+  errorComponent={MyErrorComponent}
+  src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
+```
+
+### Subscriptions
+```
+import { Subscriptions } from 'react-super-components';
+
+<Subscriptions
   subscriptions={[Meteor.subscribe('users')]} />
 ```
 
