@@ -7,13 +7,21 @@ https://react-super-components.herokuapp.com/
 
 ### Image
 ```
+/**
+ * Props:
+ * - src (required)
+ * - loadingSrc
+ * - loadingComponent (loadingComponent take precedence over loadingSrc)
+ * - errorComponent
+ */
+
 import { Image } from 'react-super-components';
 
 <Image
   src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
 
 <Image
-  defaultSrc="/local-image.jpg"
+  loadingSrc="/local-image.jpg"
   src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
 
 <Image
