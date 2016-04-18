@@ -87,8 +87,8 @@ export default ListDemo;
   <SuperList
     className="SuperList"
     rowHeight={ images ? 240 : 18 }
-    list={ list }
-    rowRenderer={ (index) => <div> {index + index}</div> }
+    list={ array }
+    rowRenderer={ (index, list) => <div>{list[index]}</div> }
   />
 */
 
@@ -96,6 +96,6 @@ export default ListDemo;
   <SuperList
     className="SuperList"
     rowHeight={ images ? 240 : 18 }
-    list={ list }
+    list={ array }
   />
 */
