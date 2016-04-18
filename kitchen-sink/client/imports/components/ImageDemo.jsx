@@ -13,9 +13,23 @@ export default class ImageDemo extends React.Component {
       <div>
         <h1>Image</h1>
 
-        <h2>Loading</h2>
+        <h2>Default</h2>
         <Image
           src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
+          style={style}
+        />
+
+        <h2>loadingSrc</h2>
+        <Image
+          src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
+          loadingSrc="http://www.jqueryscript.net/images/Minimal-jQuery-Loading-Overlay-Spinner-Plugin-Easy-Overlay.jpg"
+          style={style}
+        />
+
+        <h2>LoadingComponent</h2>
+        <Image
+          src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
+          LoadingComponent={(props) => <div {...props}>LOADING...</div>}
           style={style}
         />
 

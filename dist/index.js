@@ -3,22 +3,22 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.DataLoader = exports.SuperList = exports.SuperImage = undefined;
+exports.Subscriptions = exports.List = exports.Image = undefined;
 
-var _SuperImage = require('./SuperImage.js');
+var _Image = require('./Image.js');
 
-var _SuperImage2 = _interopRequireDefault(_SuperImage);
+var _Image2 = _interopRequireDefault(_Image);
 
-var _SuperList = require('./SuperList.js');
+var _List = require('./List.js');
 
-var _SuperList2 = _interopRequireDefault(_SuperList);
+var _List2 = _interopRequireDefault(_List);
 
-var _DataLoader = require('./DataLoader.js');
+var _Subscriptions = require('./Subscriptions.js');
 
-var _DataLoader2 = _interopRequireDefault(_DataLoader);
+var _Subscriptions2 = _interopRequireDefault(_Subscriptions);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.SuperImage = _SuperImage2.default;
-exports.SuperList = _SuperList2.default;
-exports.DataLoader = _DataLoader2.default;
+exports.Image = _Image2.default;
+exports.List = _List2.default;
+exports.Subscriptions = _Subscriptions2.default;
