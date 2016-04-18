@@ -21,6 +21,8 @@ https://react-super-components.herokuapp.com/
  * LoadingComponent and ErrorComponent.
  *
  * When error happens, an error prop will be passed to ErrorComponent.
+ *
+ * NOTE: Use 'with' and 'height' in style is highly recommanded.
  */
 
 import { Image } from 'react-super-components';
@@ -51,11 +53,3 @@ import { Subscriptions } from 'react-super-components';
 cd kitchen-sink
 meteor run
 ```
-
-## TODO
-- setup a heroku demo page
-- image show error state
-
-- Image component research
-  - https://github.com/jasonslyvia/react-lazyload
-  - https://github.com/loktar00/react-lazy-load
