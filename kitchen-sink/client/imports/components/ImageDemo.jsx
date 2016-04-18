@@ -36,7 +36,3 @@ export default class ImageDemo extends React.Component {
     );
   }
 }
-
-// 1. default image for loading
-// 2. pass style to rendering and error component
-// ( how should error component work? )

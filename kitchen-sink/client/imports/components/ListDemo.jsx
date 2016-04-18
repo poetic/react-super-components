@@ -1,5 +1,5 @@
 import React from 'react'
-import { List } from 'react-super-components';
+import List from '../lib/List';
 
 const list = Array.from(Array(1000).keys());
 
