@@ -5,21 +5,17 @@ import ImageDemo from './ImageDemo';
 import SubscriptionsDemo from './SubscriptionsDemo';
 import ListDemo from './ListDemo';
 
-const App = (props) => {
-  return (
-    <div>
-      {props.children}
-    </div>
-  );
-}
+const App = (props) => <div>{props.children}</div>;
+
+App.propTypes = { children: React.PropTypes.object };
 
 export default () => (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Index}/>
-      <Route path="image" component={ImageDemo}/>
-      <Route path="subscriptions" component={SubscriptionsDemo}/>
-      <Route path="list" component={ListDemo}/>
+      <IndexRoute component={Index} />
+      <Route path="image" component={ImageDemo} />
+      <Route path="subscriptions" component={SubscriptionsDemo} />
+      <Route path="list" component={ListDemo} />
     </Route>
   </Router>
 );

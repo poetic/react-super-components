@@ -59,13 +59,16 @@ var Image = function (_React$Component) {
         _this2.$imageNode.off('inview');
 
         var image = new window.Image();
-        image.src = _this2.props.src;
-        image.onload = function () {
-          _this2.setState({ status: 'DISPLAY' });
+        image.onload = function (e) {
+          // NOTE: the timeout is meant to exagerate the loading time
+          window.setTimeout(function () {
+            _this2.setState({ status: 'DISPLAY' });
+          }, 1000);
         };
         image.onerror = function () {
           _this2.setState({ status: 'ERROR' });
         };
+        image.src = _this2.props.src;
       });
     }
   }, {
@@ -85,7 +88,7 @@ var Image = function (_React$Component) {
       var status = this.state.status;
 
 
-      var displayComponent = _react2.default.createElement(Image, other);
+      var displayComponent = _react2.default.createElement('img', other);
 
       return _react2.default.createElement(_Loader2.default, _extends({
         status: status,
@@ -103,7 +106,7 @@ exports.default = Image;
 
 
 Image.propTypes = {
-  src: _react.PropTypes.string.required,
+  src: _react.PropTypes.string.isRequired,
   loadingComponent: _react.PropTypes.object,
   errorComponent: _react.PropTypes.object
 };

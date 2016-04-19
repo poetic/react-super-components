@@ -1,7 +1,6 @@
 import React from 'react';
 import Options from './superlist/Options';
-import { List } from 'react-super-components'; // this currently does not work, same with image
-//import { List } from '../lib/index.js'; // this does work
+import { List } from '../lib/index.js';
 
 class ListDemo extends React.Component {
   constructor() {

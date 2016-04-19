@@ -1,23 +1,58 @@
 # react super components
 
+## Demo
+https://react-super-components.herokuapp.com/
+
 ## API
 
-### SuperImage
-
+### Image
 ```
-import { SuperImage, SuperSubscriptions } from 'react-super-components';
+/**
+ * Image component is a wrapper for <img/> with lazy loading and error
+ * handling support.
+ *
+ * Props:
+ * - src (required)
+ * - loadingSrc
+ * - LoadingComponent (LoadingComponent takes precedence over loadingSrc)
+ * - errorSrc
+ * - ErrorComponent (ErrorComponent takes precedence over errorSrc)
+ *
+ * Other props will be pass to the html native img commponent,
+ * LoadingComponent and ErrorComponent.
+ *
+ * When an error occurs, an error prop will be passed to ErrorComponent.
+ *
+ * NOTE: Use 'with' and 'height' in style is highly recommanded.
+ */
 
-const image = <Image
+import { Image } from 'react-super-components';
+
+<Image
   src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
 
-const subscriptions = <Subscriptions
+<Image
+  loadingSrc="/local-image.jpg"
+  src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
+
+<Image
+  LoadingComponent={MyLoadingComponent}
+  ErrorComponent={MyErrorComponent}
+  src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
+```
+
+### Subscriptions
+```
+import { Subscriptions } from 'react-super-components';
+
+<Subscriptions
   subscriptions={[Meteor.subscribe('users')]} />
 ```
 
 ### SuperList
 
 ```
-import {SuperList} from 'react-super-components';
+import { SuperList } from 'react-super-components';
 
 const listToBeRendered = ['item1', 'item2', 'item3', ...];
 
@@ -53,8 +88,6 @@ SuperList defaults to rendering `<div>{list[index]}</div>`.
 
 ## Testing
 ```
-run kitchen-sink
+cd kitchen-sink
 meteor run
-// another shell
-npm run watch
 ```
