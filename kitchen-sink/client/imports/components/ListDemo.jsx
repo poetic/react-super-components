@@ -48,8 +48,7 @@ class ListDemo extends React.Component {
     const { listLength, thresholdRows } = this.state;
     const list = this.createList(listLength);
     const varyingList = this.createList(listLength, true);
-    const itemTypes = { type: 'short', height: 50, class: ShortListItem };
-    const varyingItemTypes = [
+    const itemTypes = [
       { type: 'tall', height: 100, class: TallListItem },
       { type: 'short', height: 50, class: ShortListItem },
     ];
@@ -62,12 +61,22 @@ class ListDemo extends React.Component {
           setListThreshold={this.setListThreshold}
           setVaryingHeight={this.setVaryingHeight}
         />
+        <div style={{ marginBottom: '50px' }}>
+          <h3>One Component List</h3>
+          <div style={{ border: '1px solid #ddd', height: '30vh' }}>
+            <List
+              data={ list }
+              itemTypes={ itemTypes[1] }
+              thresholdRows={ thresholdRows }
+            />
+          </div>
+        </div>
         <div>
           <h3>Varying Heights Components List</h3>
           <div style={{ border: '1px solid #ddd', height: '30vh' }}>
             <List
               data={ varyingList }
-              itemTypes={ varyingItemTypes }
+              itemTypes={ itemTypes }
               thresholdRows={ thresholdRows }
             />
           </div>
@@ -79,14 +88,3 @@ class ListDemo extends React.Component {
 
 export default ListDemo;
 
-
-        //<div style={{ marginBottom: '50px' }}>
-          //<h3>One Component List</h3>
-          //<div style={{ border: '1px solid #ddd', height: '30vh' }}>
-            //<List
-              //data={ list }
-              //itemTypes={ itemTypes }
-              //thresholdRows={ thresholdRows }
-            ///>
-          //</div>
-        //</div>
