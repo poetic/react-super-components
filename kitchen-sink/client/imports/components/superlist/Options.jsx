@@ -36,21 +36,10 @@ const Options = (props) => (
         }
       </form>
     </div>
-    <div>
-      <button
-        style={{ marginBottom: '10px' }}
-        onClick={() => {
-          props.addImages();
-        }}
-      >
-        Add Images
-      </button>
-    </div>
   </div>
 );
 
 Options.propTypes = {
-  addImages: React.PropTypes.func,
   setListLength: React.PropTypes.func,
   setListThreshold: React.PropTypes.func,
 };

@@ -1,103 +1,90 @@
 import React from 'react';
 import Options from './superlist/Options';
 import { List } from '../lib/index.js';
+import { ShortListItem, TallListItem } from './superlist/ListItems.jsx';
 
 class ListDemo extends React.Component {
   constructor() {
     super();
     this.state = {
-      images: false,
       list: [],
       thresholdRows: 10,
+      listLength: 1000,
     };
-    this.componentWillMount = this.componentWillMount.bind(this);
     this.setListLength = this.setListLength.bind(this);
     this.setListThreshold = this.setListThreshold.bind(this);
-    this.addImages = this.addImages.bind(this);
   }
 
-  componentWillMount() {
-    this.setListLength(1000);
-  }
-
-  setListLength(value) {
-    const list = Array.from(Array(Number(value)).keys());
-
-    this.setState({ list });
+  setListLength(listLength) {
+    this.setState({ listLength });
   }
 
   setListThreshold(value) {
     const numberValue = Number(value);
-    let thresholdRows;
-
-    if (this.state.images) {
-      thresholdRows = Math.ceil(numberValue / 240);
-    } else {
-      thresholdRows = Math.ceil(numberValue / 18);
-    }
+    const thresholdRows = Math.ceil(numberValue / 18);
 
     this.setState({ thresholdRows });
   }
 
-  addImages() {
-    this.setState({ images: !this.state.images });
-  }
+  createList(listLength, varying) {
+    const list = [];
 
-  renderRows(index, list, images) {
-    if (images) {
-      return (
-        <div key={index}>
-          <img src={index % 2 === 0 ? '/images/Frog.jpg' : '/images/Castle.jpg'} />
-        </div>
-      );
+    for (let i = 0; i < listLength; i++) {
+      if (varying) {
+        if (i % 3 === 0) {
+          list.push({ type: 'tall' });
+        } else {
+          list.push({ type: 'short' });
+        }
+      } else {
+        list.push({ type: 'short' });
+      }
     }
 
-    return (
-      <div key={index}>
-        %{list[index]}
-      </div>
-    );
+    return list;
   }
 
   render() {
-    const { images, list, thresholdRows } = this.state;
+    const { listLength, thresholdRows } = this.state;
+    const list = this.createList(listLength);
+    const varyingList = this.createList(listLength, true);
+    const itemTypes = { type: 'short', height: 50, class: ShortListItem };
+    const varyingItemTypes = [
+      { type: 'tall', height: 100, class: TallListItem },
+      { type: 'short', height: 50, class: ShortListItem },
+    ];
 
     return (
       <div>
+        <h1>SuperList</h1>
         <Options
-          addImages={this.addImages}
           setListLength={this.setListLength}
           setListThreshold={this.setListThreshold}
+          setVaryingHeight={this.setVaryingHeight}
         />
-        <List
-          className="SuperList"
-          rowHeight={ images ? 240 : 18 }
-          list={ list }
-          rowRenderer={ (index) => this.renderRows(index, list, images) }
-          thresholdRows={ thresholdRows }
-        />
+        <div style={{ marginBottom: '50px' }}>
+          <h3>One Component List</h3>
+          <div style={{ border: '1px solid #ddd', height: '30vh' }}>
+            <List
+              data={ list }
+              itemTypes={ itemTypes }
+              thresholdRows={ thresholdRows }
+            />
+          </div>
+        </div>
+        <div>
+          <h3>Varying Heights Components List</h3>
+          <div style={{ border: '1px solid #ddd', height: '30vh' }}>
+            <List
+              data={ varyingList }
+              itemTypes={ varyingItemTypes }
+              thresholdRows={ thresholdRows }
+            />
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 export default ListDemo;
-
-/* Using rowRenderer function for rows
-  <SuperList
-    className="SuperList"
-    rowHeight={ images ? 240 : 18 }
-    list={ list }
-    rowRenderer={ (index) => <div>{list[index]}</div> }
-    thresholdRows={ thresholdRows }
-  />
-*/
-
-/* Using default renderer for rows
-  <SuperList
-    className="SuperList"
-    rowHeight={ 18 }
-    list={ list }
-    thresholdRows={ thresholdRows }
-  />
-*/
