@@ -62,16 +62,6 @@ class ListDemo extends React.Component {
           setListThreshold={this.setListThreshold}
           setVaryingHeight={this.setVaryingHeight}
         />
-        <div style={{ marginBottom: '50px' }}>
-          <h3>One Component List</h3>
-          <div style={{ border: '1px solid #ddd', height: '30vh' }}>
-            <List
-              data={ list }
-              itemTypes={ itemTypes }
-              thresholdRows={ thresholdRows }
-            />
-          </div>
-        </div>
         <div>
           <h3>Varying Heights Components List</h3>
           <div style={{ border: '1px solid #ddd', height: '30vh' }}>
@@ -88,3 +78,15 @@ class ListDemo extends React.Component {
 }
 
 export default ListDemo;
+
+
+        //<div style={{ marginBottom: '50px' }}>
+          //<h3>One Component List</h3>
+          //<div style={{ border: '1px solid #ddd', height: '30vh' }}>
+            //<List
+              //data={ list }
+              //itemTypes={ itemTypes }
+              //thresholdRows={ thresholdRows }
+            ///>
+          //</div>
+        //</div>
