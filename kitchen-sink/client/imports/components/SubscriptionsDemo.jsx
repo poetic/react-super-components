@@ -29,12 +29,10 @@ export default class SubscriptionsDemo extends React.Component {
         <h2>permanentlySubscribe</h2>
         <Subscriptions
           getSubscriptions={() => { return [permanentlySubscribe('cars')] }}
-          unsubscribe={false}
           displayComponent={<CarsContainer/>} />
         <h2>Meteor.subscribe (this subscribe is unsubscribed automatically)</h2>
         <Subscriptions
           getSubscriptions={() => { return [Meteor.subscribe('cars')] }}
-          unsubscribe={false}
           displayComponent={<CarsContainer/>} />
       </div>
     );

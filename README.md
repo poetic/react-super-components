@@ -43,10 +43,15 @@ import { Image } from 'react-super-components';
 
 ### Subscriptions
 ```
-import { Subscriptions } from 'react-super-components';
+import { Subscriptions, permanentlySubscribe } from 'react-super-components';
 
 <Subscriptions
-  subscriptions={[Meteor.subscribe('users')]} />
+  getSubscriptions={() => { return [Meteor.subscribe('cars')] }}
+  displayComponent={<CarsContainer/>} />
+
+<Subscriptions
+  getSubscriptions={() => { return [permanentlySubscribe('cars')] }}
+  displayComponent={<CarsContainer/>} />
 ```
 
 ## Testing
