@@ -94,7 +94,7 @@ const MainLayout = (props) => {
 }
 
 <Layout component={MainLayout} id='main-layout'>
-  <Stack layoutRegion='top' animations={animations} id='main'>
+  <Stack layoutRegion='top' animations={animations} id='main' defaultActiveLayerId='users'>
     <Layer id='users' component={Users}/>
     <Layer id='cars' component={Cars}/>
   </Stack>
