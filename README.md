@@ -93,10 +93,10 @@ const MainLayout = (props) => {
   )
 }
 
-<Layout component={MainLayout} key='main-layout'>
-  <Stack layoutRegion='top' animations={animations} key='main'>
-    <Layer key='users' component={Users}/>
-    <Layer key='cars' component={Cars}/>
+<Layout component={MainLayout} id='main-layout'>
+  <Stack layoutRegion='top' animations={animations} id='main'>
+    <Layer id='users' component={Users}/>
+    <Layer id='cars' component={Cars}/>
   </Stack>
   <Layer layoutRegion='bottom'/>
 </Layout>

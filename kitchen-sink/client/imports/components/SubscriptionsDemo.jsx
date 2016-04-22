@@ -18,10 +18,8 @@ export default class SubscriptionsDemo extends React.Component {
       );
     };
 
-    const CarsContainer = createContainer(() => {
-      return {
-        cars: Cars.find().fetch()
-      };
+    const CarsContainer = createContainer((props) => {
+      return Object.assign({cars: Cars.find().fetch()}, props);
     }, CarsComponent);
 
     return (
@@ -29,11 +27,11 @@ export default class SubscriptionsDemo extends React.Component {
         <h2>permanentlySubscribe</h2>
         <Subscriptions
           getSubscriptions={() => { return [permanentlySubscribe('cars')] }}
-          displayComponent={<CarsContainer/>} />
+          displayElement={<CarsContainer/>} />
         <h2>Meteor.subscribe (this subscribe is unsubscribed automatically)</h2>
         <Subscriptions
           getSubscriptions={() => { return [Meteor.subscribe('cars')] }}
-          displayComponent={<CarsContainer/>} />
+          displayElement={<CarsContainer/>} />
       </div>
     );
   }
