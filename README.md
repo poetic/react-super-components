@@ -14,14 +14,14 @@ https://react-super-components.herokuapp.com/
  * Props:
  * - src (required)
  * - loadingSrc
- * - LoadingComponent (LoadingComponent takes precedence over loadingSrc)
+ * - loadingComponent (loadingComponent takes precedence over loadingSrc)
  * - errorSrc
- * - ErrorComponent (ErrorComponent takes precedence over errorSrc)
+ * - errorComponent (errorComponent takes precedence over errorSrc)
  *
  * Other props will be pass to the html native img commponent,
- * LoadingComponent and ErrorComponent.
+ * loadingComponent and errorComponent.
  *
- * When error happens, an error prop will be passed to ErrorComponent.
+ * When error happens, an error prop will be passed to errorComponent.
  *
  * NOTE: Use 'with' and 'height' in style is highly recommanded.
  */
@@ -36,8 +36,8 @@ import { Image } from 'react-super-components';
   src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
 
 <Image
-  LoadingComponent={MyLoadingComponent}
-  ErrorComponent={MyErrorComponent}
+  loadingComponent={MyLoadingComponent}
+  errorComponent={MyErrorComponent}
   src="http://brentcarnduff.com/wp-content/uploads/2014/08/url-small.jpg" />
 ```
 
@@ -54,8 +54,57 @@ import { Subscriptions, permanentlySubscribe } from 'react-super-components';
   displayComponent={<CarsContainer/>} />
 ```
 
+### Stack
+```
+import { Stack, Layer, Layout } from 'react-super-components';
+
+const animations = [
+  {
+    to: 'users',
+    use: 'toLeft',
+    reverse: 'toRight'
+  },
+  {
+    to: 'cars',
+    use: () => {
+      return {
+        currentLayer: {
+          transition: '1s all',
+          startStyle: {marginLeft: '0px'},
+          endStyle: {marginLeft: '100%'}
+        },
+        nextLayer: {
+          transition: '1s all',
+          startStyle: {marginLeft: '100%'},
+          endStyle: {marginLeft: '0px'}
+        }
+      }
+    }
+    // by default, 'reverse' is the reverse of 'use'
+  }
+];
+
+const MainLayout = (props) => {
+  return (
+    <div style={{display: 'flex'}}>
+      {this.props.top}
+      {this.props.bottom}
+    </div>
+  )
+}
+
+<Layout component={MainLayout} key='main-layout'>
+  <Stack layoutRegion='top' animations={animations} key='main'>
+    <Layer key='users' component={Users}/>
+    <Layer key='cars' component={Cars}/>
+  </Stack>
+  <Layer layoutRegion='bottom'/>
+</Layout>
+```
+
 ## Testing
 ```
 cd kitchen-sink
+meteor npm install
 meteor run
 ```
