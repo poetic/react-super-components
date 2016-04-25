@@ -1,21 +1,18 @@
 import React from 'react';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Index from './Index';
 import ImageDemo from './ImageDemo';
 import SubscriptionsDemo from './SubscriptionsDemo';
 import ListDemo from './ListDemo';
-
-const App = (props) => <div>{props.children}</div>;
-
-App.propTypes = { children: React.PropTypes.object };
+import StackDemo from './StackDemo';
+import Stack from '../lib/Stack'
+import Layer from '../lib/Layer'
 
 export default () => (
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Index} />
-      <Route path="image" component={ImageDemo} />
-      <Route path="subscriptions" component={SubscriptionsDemo} />
-      <Route path="list" component={ListDemo} />
-    </Route>
-  </Router>
+  <Stack id='path'>
+    <Layer id='' component={Index} />
+    <Layer id='image' component={ImageDemo} />
+    <Layer id='subscription' component={SubscriptionsDemo} />
+    <Layer id='list' component={ListDemo} />
+    <Layer id='stack' component={StackDemo} />
+  </Stack>
 );

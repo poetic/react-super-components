@@ -30,12 +30,14 @@
     "react-dom": "^15.0.1"
   },
   "peerDependencies": {
-    "react": "^15.0.1"
+    "react": "^15.0.1",
+    "lodash": "^4.11.1"
   },
   "dependencies": {
     "jquery": "^2.2.2",
     "jquery-inview": "^1.1.2",
     "react-virtualized": "^6.1.2",
+    "param-store": "github:poetic/param-store",
     "react-addons-shallow-compare": "^15.0.1",
     "react-virtualized": "^6.1.1"
   }

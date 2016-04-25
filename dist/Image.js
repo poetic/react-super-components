@@ -22,9 +22,9 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 require('jquery-inview');
 
-var _Loader = require('./Loader');
+var _LoaderStack = require('./LoaderStack');
 
-var _Loader2 = _interopRequireDefault(_Loader);
+var _LoaderStack2 = _interopRequireDefault(_LoaderStack);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -44,7 +44,7 @@ var Image = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Image).call(this, props));
 
-    _this.state = { status: 'LOADING' };
+    _this.state = { status: 'loading' };
     return _this;
   }
 
@@ -62,11 +62,11 @@ var Image = function (_React$Component) {
         image.onload = function (e) {
           // NOTE: the timeout is meant to exagerate the loading time
           window.setTimeout(function () {
-            _this2.setState({ status: 'DISPLAY' });
+            _this2.setState({ status: 'display' });
           }, 1000);
         };
         image.onerror = function () {
-          _this2.setState({ status: 'ERROR' });
+          _this2.setState({ status: 'error' });
         };
         image.src = _this2.props.src;
       });
@@ -80,21 +80,38 @@ var Image = function (_React$Component) {
     key: 'render',
     value: function render() {
       var _props = this.props;
+      var src = _props.src;
+      var loadingSrc = _props.loadingSrc;
       var loadingComponent = _props.loadingComponent;
+      var errorSrc = _props.errorSrc;
       var errorComponent = _props.errorComponent;
 
-      var other = _objectWithoutProperties(_props, ['loadingComponent', 'errorComponent']);
+      var other = _objectWithoutProperties(_props, ['src', 'loadingSrc', 'loadingComponent', 'errorSrc', 'errorComponent']);
 
       var status = this.state.status;
 
 
-      var displayComponent = _react2.default.createElement('img', other);
+      var displayElement = _react2.default.createElement('img', _extends({ src: src }, other));
 
-      return _react2.default.createElement(_Loader2.default, _extends({
+      var loadingElement = void 0;
+      if (loadingComponent) {
+        loadingElement = _react2.default.createElement('loadingComponent', other);
+      } else if (loadingSrc) {
+        loadingElement = _react2.default.createElement('img', _extends({ src: loadingSrc }, other));
+      }
+
+      var errorElement = void 0;
+      if (errorComponent) {
+        errorElement = _react2.default.createElement('errorComponent', other);
+      } else if (errorSrc) {
+        errorElement = _react2.default.createElement('img', _extends({ src: errorSrc }, other));
+      }
+
+      return _react2.default.createElement(_LoaderStack2.default, _extends({
         status: status,
-        displayComponent: displayComponent,
-        loadingComponent: loadingComponent,
-        errorComponent: errorComponent
+        displayElement: displayElement,
+        loadingElement: loadingElement,
+        errorElement: errorElement
       }, other));
     }
   }]);
@@ -107,8 +124,10 @@ exports.default = Image;
 
 Image.propTypes = {
   src: _react.PropTypes.string.isRequired,
-  loadingComponent: _react.PropTypes.object,
-  errorComponent: _react.PropTypes.object
+  loadingSrc: _react.PropTypes.string,
+  loadingComponent: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.object]),
+  errorSrc: _react.PropTypes.string,
+  errorComponent: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.object])
 };
 
 exports.default = Image;
