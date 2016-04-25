@@ -49,8 +49,8 @@ class ListDemo extends React.Component {
     const list = this.createList(listLength);
     const varyingList = this.createList(listLength, true);
     const itemTypes = [
-      { type: 'tall', height: 100, class: TallListItem },
-      { type: 'short', height: 50, class: ShortListItem },
+      { type: 'tall', height: 100, component: TallListItem },
+      { type: 'short', height: 50, component: ShortListItem },
     ];
 
     return (
