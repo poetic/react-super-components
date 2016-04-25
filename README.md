@@ -21,13 +21,9 @@ https://react-super-components.herokuapp.com/
  * Other props will be pass to the html native img commponent,
  * loadingComponent and errorComponent.
  *
-<<<<<<< HEAD
- * When an error occurs, an error prop will be passed to ErrorComponent.
-=======
  * When error happens, an error prop will be passed to errorComponent.
->>>>>>> master
  *
- * NOTE: Use 'with' and 'height' in style is highly recommanded.
+ * NOTE: Using 'width' and 'height' in style is highly recommanded.
  */
 
 import { Image } from 'react-super-components';
@@ -106,41 +102,57 @@ const MainLayout = (props) => {
 </Layout>
 ```
 
-### SuperList
+### List
 
 ```
-import { SuperList } from 'react-super-components';
+import { List } from 'react-super-components';
+import ListItem from 'exampleImportedListItem.jsx';
+import Header from 'exampleImportedHeader.jsx';
 
-const listToBeRendered = ['item1', 'item2', 'item3', ...];
+// Single list item component
 
-// using default settings
+const listToBeRendered = [
+  { type: 'listItem', data: 'Ray Mysterio'},
+  { type: 'listItem', data: 'Ric Flair'},
+  etc.,
+];
+const itemType = { type: 'listItem', height: 60, class: ListItem };
 
-<SuperList
-  rowHeight={50}
-  list={ listToBeRendered }
+<List
+  data={ listToBeRendered }
+  itemTypes={ itemType }
 />
 
-// or using rowRenderer function
+// Multiple list item components
 
-<SuperList
-  rowHeight={ 50 }
-  list={ listToBeRendered }
-  rowRenderer={ (index, list) => <div>{list[index]}</div> } // return react node
+const listToBeRendered = [
+  { type: 'listItem', data: 'Macho Man Randy Savage'},
+  { type: 'listItem', data: 'Sting'},
+  { type: 'header', data: 'Professional Wrestlers'},
+  etc.,
+];
+const itemTypes = [
+  { type: 'listItem', height: 60, class: ListItem },
+  { type: 'header', height: 20, class: Header },
+];
+
+<List
+  data={ listToBeRendered }
+  itemTypes={ itemTypes }
 />
-
 ```
 
-SuperList defaults to rendering `<div>{list[index]}</div>`.
+#### List Prop Types
 
-#### SuperList Prop Types
-
-| Property | Type | Required? | Description |
-|:---|:---|:---:|:---|
-| className | String |  | CSS class name |
-| list | Array | ✓ | The list you want to use. |
-| rowHeight | Number or Function | ✓ | Either a fixed row height (number) or a function that returns the height of a row given its index: `(index: number) => number` |
-| rowRenderer | Function |  | Responsible for rendering a row given an index. Should look like `(index: number, list: array) => React.PropTypes.node` |
-| thresholdRows | Number |  | Number of rows to render above/below the visible bounds of the list. This can help reduce flickering during scrolling on certain browers/devices. |
+| Property         | Type            | Required? | Description                                                                                                                                       |
+| :---:            | :---:           | :---:     | :---                                                                                                                                              |
+| className        | String          |           | CSS class name                                                                                                                                    |
+| data             | Array           | ✓         | The data you want to use. Must be an object with a property type that matches a passed type in itemTypes                                          |
+| itemTypes        | Object or Array | ✓         | Either an object or an array of objects with the specified properties listed below                                                                |
+| itemTypes.type   | String          | ✓         | Used to match data with the its itemType and class                                                                                                |
+| itemTypes.height | Number          | ✓         | Specifies the height of the rendered component                                                                                                    |
+| itemTypes.class  | Function        | ✓         | Specifies the class that will be rendered                                                                                                         |
+| thresholdRows    | Number          |           | Number of rows to render above/below the visible bounds of the list. This can help reduce flickering during scrolling on certain browers/devices  |
 
 
 ## Testing
