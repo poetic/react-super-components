@@ -147,11 +147,11 @@ const itemTypes = [
 | Property         | Type            | Required? | Description                                                                                                                                       |
 | :---:            | :---:           | :---:     | :---                                                                                                                                              |
 | className        | String          |           | CSS class name                                                                                                                                    |
-| data             | Array           | ✓         | The data you want to use. Must be an object with a property type that matches a passed type in itemTypes                                          |
+| data             | Array           | ✓         | The data you want to use. Must be an object with a property `type` that matches a passed `type` in itemTypes                                      |
 | itemTypes        | Object or Array | ✓         | Either an object or an array of objects with the specified properties listed below                                                                |
-| itemTypes.type   | String          | ✓         | Used to match data with the its itemType and class                                                                                                |
-| itemTypes.height | Number          | ✓         | Specifies the height of the rendered component                                                                                                    |
-| itemTypes.class  | Function        | ✓         | Specifies the class that will be rendered                                                                                                         |
+| itemTypes.type   | String          | ✓         | Used to match data with its corresponding itemType                                                                                                |
+| itemTypes.height | Number          | ✓         | Specifies the height of the rendered React component                                                                                              |
+| itemTypes.class  | Function        | ✓         | Specifies the React class that will be rendered                                                                                                   |
 | thresholdRows    | Number          |           | Number of rows to render above/below the visible bounds of the list. This can help reduce flickering during scrolling on certain browers/devices  |
 
 
