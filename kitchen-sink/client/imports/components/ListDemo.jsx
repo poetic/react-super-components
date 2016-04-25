@@ -8,8 +8,8 @@ class ListDemo extends React.Component {
     super();
     this.state = {
       list: [],
-      thresholdRows: 10,
       listLength: 1000,
+      thresholdRows: 10,
     };
     this.setListLength = this.setListLength.bind(this);
     this.setListThreshold = this.setListThreshold.bind(this);
@@ -76,6 +76,7 @@ class ListDemo extends React.Component {
           <div style={{ border: '1px solid #ddd', height: '30vh' }}>
             <List
               data={ varyingList }
+              itemTypes={ itemTypes }
               thresholdRows={ thresholdRows }
             />
           </div>
