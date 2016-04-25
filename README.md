@@ -147,7 +147,7 @@ const itemTypes = [
 | Property         | Type            | Required? | Description                                                                                                                                       |
 | :---:            | :---:           | :---:     | :---                                                                                                                                              |
 | className        | String          |           | CSS class name                                                                                                                                    |
-| data             | Array           | ✓         | The data you want to use. Must be an object with a property `type` that matches a passed `type` in itemTypes                                      |
+| data             | Array           | ✓         | The data you want to use. Must be an object with a property `type` that matches a passed `type` in `itemTypes`                                    |
 | itemTypes        | Object or Array | ✓         | Either an object or an array of objects with the specified properties listed below                                                                |
 | itemTypes.type   | String          | ✓         | Used to match data with its corresponding itemType                                                                                                |
 | itemTypes.height | Number          | ✓         | Specifies the height of the rendered React component                                                                                              |
