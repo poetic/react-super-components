@@ -12,6 +12,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactVirtualized = require('react-virtualized');
 
+require('react-virtualized/styles.css');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26,14 +28,23 @@ var List = function (_React$Component) {
   function List() {
     _classCallCheck(this, List);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(List).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this));
+
+    _this.rowRenderer = _this.rowRenderer.bind(_this);
+    return _this;
   }
 
   _createClass(List, [{
     key: 'rowRenderer',
     value: function rowRenderer(index, list) {
-      var item = list[index];
-      return item;
+      var rowRenderer = this.props.rowRenderer;
+
+
+      if (rowRenderer) {
+        return rowRenderer(index, list);
+      }
+
+      return list[index];
     }
   }, {
     key: 'render',
@@ -43,10 +54,9 @@ var List = function (_React$Component) {
       var _props = this.props;
       var className = _props.className;
       var thresholdRows = _props.thresholdRows;
-      var scrollToIndex = _props.scrollToIndex;
       var list = _props.list;
       var rowHeight = _props.rowHeight;
-      var noRowsRenderer = _props.noRowsRenderer;
+
 
       return _react2.default.createElement(
         _reactVirtualized.AutoSizer,
@@ -63,9 +73,7 @@ var List = function (_React$Component) {
             rowRenderer: function rowRenderer(index) {
               return _this2.rowRenderer(index, list);
             },
-            noRowsRenderer: noRowsRenderer,
-            overscanRows: thresholdRows,
-            scrollToIndex: scrollToIndex
+            overscanRows: thresholdRows
           });
         }
       );
@@ -75,15 +83,12 @@ var List = function (_React$Component) {
   return List;
 }(_react2.default.Component);
 
-List.PropTypes = {
+List.propTypes = {
   className: _react.PropTypes.string,
-  noRowsRenderer: _react.PropTypes.func,
-  thresholdRows: _react.PropTypes.number,
-  rowHeight: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]).isRequired,
   list: _react.PropTypes.array.isRequired,
+  rowHeight: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]).isRequired,
   rowRenderer: _react.PropTypes.func,
-  listItem: _react.PropTypes.object,
-  scrollToIndex: _react.PropTypes.func
+  thresholdRows: _react.PropTypes.number
 };
 
 exports.default = List;
