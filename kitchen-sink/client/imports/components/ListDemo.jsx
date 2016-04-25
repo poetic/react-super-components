@@ -76,7 +76,6 @@ class ListDemo extends React.Component {
           <div style={{ border: '1px solid #ddd', height: '30vh' }}>
             <List
               data={ varyingList }
-              itemTypes={ itemTypes }
               thresholdRows={ thresholdRows }
             />
           </div>
