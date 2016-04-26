@@ -37,7 +37,7 @@ class ListDemo extends React.Component {
           list.push({ type: 'short' });
         }
       } else {
-        list.push({ type: 'short' });
+        list.push(i);
       }
     }
 
@@ -66,7 +66,7 @@ class ListDemo extends React.Component {
           <div style={{ border: '1px solid #ddd', height: '30vh' }}>
             <List
               data={ list }
-              itemTypes={ itemTypes[1] }
+              itemTypes={ { height: 50, component: ShortListItem } }
               thresholdRows={ thresholdRows }
             />
           </div>
