@@ -122,10 +122,10 @@ const ListItem = (props) => {
 // List with single list item component
 
 const listToBeRendered = [
-  { type: 'listItem', data: 'Ray Mysterio'},
-  { type: 'listItem', data: 'Ric Flair'},
+  'Ray Mysterio',
+  'Ric Flair',
 ];
-const itemType = { type: 'listItem', height: 60, component: ListItem };
+const itemType = { height: 60, component: ListItem };
 
 <List
   data={ listToBeRendered }
@@ -155,9 +155,9 @@ const itemTypes = [
 | Property             | Type            | Required? | Description                                                                                                                                       |
 | :---:                | :---:           | :---:     | :---:                                                                                                                                             |
 | className            | String          |           | CSS class name                                                                                                                                    |
-| data                 | Array           | ✓         | The data you want to use. Must be an object with a property `type` that matches a passed `type` in `itemTypes`                                    |
+| data                 | Array           | ✓         | The data you want to use. If multiple itemTypes are given, data must be an array of objects with a property `type` that matches a passed `type` in `itemTypes`                                    |
 | itemTypes            | Object or Array | ✓         | Either an object or an array of objects with the specified properties listed below                                                                |
-| itemTypes.type       | String          | ✓         | Used to match data with its corresponding itemType                                                                                                |
+| itemTypes.type       | String          | ✓ (when multiple itemTypes)         | Used to match data with its corresponding itemType when multiple itemTypes are given                                                                                                |
 | itemTypes.height     | Number          | ✓         | Specifies the height of the rendered React component                                                                                              |
 | itemTypes.component  | Function        | ✓         | Specifies the React component that will be rendered                                                                                               |
 | thresholdRows        | Number          |           | Number of rows to render above/below the visible bounds of the list. This can help reduce flickering during scrolling on certain browers/devices  |
