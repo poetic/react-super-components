@@ -112,7 +112,9 @@ import Header from 'exampleImportedHeader.jsx';
 
 const ListItem = (props) => {
   const { data, index } = props;
-  const dataItem = data[index].data;
+  const dataItem = data[index];
+  // when used with multiple list item components:
+  // const dataItem = data[index].data;
 
   return (
     <div>{dataItem} is at row {index}</div>
@@ -134,7 +136,7 @@ const itemType = { height: 60, component: ListItem };
 
 // List with multiple list item components
 
-const listToBeRendered = [
+const listToBeRenderedWithMultipleTypes = [
   { type: 'listItem', data: 'Macho Man Randy Savage'},
   { type: 'listItem', data: 'Sting'},
   { type: 'header', data: 'Professional Wrestlers'},
@@ -145,7 +147,7 @@ const itemTypes = [
 ];
 
 <List
-  data={ listToBeRendered }
+  data={ listToBeRenderedWithMultipleTypes }
   itemTypes={ itemTypes }
 />
 ```
