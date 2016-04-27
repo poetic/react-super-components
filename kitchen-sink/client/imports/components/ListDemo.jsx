@@ -69,9 +69,9 @@ class ListDemo extends React.Component {
           setListLength={this.setListLength}
           setListThreshold={this.setListThreshold}
         />
-        <div style={{ marginBottom: '50px' }}>
+        <div style={{ width: '45%', display: 'inline-block', textAlign: 'center' }}>
           <h3>One Component List</h3>
-          <div style={{ border: '1px solid #ddd', height: '30vh' }}>
+          <div style={{ border: '1px solid #ddd', height: '35vh' }}>
             <List
               data={ list }
               itemTypes={ { height: 50, component: ShortListItem } }
@@ -79,9 +79,9 @@ class ListDemo extends React.Component {
             />
           </div>
         </div>
-        <div>
+        <div style={{ width: '45%', display: 'inline-block', marginLeft: '10%', textAlign: 'center' }}>
           <h3>Varying Heights Components List</h3>
-          <div style={{ border: '1px solid #ddd', height: '30vh' }}>
+          <div style={{ border: '1px solid #ddd', height: '35vh' }}>
             <List
               data={ varyingList }
               itemTypes={ itemTypes }
