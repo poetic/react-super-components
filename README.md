@@ -106,23 +106,24 @@ const MainLayout = (props) => {
 
 ```
 import { List } from 'react-super-components';
-import Header from 'exampleImportedHeader.jsx';
+import ShortListItem from 'exampleImportedListItemComponent';
 
 // Example ListItem component. Should expect to receive data and index as props.
 
 const ListItem = (props) => {
   const { data, index } = props;
   const dataItem = data[index];
-  // when used with multiple list item components:
+  // when used with multiple list item components examples:
   // const dataItem = data[index].data;
 
   return (
     <div>{dataItem} is at row {index}</div>
   );
 };
+```
+#### List with single list item component
 
-// List with single list item component
-
+```
 const listToBeRendered = [
   'Ray Mysterio',
   'Ric Flair',
@@ -134,20 +135,57 @@ const itemType = { height: 60, component: ListItem };
   itemTypes={ itemType }
 />
 
-// List with multiple list item components
+```
 
+#### List with multiple list item components
+
+```
 const listToBeRenderedWithMultipleTypes = [
   { type: 'listItem', data: 'Macho Man Randy Savage'},
   { type: 'listItem', data: 'Sting'},
-  { type: 'header', data: 'Professional Wrestlers'},
+  { type: 'shortListItem', data: 'The Giant'},
 ];
 const itemTypes = [
   { type: 'listItem', height: 60, component: ListItem },
-  { type: 'header', height: 20, component: Header },
+  { type: 'shortListItem', height: 20, component: ShortListItem },
 ];
 
 <List
   data={ listToBeRenderedWithMultipleTypes }
+  itemTypes={ itemTypes }
+/>
+```
+
+#### List with multiple list item components and groupBy
+
+```
+const listToBeRenderedWithMultipleTypes = [
+  { type: 'listItem', data: 'Macho Man Randy Savage'},
+  { type: 'listItem', data: 'Sting'},
+  { type: 'shortListItem', data: 'The Giant'},
+  { type: 'shortListItem', data: 'The Big Show'},
+];
+const itemTypes = [
+  { type: 'listItem', height: 60, component: ListItem },
+  { type: 'shortListItem', height: 40, component: ShortListItem },
+  { type: 'header', height: 30, component: Header },
+];
+
+// GroupBy can either be the property to group the data by or a function that expects
+// dataItem and returns the grouping
+const groupByWithFunction = (dataItem) => {
+  if (dataItem.type === 'listItem') {
+    return 'Regular Sized Wrestlers';
+  }
+
+  return 'Giant Sized Wrestlers';
+}
+
+const groupByWithString = 'type';
+
+<List
+  data={ listToBeRenderedWithMultipleTypes }
+  groupBy={ groubByWithString }
   itemTypes={ itemTypes }
 />
 ```
