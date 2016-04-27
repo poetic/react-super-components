@@ -38,7 +38,7 @@ const Options = (props) => (
     </div>
     <div style={{ marginBottom: '10px' }}>
       <button onClick={() => props.setGroupData()}>
-        Group Varying Heights List Data
+        Group Multiple Components List Data By Height
       </button>
     </div>
   </div>

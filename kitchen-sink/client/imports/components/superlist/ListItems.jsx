@@ -12,7 +12,7 @@ const Header = (props) => (
       padding: '0 25px',
     }}
   >
-    {props.data[props.index].title.toUpperCase()} List Items
+    { props.data[props.index].title }
     <span
       style={{
         flex: 1,

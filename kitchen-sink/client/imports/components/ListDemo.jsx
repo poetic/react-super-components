@@ -38,9 +38,9 @@ class ListDemo extends React.Component {
     for (let i = 0; i < listLength; i++) {
       if (varying) {
         if (i % 3 === 0) {
-          list.push({ type: 'tall' });
+          list.push({ type: 'tall', category: 'Taller List Items' });
         } else {
-          list.push({ type: 'short' });
+          list.push({ type: 'short', category: 'Shorter List Items' });
         }
       } else {
         list.push(i);
@@ -59,7 +59,7 @@ class ListDemo extends React.Component {
       { type: 'tall', height: 100, component: TallListItem },
       { type: 'short', height: 50, component: ShortListItem },
     ];
-    const groupBy = 'type';
+    const groupBy = 'category';
 
     return (
       <div>
@@ -80,7 +80,7 @@ class ListDemo extends React.Component {
           </div>
         </div>
         <div style={{ marginBottom: '50px' }}>
-          <h3>Varying Heights Components List</h3>
+          <h3>Multiple Components List</h3>
           <div style={{ border: '1px solid #ddd', height: '30vh' }}>
             <List
               data={ varyingList }
