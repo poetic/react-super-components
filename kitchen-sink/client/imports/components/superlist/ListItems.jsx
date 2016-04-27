@@ -32,46 +32,55 @@ Header.propTypes = {
   index: React.PropTypes.number,
 };
 
-const ShortListItem = (props) => (
-  <div
-    style={{
-      height: '50px',
-      borderBottom: '1px solid #ddd',
-      display: 'flex',
-      padding: '0 25px',
-      alignItems: 'center',
-    }}
-  >
+const ShortListItem = (props) => {
+  const { index, data } = props;
+  const dataItem = data[index];
+
+  return (
     <div
       style={{
-        backgroundColor: '#9B59B6',
-        display: 'inline-block',
-        height: '40px',
-        width: '40px',
-        lineHeight: '40px',
-        textAlign: 'center',
-        borderRadius: '40px',
-        color: '#fff',
-        fontSize: '1.5em',
-        marginRight: '25px',
+        height: '50px',
+        borderBottom: '1px solid #ddd',
+        display: 'flex',
+        padding: '0 25px',
+        alignItems: 'center',
       }}
     >
-      S
+      <div
+        style={{
+          backgroundColor: '#9B59B6',
+          display: 'inline-block',
+          height: '40px',
+          width: '40px',
+          lineHeight: '40px',
+          textAlign: 'center',
+          borderRadius: '40px',
+          color: '#fff',
+          fontSize: '1.5em',
+          marginRight: '25px',
+        }}
+      >
+        S
+      </div>
+      {
+        dataItem.randomNumber
+        ? `Data Value: ${dataItem.randomNumber}`
+        : `This is row ${index + 1}`
+      }
+      <span
+        style={{
+          flex: 1,
+          textAlign: 'right',
+          color: '#bdbdbd',
+          fontSize: '.75em',
+          fontWeight: '100',
+        }}
+      >
+        50px
+      </span>
     </div>
-    This is row {props.index + 1}
-    <span
-      style={{
-        flex: 1,
-        textAlign: 'right',
-        color: '#bdbdbd',
-        fontSize: '.75em',
-        fontWeight: '100',
-      }}
-    >
-      50px
-    </span>
-  </div>
-);
+  );
+};
 
 ShortListItem.propTypes = {
   data: React.PropTypes.array,
@@ -104,9 +113,9 @@ const TallListItem = (props) => (
     >
       T
     </div>
-    This is row {props.index + 1}
+      Data Value: {props.data[props.index].randomNumber}
     <br />
-    It is is taller
+    This row is taller
     <span
       style={{
         flex: 1,
