@@ -36,10 +36,16 @@ const Options = (props) => (
         }
       </form>
     </div>
+    <div style={{ marginBottom: '10px' }}>
+      <button onClick={() => props.setGroupData()}>
+        Group Varying Heights List Data
+      </button>
+    </div>
   </div>
 );
 
 Options.propTypes = {
+  setGroupData: React.PropTypes.func,
   setListLength: React.PropTypes.func,
   setListThreshold: React.PropTypes.func,
 };
