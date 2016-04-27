@@ -3,6 +3,7 @@
 ## Demo
 https://react-super-components.herokuapp.com/image
 
+## API
 ```
 /**
  * Image component is a wrapper for <img/> with lazy loading and error

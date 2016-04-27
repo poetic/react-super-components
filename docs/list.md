@@ -3,6 +3,7 @@
 ## Demo
 https://react-super-components.herokuapp.com/list
 
+## API
 ```
 import { List } from 'react-super-components';
 import Header from 'exampleImportedHeader.jsx';

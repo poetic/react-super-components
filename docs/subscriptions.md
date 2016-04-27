@@ -3,6 +3,7 @@
 ## Demo
 https://react-super-components.herokuapp.com/subscription
 
+## API
 ```
 import { Subscriptions, permanentlySubscribe } from 'react-super-components';
 

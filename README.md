@@ -5,10 +5,13 @@ https://react-super-components.herokuapp.com/
 
 ## API
 
-[Image](docs/image.md)
-[Subscriptions](docs/subscriptions.md)
 [Stack](docs/stack.md)
-[list](docs/list.md)
+
+[Subscriptions](docs/subscriptions.md)
+
+[Image](docs/image.md)
+
+[List](docs/list.md)
 
 ## Testing
 ```

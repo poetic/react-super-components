@@ -3,6 +3,7 @@
 ## Demo
 https://react-super-components.herokuapp.com/stack
 
+## API
 ```
 import { Stack, Layer, Layout } from 'react-super-components';
 
