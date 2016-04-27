@@ -5,7 +5,7 @@ https://react-super-components.herokuapp.com/list
 
 ## API
 
-Super List renders the components that you pass it in `itemTypes`. Each
+Super List renders the components that you pass in `itemTypes`. Each
 component should expect to receive `index` and `data` as props.
 
 Example:
@@ -85,10 +85,10 @@ import { List } from 'react-super-components';
 import { ShortListItem, ListItem, Header } from 'ExampleImportedListItems.jsx';
 
 const listToBeRenderedWithMultipleTypes = [
-  { type: regular, wrestlerCategory: 'Classic Wrestlers', data: 'Lex Luger'},
-  { type: regular, wrestlerCategory: 'Classic Wrestlers', data: 'Bret Hart'},
-  { type: short, wrestlerCategory: 'New Wrestlers', data: 'Dolph Ziggler'},
-  { type: short, wrestlerCategory: 'New Wrestlers', data: 'Roman Reigns'},
+  { type: 'regular', wrestlerCategory: 'Classic Wrestlers', data: 'Lex Luger'},
+  { type: 'regular', wrestlerCategory: 'Classic Wrestlers', data: 'Bret Hart'},
+  { type: 'short', wrestlerCategory: 'New Wrestlers', data: 'Dolph Ziggler'},
+  { type: 'short', wrestlerCategory: 'New Wrestlers', data: 'Roman Reigns'},
 ];
 const itemTypes = [
   { type: 'regular', height: 60, component: ListItem },
@@ -105,14 +105,15 @@ const groupByWithFunction = (dataItem) => {
   return 'Ring Legends';
 }
 
-// This function will group your data by the wrestlerCategory property with
-// the headers 'Ring Legends' and 'Wrestlers I Am Too Old For'
+// This function will group your data with the wrestlerCategory value of 'New
+// Wrestlers' under the header 'Wrestlers I Am Too Old For', and the rest of your
+// data under the header 'Ring Legends'
 
 // groupBy as a string:
 const groupByWithString = 'wrestlerCategory';
 
 // This will also group your wrestlers by the wrestlerCategory but the headers will
-// be the value of wrestlerCategory: 'Classic Wrestlers' and 'New Wrestlers'
+// be the values of wrestlerCategory (i.e. 'Classic Wrestlers' and 'New Wrestlers')
 
 <List
   data={ listToBeRenderedWithMultipleTypes }
@@ -120,7 +121,8 @@ const groupByWithString = 'wrestlerCategory';
   itemTypes={ itemTypes }
 />
 ```
-#### List Prop Types
+
+### List Prop Types
 
 | Property             | Type               | Required?                   | Description                                                                                                                                       |
 | :---:                | :---:              | :---:                       | :---:                                                                                                                                             |
