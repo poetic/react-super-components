@@ -154,16 +154,16 @@ const itemTypes = [
 
 #### List Prop Types
 
-   | Property            | Type               | Required?                   | Description                                                                                                                                                      |
-   | :---:               | :---:              | :---:                       | :---:                                                                                                                                                            |
-   | className           | String             |                             | CSS class name                                                                                                                                                   |
-   | data                | Array              | ✓                           | The data you want to use. If multiple `itemTypes` are given, data must be an array of objects with a property `type` that matches a passed `type` in `itemTypes` |
-   | itemTypes           | Object or Array    | ✓                           | Either an object or an array of objects with the specified properties listed below                                                                               |
-   | itemTypes.type      | String             | ✓ (when multiple itemTypes) | Used to match data with its corresponding component when multiple `itemTypes` are given                                                                          |
-   | itemTypes.height    | Number             | ✓                           | Specifies the height of the rendered React component                                                                                                             |
-   | itemTypes.component | Function           | ✓                           | Specifies the React component that will be rendered                                                                                                              |
-   | groupBy             | Function or String |                             | Either a string that specifies which property to group the given `data` by or a function that expects dataItem and returns how the `data` should be grouped ex: (dataItem) => { if (dataItem.type === 'cat') { return 'cat' } else { return 'dog' } } |
-   | thresholdRows       | Number             |                             | Number of rows to render above/below the visible bounds of the list. This can help reduce flickering during scrolling on certain browers/devices                 |
+| Property            | Type               | Required?                   | Description                                                                                                                                                      |
+| :---:               | :---:              | :---:                       | :---:                                                                                                                                                            |
+| className           | String             |                             | CSS class name                                                                                                                                                   |
+| data                | Array              | ✓                           | The data you want to use. If multiple `itemTypes` are given, data must be an array of objects with a property `type` that matches a passed `type` in `itemTypes` |
+| itemTypes           | Object or Array    | ✓                           | Either an object or an array of objects with the specified properties listed below                                                                               |
+| itemTypes.type      | String             | ✓ (when multiple itemTypes) | Used to match data with its corresponding component when multiple `itemTypes` are given                                                                          |
+| itemTypes.height    | Number             | ✓                           | Specifies the height of the rendered React component                                                                                                             |
+| itemTypes.component | Function           | ✓                           | Specifies the React component that will be rendered                                                                                                              |
+| groupBy             | Function or String |                             | Either a string that specifies which property to group the given `data` by or a function that expects dataItem and returns how the `data` should be grouped ex: (dataItem) => { if (dataItem.type === 'cat') { return 'cat' } else { return 'dog' } } |
+| thresholdRows       | Number             |                             | Number of rows to render above/below the visible bounds of the list. This can help reduce flickering during scrolling on certain browers/devices                 |
 
 
 ## Testing
