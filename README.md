@@ -171,6 +171,7 @@ const itemTypes = [
   { type: 'header', height: 30, component: Header },
 ];
 
+// links to lodash!!
 // GroupBy can either be the property to group the data by or a function that expects
 // dataItem and returns the grouping
 const groupByWithFunction = (dataItem) => {

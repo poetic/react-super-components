@@ -35,6 +35,7 @@ class ListDemo extends React.Component {
   createList(listLength, varying) {
     const list = [];
 
+    // add property to data ot groupby
     for (let i = 0; i < listLength; i++) {
       if (varying) {
         if (i % 3 === 0) {
