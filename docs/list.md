@@ -74,9 +74,11 @@ const itemTypes = [
 A list with multiple components that also needs to group the given data a certain way.
 The `groupBy` prop must be given either a string that specifies which property to group
 the given data by or a function that expects dataItem and returns how the data should
-be grouped. Just like with the Multiple Item Components example, when using multiple
-components it's essential that the given data has a `type` property that matches a
-passed in `type` in the `itemTypes` prop.
+be grouped. Headers will also be added above each group based on what the data is grouped by.
+Header components behave exactly like other components passed into `itemTypes`
+and should expect to receive `index` and `data`. Just like with the Multiple Item
+Components example, when using multiple components it's essential that the given
+data has a `type` property that matches a passed in `type` in the `itemTypes` prop.
 
 `groupBy` uses lodash's groupBy: https://lodash.com/docs#groupBy
 
