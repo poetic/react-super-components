@@ -1,7 +1,7 @@
 import React from 'react';
 import Options from './superlist/Options';
 import { List } from '../lib/index.js';
-import { ShortListItem, TallListItem } from './superlist/ListItems.jsx';
+import { Header, ShortListItem, TallListItem } from './superlist/ListItems.jsx';
 
 class ListDemo extends React.Component {
   constructor() {
@@ -49,10 +49,19 @@ class ListDemo extends React.Component {
     const list = this.createList(listLength);
     const varyingList = this.createList(listLength, true);
     const itemTypes = [
+      { type: 'header', height: 50, component: Header },
       { type: 'tall', height: 100, component: TallListItem },
       { type: 'short', height: 50, component: ShortListItem },
     ];
+    //const groupBy = (dataItem) => {
+      //if (dataItem.type === 'tall') {
+        //return 'tall';
+      //}
 
+      //return 'short';
+    //};
+
+    const groupBy = 'type';
     return (
       <div>
         <h1>SuperList</h1>
@@ -61,16 +70,6 @@ class ListDemo extends React.Component {
           setListThreshold={this.setListThreshold}
           setVaryingHeight={this.setVaryingHeight}
         />
-        <div style={{ marginBottom: '50px' }}>
-          <h3>One Component List</h3>
-          <div style={{ border: '1px solid #ddd', height: '30vh' }}>
-            <List
-              data={ list }
-              itemTypes={ { height: 50, component: ShortListItem } }
-              thresholdRows={ thresholdRows }
-            />
-          </div>
-        </div>
         <div>
           <h3>Varying Heights Components List</h3>
           <div style={{ border: '1px solid #ddd', height: '30vh' }}>
@@ -78,6 +77,7 @@ class ListDemo extends React.Component {
               data={ varyingList }
               itemTypes={ itemTypes }
               thresholdRows={ thresholdRows }
+              groupBy={ groupBy }
             />
           </div>
         </div>
@@ -88,3 +88,13 @@ class ListDemo extends React.Component {
 
 export default ListDemo;
 
+        //<div style={{ marginBottom: '50px' }}>
+          //<h3>One Component List</h3>
+          //<div style={{ border: '1px solid #ddd', height: '30vh' }}>
+            //<List
+              //data={ list }
+              //itemTypes={ { height: 50, component: ShortListItem } }
+              //thresholdRows={ thresholdRows }
+            ///>
+          //</div>
+        //</div>

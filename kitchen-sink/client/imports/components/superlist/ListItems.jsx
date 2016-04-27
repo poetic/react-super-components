@@ -1,5 +1,37 @@
 import React from 'react';
 
+const Header = (props) => (
+  <div
+    style={{
+      alignItems: 'center',
+      backgroundColor: 'rgb(221, 221, 221)',
+      borderBottom: '1px solid #ddd',
+      display: 'flex',
+      justifyContent: 'center',
+      height: '50px',
+      padding: '0 25px',
+    }}
+  >
+    {props.data[props.index].title.toUpperCase()} List Items
+    <span
+      style={{
+        flex: 1,
+        textAlign: 'right',
+        color: '#bdbdbd',
+        fontSize: '.75em',
+        fontWeight: '100',
+      }}
+    >
+      50px
+    </span>
+  </div>
+);
+
+Header.propTypes = {
+  data: React.PropTypes.array,
+  index: React.PropTypes.number,
+};
+
 const ShortListItem = (props) => (
   <div
     style={{
@@ -94,4 +126,4 @@ TallListItem.propTypes = {
   index: React.PropTypes.number,
 };
 
-export { ShortListItem, TallListItem };
+export { Header, ShortListItem, TallListItem };
