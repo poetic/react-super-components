@@ -124,15 +124,59 @@ const groupByWithString = 'wrestlerCategory';
 />
 ```
 
+### Single/Multiple Item Component(s) and sortBy prop
+
+A list that needs to sort its given data a certain way. The `sortBy` prop specifies
+which property to sort the given data by and sorts it in ascending order.
+
+`sortBy` uses lodash's sortBy: https://lodash.com/docs#sortBy
+
+```
+import { List } from 'react-super-components';
+import { ListItem } from 'ExampleImportedListItems.jsx';
+
+const unsortedListToBeRendered = [
+  { totalWWETitles: 32, data: 'Raven'},
+  { totalWWETitles: 27, data: 'Booker T'},
+  { totalWWETitles: 29, data: 'Ric Flair'},
+  { totalWWETitles: 28, data: 'Chris Jericho'},
+];
+const itemTypes = [
+  { height: 60, component: ListItem },
+];
+
+// sortBy as a function:
+const sortByWithFunction = (dataItem) => {
+  if (dataItem.name != 'Ric Flair') {
+    return dataItem.totalWWETitles;
+  }
+}
+
+// This function will receive you dataItem as a parameter and will then sort all
+// data items not named 'Ric Flair' by totalWWETitles.
+
+// sortBy as a string:
+const sortByWithString = 'totalWWETitles';
+
+// This will sort your data in ascending order of totalWWETitles
+
+<List
+  data={ unsortedListToBeRendered }
+  sortBy={ sortByWithString }
+  itemTypes={ itemTypes }
+/>
+```
+
 ### List Prop Types
 
-| Property             | Type               | Required?                   | Description                                                                                                                                       |
-| :---:                | :---:              | :---:                       | :---:                                                                                                                                             |
-| className            | String             |                             | CSS class name                                                                                                                                    |
-| data                 | Array              | ✓                           | The data you want to use. If multiple `itemTypes` are given, data must be an array of objects with a property `type` that matches a passed `type` in `itemTypes`                                    |
+| Property             | Type               | Required?                   | Description                                                                                                                                                      |
+| :---:                | :---:              | :---:                       | :---:                                                                                                                                                            |
+| className            | String             |                             | CSS class name                                                                                                                                                   |
+| data                 | Array              | ✓                           | The data you want to use. If multiple `itemTypes` are given, data must be an array of objects with a property `type` that matches a passed `type` in `itemTypes` |
 | groupBy              | Function or String |                             | Either a string that specifies which property to group the given `data` by or a function that expects dataItem and returns how the `data` should be grouped      |
-| itemTypes            | Object or Array    | ✓                           | Either an object or an array of objects with the specified properties listed below                                                                |
-| itemTypes.type       | String             | ✓ (when multiple itemTypes) | Used to match data with its corresponding component when multiple `itemTypes` are given                                                                                                |
-| itemTypes.height     | Number             | ✓                           | Specifies the height of the rendered React component                                                                                              |
-| itemTypes.component  | Function           | ✓                           | Specifies the React component that will be rendered                                                                                               |
-| thresholdRows        | Number             |                             | Number of rows to render above/below the visible bounds of the list. This can help reduce flickering during scrolling on certain browers/devices  |
+| itemTypes            | Object or Array    | ✓                           | Either an object or an array of objects with the specified properties listed below                                                                               |
+| itemTypes.type       | String             | ✓ (when multiple itemTypes) | Used to match data with its corresponding component when multiple `itemTypes` are given                                                                          |
+| itemTypes.height     | Number             | ✓                           | Specifies the height of the rendered React component                                                                                                             |
+| itemTypes.component  | Function           | ✓                           | Specifies the React component that will be rendered                                                                                                              |
+| sortBy               | Any Node           |                             | Specifies which property to sort the given `data` by. Sorts in ascending order                                                                                   |
+| thresholdRows        | Number             |                             | Number of rows to render above/below the visible bounds of the list. This can help reduce flickering during scrolling on certain browers/devices                 |
