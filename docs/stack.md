@@ -43,8 +43,12 @@ const MainLayout = (props) => {
 }
 
 <Layout component={MainLayout} id='main-layout'>
-  <Stack layoutRegion='top' animations={animations} id='main' defaultActiveLayerId='users'>
-    <Layer id='users' component={Users}/>
+  <Stack
+    layoutRegion='top'
+    animations={animations}
+    id='main'
+    defaultActiveLayerId='users'>
+    <Layer id='users' component={Users} componentProps={{onClick: () => console.log('CLICKed')}} />
     <Layer id='cars' component={Cars}/>
   </Stack>
   <Layer layoutRegion='bottom'/>
