@@ -19,12 +19,13 @@ var instanceOf = _react.PropTypes.instanceOf;
 
 function Layer(_ref) {
   var style = _ref.style;
-  var children = _ref.children;
+  var component = _ref.component;
 
+  var Component = component;
   return _react2.default.createElement(
     'div',
     { style: style },
-    children
+    _react2.default.createElement(Component, null)
   );
 }
 
