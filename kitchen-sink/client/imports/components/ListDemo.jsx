@@ -36,6 +36,18 @@ class ListDemo extends React.Component {
     this.setState({ thresholdRows });
   }
 
+  setStatusMessage(groupData, sortData) {
+    if (groupData && sortData) {
+      return '(Grouped by height and sorted by Data Value)';
+    } else if (groupData) {
+      return '(Grouped by height)';
+    } else if (sortData) {
+      return '(Sorted by Data Value)';
+    }
+
+    return null;
+  }
+
   setSortData() {
     this.setState({ sortData: !this.state.sortData });
   }
@@ -44,26 +56,30 @@ class ListDemo extends React.Component {
     this.setState({ listToDisplay });
   }
 
-  createList(listLength, varying) {
+  createList(listLength, listType) {
     const list = [];
 
-    for (let i = 0; i < listLength; i++) {
-      if (varying) {
+    if (listType === 'multiple') {
+      for (let i = 0; i < listLength; i++) {
         if (i % 3 === 0) {
           list.push({
             type: 'tall',
             category: 'Taller List Items',
-            randomNumber: Math.round(Math.random() * 100),
+            randomNumber: Math.ceil(Math.random() * 100),
           });
         } else {
           list.push({
             type: 'short',
             category: 'Shorter List Items',
-            randomNumber: Math.round(Math.random() * 100),
+            randomNumber: Math.ceil(Math.random() * 100),
           });
         }
-      } else {
-        list.push(i);
+      }
+    } else {
+      for (let i = 0; i < listLength; i++) {
+        list.push({
+          randomNumber: Math.ceil(Math.random() * 100),
+        });
       }
     }
 
@@ -71,9 +87,8 @@ class ListDemo extends React.Component {
   }
 
   returnDisplayedList(listToDisplay) {
-    const { listLength, thresholdRows } = this.state;
-    const list = this.createList(listLength);
-    const varyingList = this.createList(listLength, true);
+    const { groupData, listLength, sortData, thresholdRows } = this.state;
+    const list = this.createList(listLength, listToDisplay);
     const itemTypes = [
       { type: 'header', height: 50, component: Header },
       { type: 'tall', height: 100, component: TallListItem },
@@ -85,14 +100,17 @@ class ListDemo extends React.Component {
     if (listToDisplay === 'multiple') {
       return (
         <div>
-          <h3>Multiple Components List</h3>
-          <div style={{ border: '1px solid #ddd', height: '40vh' }}>
+          <h3> Multiple Components List</h3>
+          <span>
+            {this.setStatusMessage(groupData, sortData)}
+          </span>
+          <div style={{ border: '1px solid #ddd', height: '40vh', marginTop: '10px' }}>
             <List
-              data={ varyingList }
+              data={ list }
               itemTypes={ itemTypes }
+              groupBy={ groupData ? groupBy : null }
+              sortBy={ sortData ? sortBy : null }
               thresholdRows={ thresholdRows }
-              groupBy={ this.state.groupData ? groupBy : null }
-              sortBy={ this.state.sortData ? sortBy : null }
             />
           </div>
         </div>
@@ -102,11 +120,15 @@ class ListDemo extends React.Component {
     return (
       <div>
         <h3>One Component List</h3>
-        <div style={{ border: '1px solid #ddd', height: '40vh' }}>
+        <span>
+          {this.setStatusMessage(groupData, sortData)}
+        </span>
+        <div style={{ border: '1px solid #ddd', height: '40vh', marginTop: '10px' }}>
           <List
             data={ list }
             itemTypes={ { height: 50, component: ShortListItem } }
             thresholdRows={ thresholdRows }
+            sortBy={ sortData ? sortBy : null }
           />
         </div>
       </div>

@@ -4,9 +4,11 @@ const Header = (props) => (
   <div
     style={{
       alignItems: 'center',
-      backgroundColor: 'rgb(221, 221, 221)',
+      backgroundColor: 'rgb(241, 241, 241)',
+      borderRight: '1px solid #ddd',
       borderBottom: '1px solid #ddd',
       display: 'flex',
+      fontSize: '18px',
       justifyContent: 'center',
       height: '50px',
       padding: '0 25px',
@@ -57,15 +59,15 @@ const ShortListItem = (props) => {
           borderRadius: '40px',
           color: '#fff',
           fontSize: '1.5em',
-          marginRight: '25px',
+          marginRight: '20px',
         }}
       >
         S
       </div>
       {
-        dataItem.randomNumber
+        dataItem.category
         ? `Data Value: ${dataItem.randomNumber}`
-        : `This is row ${index + 1}`
+        : `Row ${index + 1} -- Data Value: ${dataItem.randomNumber}`
       }
       <span
         style={{
@@ -87,48 +89,53 @@ ShortListItem.propTypes = {
   index: React.PropTypes.number,
 };
 
-const TallListItem = (props) => (
-  <div
-    style={{
-      height: '100px',
-      borderBottom: '1px solid #ddd',
-      display: 'flex',
-      padding: '0 25px',
-      alignItems: 'center',
-    }}
-  >
+const TallListItem = (props) => {
+  const { index, data } = props;
+  const dataItem = data[index];
+
+  return (
     <div
       style={{
-        backgroundColor: '#34495E',
-        display: 'inline-block',
-        height: '40px',
-        width: '40px',
-        lineHeight: '40px',
-        textAlign: 'center',
-        borderRadius: '40px',
-        color: '#fff',
-        fontSize: '1.5em',
-        marginRight: '25px',
+        height: '100px',
+        borderBottom: '1px solid #ddd',
+        display: 'flex',
+        padding: '0 25px',
+        alignItems: 'center',
       }}
     >
-      T
+      <div
+        style={{
+          backgroundColor: '#34495E',
+          display: 'inline-block',
+          height: '40px',
+          width: '40px',
+          lineHeight: '40px',
+          textAlign: 'center',
+          borderRadius: '40px',
+          color: '#fff',
+          fontSize: '1.5em',
+          marginRight: '20px',
+        }}
+      >
+        T
+      </div>
+      Data Value: {dataItem.randomNumber}
+      <br />
+      This row is taller
+      <span
+        style={{
+          flex: 1,
+          textAlign: 'right',
+          color: '#bdbdbd',
+          fontSize: '.75em',
+          fontWeight: '100',
+        }}
+      >
+        100px
+      </span>
     </div>
-      Data Value: {props.data[props.index].randomNumber}
-    <br />
-    This row is taller
-    <span
-      style={{
-        flex: 1,
-        textAlign: 'right',
-        color: '#bdbdbd',
-        fontSize: '.75em',
-        fontWeight: '100',
-      }}
-    >
-      100px
-    </span>
-  </div>
-);
+  );
+};
 
 TallListItem.propTypes = {
   data: React.PropTypes.array,

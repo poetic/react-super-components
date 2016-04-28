@@ -21,7 +21,7 @@ class Options extends React.Component {
   }
 
   renderAdditionalOptionsBasedOnList() {
-    const { setGroupData, setSortData } = this.props;
+    const { setGroupData } = this.props;
     const currentList = this.state.list;
 
     if (currentList === 'multiple') {
@@ -34,21 +34,11 @@ class Options extends React.Component {
       );
     }
 
-    if (currentList === 'sortable') {
-      return (
-        <div style={{ marginBottom: '10px' }}>
-          <button onClick={() => setSortData()}>
-            Sort List By Data Value
-          </button>
-        </div>
-      );
-    }
-
     return null;
   }
 
   render() {
-    const { setListLength, setListThreshold } = this.props;
+    const { setListLength, setListThreshold, setSortData } = this.props;
 
     return (
       <div>
@@ -90,8 +80,12 @@ class Options extends React.Component {
         >
           <option value="single">Single Component List</option>
           <option value="multiple">Multiple Components List</option>
-          <option value="sortable">Sortable Multiple Components List</option>
         </select>
+        <div style={{ marginBottom: '10px' }}>
+          <button onClick={() => setSortData()}>
+            Sort List By Data Value
+          </button>
+        </div>
         { this.renderAdditionalOptionsBasedOnList() }
       </div>
     );
