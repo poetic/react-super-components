@@ -10,7 +10,6 @@ class Options extends React.Component {
     this.state = {
       list: 'single',
     };
-    this.changeDisplayedList = this.changeDisplayedList.bind(this);
   }
 
   changeDisplayedList() {
@@ -73,7 +72,7 @@ class Options extends React.Component {
           </form>
         </div>
         <select
-          onChange={this.changeDisplayedList}
+          onChange={() => this.changeDisplayedList()}
           id="listSelect"
           name="List"
           style={{ marginBottom: '10px' }}

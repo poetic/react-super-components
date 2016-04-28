@@ -14,11 +14,6 @@ class ListDemo extends React.Component {
       sortData: false,
       thresholdRows: 10,
     };
-    this.changeDisplayedList = this.changeDisplayedList.bind(this);
-    this.setGroupData = this.setGroupData.bind(this);
-    this.setSortData = this.setSortData.bind(this);
-    this.setListLength = this.setListLength.bind(this);
-    this.setListThreshold = this.setListThreshold.bind(this);
   }
 
   setGroupData() {
@@ -142,11 +137,11 @@ class ListDemo extends React.Component {
       <div>
         <h1>SuperList</h1>
         <Options
-          changeDisplayedList={this.changeDisplayedList}
-          setGroupData={this.setGroupData}
-          setListLength={this.setListLength}
-          setListThreshold={this.setListThreshold}
-          setSortData={this.setSortData}
+          changeDisplayedList={list => this.changeDisplayedList(list)}
+          setGroupData={() => this.setGroupData()}
+          setListLength={() => this.setListLength()}
+          setListThreshold={() => this.setListThreshold()}
+          setSortData={() => this.setSortData()}
         />
         { this.returnDisplayedList(listToDisplay) }
       </div>
