@@ -48,7 +48,7 @@ class ListDemo extends React.Component {
   }
 
   changeDisplayedList(listToDisplay) {
-    this.setState({ listToDisplay });
+    this.setState({ listToDisplay, groupData: false, sortData: false });
   }
 
   createList(listLength, listType) {
