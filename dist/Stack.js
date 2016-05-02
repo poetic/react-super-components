@@ -20,8 +20,6 @@ var _paramStore2 = _interopRequireDefault(_paramStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -39,7 +37,7 @@ var Stack = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Stack).call(this, props));
 
-    _this.state = { activeLayerId: _paramStore2.default.get(props.id)[props.id] };
+    _this.state = { activeLayerId: _paramStore2.default.get(props.id) };
     return _this;
   }
 
@@ -60,35 +58,31 @@ var Stack = function (_React$Component) {
       _paramStore2.default.unlisten(this.listener);
     }
   }, {
+    key: 'activeLayerId',
+    value: function activeLayerId() {
+      return _lodash2.default.find([this.props.activeLayerId, this.state.activeLayerId, this.props.defaultActiveLayerId], _lodash2.default.isString);
+    }
+  }, {
+    key: 'activeLayer',
+    value: function activeLayer() {
+      var _this3 = this;
+
+      return _lodash2.default.find(this.props.children, function (child) {
+        return child.props.id === _lodash2.default.toString(_this3.activeLayerId());
+      });
+    }
+  }, {
+    key: 'animatedLayers',
+    value: function animatedLayers() {
+      return null;
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var id = _props.id;
-      var children = _props.children;
-      var defaultActiveLayerId = _props.defaultActiveLayerId;
-      var animations = _props.animations;
-
-      var other = _objectWithoutProperties(_props, ['id', 'children', 'defaultActiveLayerId', 'animations']);
-
-      var activeLayerId = _lodash2.default.find([this.props.activeLayerId, this.state.activeLayerId, defaultActiveLayerId], _lodash2.default.isString);
-
-      if (!animations) {
-        var activeLayer = _lodash2.default.find(children, function (child) {
-          return child.props.id === activeLayerId;
-        });
-
-        return _react2.default.createElement(
-          'div',
-          other,
-          activeLayer
-        ) || null;
-      }
-
-      console.log('===== NEED TO IMPLEMENT ANIMATIONS =====');
       return _react2.default.createElement(
         'div',
-        other,
-        children
+        null,
+        this.props.animations ? this.animatedLayers() : this.activeLayer()
       );
     }
   }]);
