@@ -47,10 +47,10 @@ const MainLayout = (props) => {
     layoutRegion='top'
     animations={animations}
     key='main'
-    defaultActiveLayerId='users'>
+    defaultActiveLayerIndex='users'>
     <Users key='users' />
     <Cars key='cars' />
   </Stack>
-  <Layer layoutRegion='bottom'/>
+  <Bottom layoutRegion='bottom'/>
 </Layout>
 ```
