@@ -1,6 +1,5 @@
 import React from 'react'
 import Stack from '../lib/Stack';
-import Layer from '../lib/Layer';
 import ParamStore from 'param-store';
 
 export default class StackDemo extends React.Component {
@@ -14,9 +13,9 @@ export default class StackDemo extends React.Component {
           <li><button onClick={() => {ParamStore.set({x: 'third'})}}>third</button></li>
         </ul>
         <Stack id='x' defaultActiveLayerId='first' style={{backgroundColor: 'yellow'}}>
-          <Layer id='first' component={() => <div>FIRST</div>}/>
-          <Layer id='second' component={() => <div>SECOND</div>}/>
-          <Layer id='third' component={() => <div>THIRD</div>}/>
+          <div id='first'>FIRST</div>
+          <div id='second'>SECOND</div>
+          <div id='third'>THIRD</div>
         </Stack>
       </div>
     )
