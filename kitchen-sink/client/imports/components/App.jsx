@@ -5,17 +5,13 @@ import SubscriptionsDemo from './SubscriptionsDemo';
 import ListDemo from './ListDemo';
 import StackDemo from './StackDemo';
 import Stack from '../lib/Stack';
-import Layer from '../lib/Layer';
-import Assembler from '../lib/Assembler';
 
 export default () => (
-  <Assembler>
-    <Stack id='path'>
-      <Layer id='' component={Index} />
-      <Layer id='image' component={ImageDemo} />
-      <Layer id='subscription' component={SubscriptionsDemo} />
-      <Layer id='list' component={ListDemo} />
-      <Layer id='stack' component={StackDemo} />
-    </Stack>
-  </Assembler>
+  <Stack index='path'>
+    <Index index='' />
+    <ImageDemo index='image' />
+    <SubscriptionsDemo index='subscription' />
+    <ListDemo index='list' />
+    <StackDemo index='stack' />
+  </Stack>
 );
