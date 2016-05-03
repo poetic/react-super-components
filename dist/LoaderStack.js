@@ -33,21 +33,15 @@ exports.default = function (props) {
   return _react2.default.createElement(
     _Stack2.default,
     { activeLayerId: status },
-    _react2.default.createElement(
-      _Layer2.default,
-      { id: 'loading' },
-      loadingElement || _react2.default.createElement(DefaultLoadingComponent, other)
-    ),
-    _react2.default.createElement(
-      _Layer2.default,
-      { id: 'error' },
-      errorElement || _react2.default.createElement(DefaultLoadingComponent, other)
-    ),
-    _react2.default.createElement(
-      _Layer2.default,
-      { id: 'display' },
-      displayElement
-    )
+    _react2.default.createElement(_Layer2.default, { id: 'loading', component: function component() {
+        return loadingElement || _react2.default.createElement(DefaultLoadingComponent, other);
+      } }),
+    _react2.default.createElement(_Layer2.default, { id: 'error', component: function component() {
+        return errorElement || _react2.default.createElement(DefaultLoadingComponent, other);
+      } }),
+    _react2.default.createElement(_Layer2.default, { id: 'display', component: function component() {
+        return displayElement;
+      } })
   );
 };
 

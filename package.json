@@ -1,6 +1,6 @@
 {
   "name": "react-super-components",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "react super components",
   "main": "./dist/index.js",
   "repository": {
@@ -27,7 +27,8 @@
     "eslint-plugin-react": "^4.2.3",
     "react": "^15.0.1",
     "react-addons-test-utils": "^15.0.1",
-    "react-dom": "^15.0.1"
+    "react-dom": "^15.0.1",
+    "lodash": "^4.11.1"
   },
   "peerDependencies": {
     "react": "^15.0.1",
@@ -36,9 +37,8 @@
   "dependencies": {
     "jquery": "^2.2.2",
     "jquery-inview": "^1.1.2",
-    "react-virtualized": "^6.1.2",
-    "param-store": "github:poetic/param-store",
-    "react-addons-shallow-compare": "^15.0.1",
-    "react-virtualized": "^6.1.1"
+    "react-virtualized": "^6.1.1",
+    "param-store": "^0.4.2",
+    "react-addons-shallow-compare": "^15.0.1"
   }
 }

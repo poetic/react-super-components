@@ -139,8 +139,8 @@ class ListDemo extends React.Component {
         <Options
           changeDisplayedList={list => this.changeDisplayedList(list)}
           setGroupData={() => this.setGroupData()}
-          setListLength={() => this.setListLength()}
-          setListThreshold={() => this.setListThreshold()}
+          setListLength={(listLength) => this.setListLength(listLength)}
+          setListThreshold={(value) => this.setListThreshold(value)}
           setSortData={() => this.setSortData()}
         />
         { this.returnDisplayedList(listToDisplay) }

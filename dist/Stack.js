@@ -14,6 +14,10 @@ var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
+var _paramStore = require('param-store');
+
+var _paramStore2 = _interopRequireDefault(_paramStore);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28,33 +32,57 @@ var array = _react.PropTypes.array;
 var Stack = function (_React$Component) {
   _inherits(Stack, _React$Component);
 
-  function Stack() {
+  function Stack(props) {
     _classCallCheck(this, Stack);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Stack).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Stack).call(this, props));
+
+    _this.state = { activeLayerId: _paramStore2.default.get(props.id) };
+    return _this;
   }
 
   _createClass(Stack, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      this.listener = _paramStore2.default.listen(this.props.id, function (_ref) {
+        var changedParams = _ref.changedParams;
+
+        _this2.setState({ activeLayerId: changedParams[_this2.props.id] });
+      });
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      _paramStore2.default.unlisten(this.listener);
+    }
+  }, {
+    key: 'activeLayerId',
+    value: function activeLayerId() {
+      return _lodash2.default.find([this.props.activeLayerId, this.state.activeLayerId, this.props.defaultActiveLayerId], _lodash2.default.isString);
+    }
+  }, {
+    key: 'activeLayer',
+    value: function activeLayer() {
+      var _this3 = this;
+
+      return _lodash2.default.find(this.props.children, function (child) {
+        return child.props.id === _lodash2.default.toString(_this3.activeLayerId());
+      });
+    }
+  }, {
+    key: 'animatedLayers',
+    value: function animatedLayers() {
+      return null;
+    }
+  }, {
     key: 'render',
     value: function render() {
-      var _props = this.props;
-      var id = _props.id;
-      var children = _props.children;
-      var animations = _props.animations;
-      var activeLayerId = _props.activeLayerId;
-
-
-      if (!animations) {
-        return _lodash2.default.find(children, function (child) {
-          return child.props.id === activeLayerId;
-        });
-      }
-
-      console.log('===== NEED TO IMPLEMENT ANIMATIONS =====');
       return _react2.default.createElement(
         'div',
         null,
-        children
+        this.props.animations ? this.animatedLayers() : this.activeLayer()
       );
     }
   }]);
@@ -66,7 +94,7 @@ exports.default = Stack;
 
 
 Stack.PropTypes = {
-  id: string.isRequired,
+  id: string,
   children: array.isRequired,
   animations: array,
   activeLayerId: string

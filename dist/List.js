@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _lodash = require('lodash');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
 var _reactVirtualized = require('react-virtualized');
 
 require('react-virtualized/styles.css');
@@ -28,35 +32,108 @@ var List = function (_React$Component) {
   function List() {
     _classCallCheck(this, List);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this));
-
-    _this.rowRenderer = _this.rowRenderer.bind(_this);
-    return _this;
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(List).apply(this, arguments));
   }
 
   _createClass(List, [{
-    key: 'rowRenderer',
-    value: function rowRenderer(index, list) {
-      var rowRenderer = this.props.rowRenderer;
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var currentData = this.props.data;
+      var newData = nextProps.data;
 
+      if (currentData.length === newData.length) {
+        if (!_lodash2.default.isEqual(currentData, newData)) {
+          this._virtualScroll.recomputeRowHeights();
+        }
+      }
+    }
+  }, {
+    key: 'groupDataAndAddHeaders',
+    value: function groupDataAndAddHeaders(data, groupBy) {
+      var groupedDataObject = _lodash2.default.groupBy(data, groupBy);
+      var groupedDataObjectKeys = Object.keys(groupedDataObject);
 
-      if (rowRenderer) {
-        return rowRenderer(index, list);
+      var groupedData2DArrayWithHeaders = groupedDataObjectKeys.map(function (key) {
+        var array = groupedDataObject[key];
+        var header = { type: 'header', title: key };
+
+        return _lodash2.default.concat([header], array);
+      });
+
+      return _lodash2.default.flatten(groupedData2DArrayWithHeaders);
+    }
+  }, {
+    key: 'sortData',
+    value: function sortData(data, sortBy) {
+      return _lodash2.default.sortBy(data, sortBy);
+    }
+  }, {
+    key: 'checkTypesAndReturnMatchingItemType',
+    value: function checkTypesAndReturnMatchingItemType(index, data) {
+      var itemTypes = this.props.itemTypes;
+
+      var dataItem = data[index];
+
+      if (_lodash2.default.isArray(itemTypes)) {
+        var typesToMatch = itemTypes.map(function (item) {
+          return item.type;
+        });
+
+        if (typesToMatch.includes(dataItem.type)) {
+          var itemType = _lodash2.default.find(itemTypes, { type: dataItem.type });
+
+          return itemType;
+        }
+
+        throw new Error('Invalid prop `data` supplied to `List`. An object of `data` has a type property' + ' that does not match a passed in type from `itemTypes`.');
       }
 
-      return list[index];
+      return itemTypes;
+    }
+  }, {
+    key: 'checkForModificationsAndReturnModifiedData',
+    value: function checkForModificationsAndReturnModifiedData(data) {
+      var _props = this.props;
+      var groupBy = _props.groupBy;
+      var sortBy = _props.sortBy;
+
+      var modifiableData = data;
+
+      if (sortBy) {
+        modifiableData = this.sortData(modifiableData, sortBy);
+      }
+
+      if (groupBy) {
+        modifiableData = this.groupDataAndAddHeaders(modifiableData, groupBy);
+      }
+
+      return modifiableData;
+    }
+  }, {
+    key: 'rowRenderer',
+    value: function rowRenderer(index, data) {
+      var itemType = this.checkTypesAndReturnMatchingItemType(index, data);
+      var ListItemComponent = itemType.component;
+
+      return _react2.default.createElement(ListItemComponent, { data: data, index: index });
+    }
+  }, {
+    key: 'rowHeight',
+    value: function rowHeight(index, data) {
+      var itemType = this.checkTypesAndReturnMatchingItemType(index, data);
+
+      return itemType.height;
     }
   }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
-      var _props = this.props;
-      var className = _props.className;
-      var thresholdRows = _props.thresholdRows;
-      var list = _props.list;
-      var rowHeight = _props.rowHeight;
+      var _props2 = this.props;
+      var className = _props2.className;
+      var thresholdRows = _props2.thresholdRows;
 
+      var data = this.checkForModificationsAndReturnModifiedData(this.props.data);
 
       return _react2.default.createElement(
         _reactVirtualized.AutoSizer,
@@ -66,14 +143,19 @@ var List = function (_React$Component) {
           var width = _ref.width;
           return _react2.default.createElement(_reactVirtualized.VirtualScroll, {
             className: className,
-            width: width,
             height: height,
-            rowsCount: list.length,
-            rowHeight: rowHeight,
-            rowRenderer: function rowRenderer(index) {
-              return _this2.rowRenderer(index, list);
+            overscanRows: thresholdRows,
+            ref: function ref(_ref2) {
+              _this2._virtualScroll = _ref2;
             },
-            overscanRows: thresholdRows
+            rowsCount: data.length,
+            rowHeight: function rowHeight(index) {
+              return _this2.rowHeight(index, data);
+            },
+            rowRenderer: function rowRenderer(index) {
+              return _this2.rowRenderer(index, data);
+            },
+            width: width
           });
         }
       );
@@ -85,10 +167,67 @@ var List = function (_React$Component) {
 
 List.propTypes = {
   className: _react.PropTypes.string,
-  list: _react.PropTypes.array.isRequired,
-  rowHeight: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]).isRequired,
-  rowRenderer: _react.PropTypes.func,
-  thresholdRows: _react.PropTypes.number
+  data: function data(props, propName, componentName) {
+    var data = props.data;
+
+    if (!data) {
+      return new Error('Required prop `' + propName + '` was not specified in `' + componentName + '`.');
+    }
+
+    if (!_lodash2.default.isArray(data)) {
+      return new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` to be an array.'));
+    }
+
+    if (_lodash2.default.isArray(props.itemTypes)) {
+      data.forEach(function (dataItem) {
+        if (!_lodash2.default.isObject(dataItem)) {
+          throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` to be an array of objects.'));
+        } else if (!dataItem.type) {
+          throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. An object of ' + ('`' + propName + '` is missing the required property `type`.'));
+        } else if (!_lodash2.default.isString(dataItem.type)) {
+          throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. An object of ' + ('`' + propName + '` has a TypeError for the required property `type`.'));
+        }
+      });
+    }
+
+    return null;
+  },
+  groupBy: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.func, _react2.default.PropTypes.string]),
+  itemTypes: function itemTypes(props, propName, componentName) {
+    var itemTypes = props.itemTypes;
+
+    if (!itemTypes) {
+      return new Error('Required prop `' + propName + '` was not specified in `' + componentName + '`.');
+    }
+
+    if (_lodash2.default.isArray(itemTypes)) {
+      itemTypes.forEach(function (item) {
+        if (!item.type || !item.component || !item.height) {
+          throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have required type, component,') + ' and height properties.');
+        } else if (!_lodash2.default.isString(item.type)) {
+          throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have a type property of type String.'));
+        } else if (!_lodash2.default.isNumber(item.height)) {
+          throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have a height property of type Number.'));
+        } else if (!_lodash2.default.isFunction(item.component)) {
+          throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have a component property of type Function.'));
+        }
+      });
+    } else if (_lodash2.default.isObject(itemTypes)) {
+      if (!itemTypes.component || !itemTypes.height) {
+        throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have required component and height properties.'));
+      } else if (!_lodash2.default.isNumber(itemTypes.height)) {
+        throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have a height property of type Number.'));
+      } else if (!_lodash2.default.isFunction(itemTypes.component)) {
+        throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have a component property of type Function.'));
+      }
+    } else {
+      throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` to be an object or an array of objects.'));
+    }
+
+    return null;
+  },
+  sortBy: _react2.default.PropTypes.node,
+  thresholdRows: _react2.default.PropTypes.number
 };
 
 exports.default = List;

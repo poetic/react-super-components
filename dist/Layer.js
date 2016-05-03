@@ -12,26 +12,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var string = _react.PropTypes.string;
 var object = _react.PropTypes.object;
-var oneOfType = _react.PropTypes.oneOfType;
 var func = _react.PropTypes.func;
-var instanceOf = _react.PropTypes.instanceOf;
 
 
 function Layer(_ref) {
   var style = _ref.style;
-  var children = _ref.children;
+  var component = _ref.component;
+  var componentProps = _ref.componentProps;
 
+  var Component = component;
   return _react2.default.createElement(
     'div',
     { style: style },
-    children
+    _react2.default.createElement(Component, componentProps)
   );
 }
 
 Layer.PropTypes = {
   id: string.isRequired,
-  component: oneOfType([func, instanceOf(_react2.default.Component)]).isRequired,
-  style: object
+  style: object,
+  component: func.isRequired,
+  componentProps: object
 };
 
 exports.default = Layer;
