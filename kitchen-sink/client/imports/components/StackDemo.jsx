@@ -3,6 +3,28 @@ import Stack from '../lib/Stack';
 import ParamStore, {Link} from 'param-store';
 
 export default class StackDemo extends React.Component {
+  animations () {
+    return [
+      {
+        to: 'second',
+        use: () => {
+          return {
+            currentLayer: {
+              transition: '1s margin',
+              startStyle: {marginLeft: '0px'},
+              endStyle: {marginLeft: '100%'}
+            },
+            nextLayer: {
+              transition: '1s margin',
+              startStyle: {marginLeft: '100%'},
+              endStyle: {marginLeft: '0px'}
+            }
+          }
+        }
+      }
+    ]
+  }
+
   render () {
     return (
       <div>
@@ -29,10 +51,11 @@ export default class StackDemo extends React.Component {
         <Stack
           index='animation'
           style={{color: 'white'}}
+          animations={this.animations()}
           defaultActiveLayerIndex='first'>
-          <div index='first' style={{backgroundColor: 'blue'}}>FIRST</div>
-          <div index='second' style={{backgroundColor: 'green'}}>SECOND</div>
-          <div index='third' style={{backgroundColor: 'red'}}>THIRD</div>
+          <div index='first' style={{backgroundColor: 'blue', width: '100vw'}}>FIRST</div>
+          <div index='second' style={{backgroundColor: 'green', width: '100vw'}}>SECOND</div>
+          <div index='third' style={{backgroundColor: 'red', width: '100vw'}}>THIRD</div>
         </Stack>
       </div>
     )
