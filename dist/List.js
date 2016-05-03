@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -114,8 +116,9 @@ var List = function (_React$Component) {
     value: function rowRenderer(index, data) {
       var itemType = this.checkTypesAndReturnMatchingItemType(index, data);
       var ListItemComponent = itemType.component;
+      var props = _extends({ index: index, data: data }, itemType.componentProps);
 
-      return _react2.default.createElement(ListItemComponent, { data: data, index: index });
+      return _react2.default.createElement(ListItemComponent, props);
     }
   }, {
     key: 'rowHeight',
@@ -144,7 +147,7 @@ var List = function (_React$Component) {
           return _react2.default.createElement(_reactVirtualized.VirtualScroll, {
             className: className,
             height: height,
-            overscanRows: thresholdRows,
+            overscanRowsCount: thresholdRows,
             ref: function ref(_ref2) {
               _this2._virtualScroll = _ref2;
             },
@@ -210,6 +213,8 @@ List.propTypes = {
           throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have a height property of type Number.'));
         } else if (!_lodash2.default.isFunction(item.component)) {
           throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have a component property of type Function.'));
+        } else if (item.componentProps && !_lodash2.default.isObject(item.componentProps)) {
+          throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have a componentProps property of type Object.'));
         }
       });
     } else if (_lodash2.default.isObject(itemTypes)) {
@@ -219,6 +224,8 @@ List.propTypes = {
         throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have a height property of type Number.'));
       } else if (!_lodash2.default.isFunction(itemTypes.component)) {
         throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have a component property of type Function.'));
+      } else if (itemTypes.componentProps && !_lodash2.default.isObject(itemTypes.componentProps)) {
+        throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` object to have a componentProps property of type Object.'));
       }
     } else {
       throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` to be an object or an array of objects.'));
