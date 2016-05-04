@@ -1,6 +1,6 @@
 {
   "name": "react-super-components",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "react super components",
   "main": "./dist/index.js",
   "repository": {
