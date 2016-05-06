@@ -46,7 +46,7 @@ export default class StackDemo extends React.Component {
           <div index='third'>THIRD</div>
         </Stack>
 
-        <h1>Stack with opacity animation (index: animation)</h1>
+        <h1>Stack with animation (index: animation)</h1>
         <ul>
           <li><Link params={{'animation': 'first'}}>first</Link></li>
           <li><Link params={{'animation': 'second'}}>second</Link></li>
@@ -57,9 +57,9 @@ export default class StackDemo extends React.Component {
           style={{color: 'white'}}
           animations={this.animations()}
           defaultActiveLayerIndex='first'>
-          <div index='first' style={{backgroundColor: 'blue', width: '100vw'}}>FIRST</div>
-          <div index='second' style={{backgroundColor: 'green', width: '100vw'}}>SECOND</div>
-          <div index='third' style={{backgroundColor: 'red', width: '100vw'}}>THIRD</div>
+          <div index='first' style={{backgroundColor: 'blue', width: '100vw', height: '50px'}}>FIRST</div>
+          <div index='second' style={{backgroundColor: 'green', width: '100vw', height: '50px'}}>SECOND</div>
+          <div index='third' style={{backgroundColor: 'red', width: '100vw', height: '50px'}}>THIRD</div>
         </Stack>
       </div>
     )
