@@ -54,3 +54,11 @@ const MainLayout = (props) => {
   <Bottom layoutRegion='bottom'/>
 </Layout>
 ```
+
+```
+deal with different senarios:
+1. have reverse
+2. no current layer
+3. no next layer
+4. a way to create new default animations
+```

@@ -9,15 +9,19 @@ export default class StackDemo extends React.Component {
         to: 'second',
         use: () => {
           return {
-            currentLayer: {
-              transition: '1s margin',
-              startStyle: {marginLeft: '0px'},
-              endStyle: {marginLeft: '100%'}
-            },
             nextLayer: {
               transition: '1s margin',
-              startStyle: {marginLeft: '100%'},
-              endStyle: {marginLeft: '0px'}
+              startStyle: {marginLeft: '100%', zIndex: 1},
+              endStyle: {marginLeft: '0px', zIndex: 1}
+            }
+          }
+        },
+        reverse: () => {
+          return {
+            currentLayer: {
+              transition: '1s margin',
+              startStyle: {marginLeft: '0px', zIndex: 1},
+              endStyle: {marginLeft: '100%', zIndex: 1}
             }
           }
         }
