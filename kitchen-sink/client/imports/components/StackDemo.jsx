@@ -3,25 +3,16 @@ import Stack from '../lib/Stack';
 import ParamStore, {Link} from 'param-store';
 
 export default class StackDemo extends React.Component {
-  animations () {
+  slideUp () {
     return [
       {
-        to: 'second',
+        from: 'green',
         use: () => {
           return {
             nextLayer: {
-              transition: '1s margin',
-              startStyle: {marginLeft: '100%', zIndex: 1},
-              endStyle: {marginLeft: '0px', zIndex: 1}
-            }
-          }
-        },
-        reverse: () => {
-          return {
-            currentLayer: {
-              transition: '1s margin',
-              startStyle: {marginLeft: '0px', zIndex: 1},
-              endStyle: {marginLeft: '100%', zIndex: 1}
+              transition: '1s all',
+              startStyle: {transform: 'translateY(100%)', zIndex: 1},
+              endStyle: {transform: 'translateY(0)', zIndex: 1}
             }
           }
         }
@@ -34,34 +25,43 @@ export default class StackDemo extends React.Component {
       <div>
         <h1>Stack Without animation (index: no-animation)</h1>
         <ul>
-          <li><Link params={{'no-animation': 'first'}}>first</Link></li>
-          <li><Link params={{'no-animation': 'second'}}>second</Link></li>
-          <li><Link params={{'no-animation': 'third'}}>third</Link></li>
+          <li><Link params={{'no-animation': 'green'}}>green</Link></li>
+          <li><Link params={{'no-animation': 'blue'}}>blue</Link></li>
+          <li><Link params={{'no-animation': 'red'}}>red</Link></li>
         </ul>
-        <Stack index='no-animation'
-          defaultActiveLayerIndex='first'
-          style={{backgroundColor: 'yellow'}}>
-          <div index='first'>FIRST</div>
-          <div index='second'>SECOND</div>
-          <div index='third'>THIRD</div>
+        <Stack index='no-animation'>
+          <AnimationLayer index='green' />
+          <AnimationLayer index='blue' />
+          <AnimationLayer index='red' />
         </Stack>
 
-        <h1>Stack with animation (index: animation)</h1>
+        <h1>animation: slide up</h1>
         <ul>
-          <li><Link params={{'animation': 'first'}}>first</Link></li>
-          <li><Link params={{'animation': 'second'}}>second</Link></li>
-          <li><Link params={{'animation': 'third'}}>third</Link></li>
+          <li><Link params={{'slide-up': 'green'}}>green</Link></li>
+          <li><Link params={{'slide-up': 'blue'}}>blue</Link></li>
         </ul>
         <Stack
-          index='animation'
+          index='slide-up'
           style={{color: 'white'}}
-          animations={this.animations()}
-          defaultActiveLayerIndex='first'>
-          <div index='first' style={{backgroundColor: 'blue', width: '100vw', height: '50px'}}>FIRST</div>
-          <div index='second' style={{backgroundColor: 'green', width: '100vw', height: '50px'}}>SECOND</div>
-          <div index='third' style={{backgroundColor: 'red', width: '100vw', height: '50px'}}>THIRD</div>
+          animations={this.slideUp()} >
+          <AnimationLayer index='green' />
+          <AnimationLayer index='blue' />
         </Stack>
       </div>
     )
   }
+}
+
+function AnimationLayer (props) {
+  const style = {
+    backgroundColor: props.index,
+    width: '100vw',
+    height: '100px',
+    color: 'white',
+    fontSize: '20px',
+    textAlign: 'center',
+    lineHeight: '100px'
+  };
+
+  return <div style={style} {...props}>{props.index}</div>;
 }
