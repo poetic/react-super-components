@@ -10,7 +10,7 @@ export default class StackDemo extends React.Component {
         use: () => {
           return {
             nextLayer: {
-              transition: '1s all',
+              transition: '1s transform',
               startStyle: {transform: 'translateY(100%)', zIndex: 1},
               endStyle: {transform: 'translateY(0)', zIndex: 1}
             }
