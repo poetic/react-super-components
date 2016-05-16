@@ -2,6 +2,7 @@
 
 [![npm][npm-image]][npm-url]
 
+[npm-image]: https://img.shields.io/npm/v/react-super-component.svg
 [npm-url]: https://npmjs.org/package/react-super-component
 
 Super Components are a set of React components that are data-aware and follow native design patterns for optimal performance.
