@@ -1,58 +1,197 @@
-import React from 'react'
+import React from 'react';
 import Stack from '../lib/Stack';
-import ParamStore, {Link} from 'param-store';
+import { Link } from 'param-store';
+import Animations from '../lib/Animations';
 
 export default class StackDemo extends React.Component {
-  slideUp () {
+  fade() {
     return [
       {
         from: 'green',
-        use: () => {
-          return {
-            nextLayer: {
-              transition: '1s transform',
-              startStyle: {transform: 'translateY(100%)', zIndex: 1},
-              endStyle: {transform: 'translateY(0)', zIndex: 1}
-            }
-          }
-        }
-      }
-    ]
+        use: () => { return (Animations.fade()); },
+      },
+    ];
   }
 
-  render () {
+  toLeft() {
+    return [
+      {
+        from: 'green',
+        to: 'blue',
+        use: () => { return (Animations.toLeft()); },
+      },
+    ];
+  }
+
+  toRight() {
+    return [
+      {
+        from: 'green',
+        to: 'blue',
+        use: () => { return (Animations.toRight()); },
+      },
+    ];
+  }
+
+  toUp() {
+    return [
+      {
+        from: 'green',
+        to: 'blue',
+        use: () => { return (Animations.toUp()); },
+      },
+    ];
+  }
+
+  toDown() {
+    return [
+      {
+        from: 'green',
+        to: 'blue',
+        use: () => { return (Animations.toDown()); },
+      },
+    ];
+  }
+
+  shiftLeft() {
+    return [
+      {
+        from: 'green',
+        to: 'blue',
+        use: () => { return (Animations.shiftLeft()); },
+      },
+    ];
+  }
+
+  shiftRight() {
+    return [
+      {
+        from: 'green',
+        to: 'blue',
+        use: () => { return (Animations.shiftRight()); },
+      },
+    ];
+  }
+
+  render() {
     return (
       <div>
         <h1>Stack Without animation (index: no-animation)</h1>
         <ul>
-          <li><Link params={{'no-animation': 'green'}}>green</Link></li>
-          <li><Link params={{'no-animation': 'blue'}}>blue</Link></li>
-          <li><Link params={{'no-animation': 'red'}}>red</Link></li>
+          <li><Link params={{ 'no-animation': 'green' }}>green</Link></li>
+          <li><Link params={{ 'no-animation': 'blue' }}>blue</Link></li>
+          <li><Link params={{ 'no-animation': 'red' }}>red</Link></li>
         </ul>
-        <Stack index='no-animation'>
-          <AnimationLayer index='green' />
-          <AnimationLayer index='blue' />
-          <AnimationLayer index='red' />
+        <Stack index={ 'no-animation' }>
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+          <AnimationLayer index={ 'red' } />
         </Stack>
 
-        <h1>animation: slide up</h1>
+        <h1>animation: fade</h1>
         <ul>
-          <li><Link params={{'slide-up': 'green'}}>green</Link></li>
-          <li><Link params={{'slide-up': 'blue'}}>blue</Link></li>
+          <li><Link params={{ fade: 'green' }}>green</Link></li>
+          <li><Link params={{ fade: 'blue' }}>blue</Link></li>
         </ul>
         <Stack
-          index='slide-up'
-          style={{color: 'white'}}
-          animations={this.slideUp()} >
-          <AnimationLayer index='green' />
-          <AnimationLayer index='blue' />
+          index={ 'fade' }
+          style={{ color: 'white', height: '100px' }}
+          animations={this.fade()}
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
         </Stack>
+
+        <h1>animation: toLeft</h1>
+        <ul>
+          <li><Link params={{ toLeft: 'green' }}>green</Link></li>
+          <li><Link params={{ toLeft: 'blue' }}>blue</Link></li>
+        </ul>
+        <Stack
+          index={ 'toLeft' }
+          style={{ color: 'white', height: '100px' }}
+          animations={ this.toLeft() }
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+        </Stack>
+
+        <h1>animation: toRight</h1>
+        <ul>
+          <li><Link params={{ toRight: 'green' }}>green</Link></li>
+          <li><Link params={{ toRight: 'blue' }}>blue</Link></li>
+        </ul>
+        <Stack
+          index={ 'toRight' }
+          style={{ color: 'white', height: '100px' }}
+          animations={ this.toRight() }
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+        </Stack>
+
+        <h1>animation: toUp</h1>
+        <ul>
+          <li><Link params={{ toUp: 'green' }}>green</Link></li>
+          <li><Link params={{ toUp: 'blue' }}>blue</Link></li>
+        </ul>
+        <Stack
+          index={ 'toUp' }
+          style={{ color: 'white', height: '100px', overflow: 'hidden' }}
+          animations={ this.toUp() }
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+        </Stack>
+
+        <h1>animation: toDown</h1>
+        <ul>
+          <li><Link params={{ toDown: 'green' }}>green</Link></li>
+          <li><Link params={{ toDown: 'blue' }}>blue</Link></li>
+        </ul>
+        <Stack
+          index={ 'toDown' }
+          style={{ color: 'white', height: '100px', overflow: 'hidden' }}
+          animations={ this.toDown() }
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+        </Stack>
+
+        <h1>animation: shiftLeft</h1>
+        <ul>
+          <li><Link params={{ shiftLeft: 'green' }}>green</Link></li>
+          <li><Link params={{ shiftLeft: 'blue' }}>blue</Link></li>
+        </ul>
+        <Stack
+          index={ 'shiftLeft' }
+          style={{ color: 'white', height: '100px' }}
+          animations={ this.shiftLeft() }
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+        </Stack>
+
+        <h1>animation: shiftRight</h1>
+        <ul>
+          <li><Link params={{ shiftRight: 'green' }}>green</Link></li>
+          <li><Link params={{ shiftRight: 'blue' }}>blue</Link></li>
+        </ul>
+        <Stack
+          index={ 'shiftRight' }
+          style={{ color: 'white', height: '100px' }}
+          animations={ this.shiftRight() }
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+        </Stack>
+
       </div>
-    )
+    );
   }
 }
 
-function AnimationLayer (props) {
+function AnimationLayer(props) {
   const style = {
     backgroundColor: props.index,
     width: '100vw',
@@ -60,7 +199,7 @@ function AnimationLayer (props) {
     color: 'white',
     fontSize: '20px',
     textAlign: 'center',
-    lineHeight: '100px'
+    lineHeight: '100px',
   };
 
   return <div style={style} {...props}>{props.index}</div>;
