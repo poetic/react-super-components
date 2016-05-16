@@ -73,6 +73,16 @@ export default class StackDemo extends React.Component {
     ];
   }
 
+  flip() {
+    return [
+      {
+        from: 'green',
+        to: 'blue',
+        use: () => { return (Animations.flip()); },
+      },
+    ];
+  }
+
   render() {
     return (
       <div>
@@ -186,6 +196,20 @@ export default class StackDemo extends React.Component {
           <AnimationLayer index={ 'blue' } />
         </Stack>
 
+        <h1>animation: flip</h1>
+        <ul>
+          <li><Link params={{ flip: 'green' }}>green</Link></li>
+          <li><Link params={{ flip: 'blue' }}>blue</Link></li>
+        </ul>
+        <Stack
+          index={ 'flip' }
+          style={{ color: 'white', height: '100px', }}
+          animations={ this.flip() }
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+        </Stack>
+
       </div>
     );
   }
@@ -200,6 +224,7 @@ function AnimationLayer(props) {
     fontSize: '20px',
     textAlign: 'center',
     lineHeight: '100px',
+    WebkitBackfaceVisibility: 'hidden',
   };
 
   return <div style={style} {...props}>{props.index}</div>;
