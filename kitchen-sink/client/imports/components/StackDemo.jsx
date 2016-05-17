@@ -13,6 +13,46 @@ export default class StackDemo extends React.Component {
     ];
   }
 
+  coverLeft() {
+    return [
+      {
+        from: 'green',
+        to: 'blue',
+        use: () => { return (Animations.coverLeft()); },
+      },
+    ];
+  }
+
+  coverRight() {
+    return [
+      {
+        from: 'green',
+        to: 'blue',
+        use: () => { return (Animations.coverRight()); },
+      },
+    ];
+  }
+
+  coverUp() {
+    return [
+      {
+        from: 'green',
+        to: 'blue',
+        use: () => { return (Animations.coverUp()); },
+      },
+    ];
+  }
+
+  coverDown() {
+    return [
+      {
+        from: 'green',
+        to: 'blue',
+        use: () => { return (Animations.coverDown()); },
+      },
+    ];
+  }
+
   toLeft() {
     return [
       {
@@ -33,52 +73,22 @@ export default class StackDemo extends React.Component {
     ];
   }
 
-  toUp() {
-    return [
-      {
-        from: 'green',
-        to: 'blue',
-        use: () => { return (Animations.toUp()); },
-      },
-    ];
-  }
-
-  toDown() {
-    return [
-      {
-        from: 'green',
-        to: 'blue',
-        use: () => { return (Animations.toDown()); },
-      },
-    ];
-  }
-
-  shiftLeft() {
-    return [
-      {
-        from: 'green',
-        to: 'blue',
-        use: () => { return (Animations.shiftLeft()); },
-      },
-    ];
-  }
-
-  shiftRight() {
-    return [
-      {
-        from: 'green',
-        to: 'blue',
-        use: () => { return (Animations.shiftRight()); },
-      },
-    ];
-  }
-
   flip() {
     return [
       {
         from: 'green',
         to: 'blue',
         use: () => { return (Animations.flip()); },
+      },
+    ];
+  }
+
+  threeDFlip() {
+    return [
+      {
+        from: 'green',
+        to: 'blue',
+        use: () => { return (Animations.threeDFlip()); },
       },
     ];
   }
@@ -112,6 +122,62 @@ export default class StackDemo extends React.Component {
           <AnimationLayer index={ 'blue' } />
         </Stack>
 
+        <h1>animation: coverLeft</h1>
+        <ul>
+          <li><Link params={{ coverLeft: 'green' }}>green</Link></li>
+          <li><Link params={{ coverLeft: 'blue' }}>blue</Link></li>
+        </ul>
+        <Stack
+          index={ 'coverLeft' }
+          style={{ color: 'white', height: '100px' }}
+          animations={ this.coverLeft() }
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+        </Stack>
+
+        <h1>animation: coverRight</h1>
+        <ul>
+          <li><Link params={{ coverRight: 'green' }}>green</Link></li>
+          <li><Link params={{ coverRight: 'blue' }}>blue</Link></li>
+        </ul>
+        <Stack
+          index={ 'coverRight' }
+          style={{ color: 'white', height: '100px' }}
+          animations={ this.coverRight() }
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+        </Stack>
+
+        <h1>animation: coverUp</h1>
+        <ul>
+          <li><Link params={{ coverUp: 'green' }}>green</Link></li>
+          <li><Link params={{ coverUp: 'blue' }}>blue</Link></li>
+        </ul>
+        <Stack
+          index={ 'coverUp' }
+          style={{ color: 'white', height: '100px', overflow: 'hidden' }}
+          animations={ this.coverUp() }
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+        </Stack>
+
+        <h1>animation: coverDown</h1>
+        <ul>
+          <li><Link params={{ coverDown: 'green' }}>green</Link></li>
+          <li><Link params={{ coverDown: 'blue' }}>blue</Link></li>
+        </ul>
+        <Stack
+          index={ 'coverDown' }
+          style={{ color: 'white', height: '100px', overflow: 'hidden' }}
+          animations={ this.coverDown() }
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+        </Stack>
+
         <h1>animation: toLeft</h1>
         <ul>
           <li><Link params={{ toLeft: 'green' }}>green</Link></li>
@@ -140,62 +206,6 @@ export default class StackDemo extends React.Component {
           <AnimationLayer index={ 'blue' } />
         </Stack>
 
-        <h1>animation: toUp</h1>
-        <ul>
-          <li><Link params={{ toUp: 'green' }}>green</Link></li>
-          <li><Link params={{ toUp: 'blue' }}>blue</Link></li>
-        </ul>
-        <Stack
-          index={ 'toUp' }
-          style={{ color: 'white', height: '100px', overflow: 'hidden' }}
-          animations={ this.toUp() }
-        >
-          <AnimationLayer index={ 'green' } />
-          <AnimationLayer index={ 'blue' } />
-        </Stack>
-
-        <h1>animation: toDown</h1>
-        <ul>
-          <li><Link params={{ toDown: 'green' }}>green</Link></li>
-          <li><Link params={{ toDown: 'blue' }}>blue</Link></li>
-        </ul>
-        <Stack
-          index={ 'toDown' }
-          style={{ color: 'white', height: '100px', overflow: 'hidden' }}
-          animations={ this.toDown() }
-        >
-          <AnimationLayer index={ 'green' } />
-          <AnimationLayer index={ 'blue' } />
-        </Stack>
-
-        <h1>animation: shiftLeft</h1>
-        <ul>
-          <li><Link params={{ shiftLeft: 'green' }}>green</Link></li>
-          <li><Link params={{ shiftLeft: 'blue' }}>blue</Link></li>
-        </ul>
-        <Stack
-          index={ 'shiftLeft' }
-          style={{ color: 'white', height: '100px' }}
-          animations={ this.shiftLeft() }
-        >
-          <AnimationLayer index={ 'green' } />
-          <AnimationLayer index={ 'blue' } />
-        </Stack>
-
-        <h1>animation: shiftRight</h1>
-        <ul>
-          <li><Link params={{ shiftRight: 'green' }}>green</Link></li>
-          <li><Link params={{ shiftRight: 'blue' }}>blue</Link></li>
-        </ul>
-        <Stack
-          index={ 'shiftRight' }
-          style={{ color: 'white', height: '100px' }}
-          animations={ this.shiftRight() }
-        >
-          <AnimationLayer index={ 'green' } />
-          <AnimationLayer index={ 'blue' } />
-        </Stack>
-
         <h1>animation: flip</h1>
         <ul>
           <li><Link params={{ flip: 'green' }}>green</Link></li>
@@ -203,8 +213,22 @@ export default class StackDemo extends React.Component {
         </ul>
         <Stack
           index={ 'flip' }
-          style={{ color: 'white', height: '100px', }}
+          style={{ color: 'white', height: '100px' }}
           animations={ this.flip() }
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+        </Stack>
+
+        <h1>animation: 3dFlip</h1>
+        <ul>
+          <li><Link params={{ threeDFlip: 'green' }}>green</Link></li>
+          <li><Link params={{ threeDFlip: 'blue' }}>blue</Link></li>
+        </ul>
+        <Stack
+          index={ 'threeDFlip' }
+          style={{ color: 'white', height: '100px', WebkitPerspective: '1000px' }}
+          animations={ this.threeDFlip() }
         >
           <AnimationLayer index={ 'green' } />
           <AnimationLayer index={ 'blue' } />
@@ -225,6 +249,7 @@ function AnimationLayer(props) {
     textAlign: 'center',
     lineHeight: '100px',
     WebkitBackfaceVisibility: 'hidden',
+    WebkitTransformStyle: 'preserve-3d',
   };
 
   return <div style={style} {...props}>{props.index}</div>;
