@@ -11,8 +11,8 @@ export default class ImageDemo extends React.Component {
 
     const wrapperProps = {
       style: {
-        width: '400px',
-        height: '300px',
+        width: '100%',
+        height: '100%',
       },
     };
 
