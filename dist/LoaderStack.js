@@ -23,8 +23,9 @@ exports.default = function (props) {
   var loadingElement = props.loadingElement;
   var errorElement = props.errorElement;
   var displayElement = props.displayElement;
+  var wrapperProps = props.wrapperProps;
 
-  var other = _objectWithoutProperties(props, ['status', 'loadingElement', 'errorElement', 'displayElement']);
+  var other = _objectWithoutProperties(props, ['status', 'loadingElement', 'errorElement', 'displayElement', 'wrapperProps']);
 
   var _loadingElement = loadingElement ? _react2.default.cloneElement(loadingElement, { index: 'loading' }) : _react2.default.createElement(DefaultLoadingComponent, _extends({ index: 'loading' }, other));
 
@@ -34,7 +35,7 @@ exports.default = function (props) {
 
   return _react2.default.createElement(
     _Stack2.default,
-    { activeLayerIndex: status },
+    _extends({ activeLayerIndex: status }, wrapperProps),
     _loadingElement,
     _errorElement,
     _displayElement
