@@ -42,7 +42,9 @@ var SimpleStack = function (_React$Component) {
       var other = _objectWithoutProperties(_props, ['activeLayerIndex', 'children']);
 
       var activeLayer = children.find(function (child) {
-        return child.props.index === activeLayerIndex;
+        var index = child.props.index;
+
+        return index === activeLayerIndex || index === '*';
       });
 
       return _react2.default.createElement(
