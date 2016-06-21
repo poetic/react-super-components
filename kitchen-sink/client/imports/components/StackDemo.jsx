@@ -248,8 +248,6 @@ function AnimationLayer(props) {
     fontSize: '20px',
     textAlign: 'center',
     lineHeight: '100px',
-    WebkitBackfaceVisibility: 'hidden',
-    WebkitTransformStyle: 'preserve-3d',
   };
 
   return <div style={style} {...props}>{props.index}</div>;
