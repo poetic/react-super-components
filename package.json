@@ -32,13 +32,13 @@
   },
   "peerDependencies": {
     "react": "^15.0.1",
-    "lodash": "^4.11.1"
+    "lodash": "^4.11.1",
+    "param-store": "^1.0.0"
   },
   "dependencies": {
     "jquery": "^2.2.2",
     "jquery-inview": "^1.1.2",
     "react-virtualized": "^6.1.1",
-    "param-store": "^0.4.2",
     "react-addons-shallow-compare": "^15.0.1"
   }
 }
