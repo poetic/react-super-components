@@ -1,6 +1,5 @@
 {
   "name": "react-super-components",
-  "version": "0.3.9",
   "description": "react super components",
   "main": "./dist/index.js",
   "repository": {
@@ -9,10 +8,12 @@
   },
   "license": "MIT",
   "scripts": {
+    "test": "npm run build",
     "prepublish": "npm run build",
     "build": "babel lib --out-dir dist",
     "lint": "eslint ./lib",
-    "fix": "eslint ./lib --fix"
+    "fix": "eslint ./lib --fix",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
     "babel-cli": "6.x.x",
@@ -28,7 +29,8 @@
     "react": "^15.0.1",
     "react-addons-test-utils": "^15.0.1",
     "react-dom": "^15.0.1",
-    "lodash": "^4.11.1"
+    "lodash": "^4.11.1",
+    "semantic-release": "^4.3.5"
   },
   "peerDependencies": {
     "react": "^15.0.1",
