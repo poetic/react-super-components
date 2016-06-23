@@ -36,7 +36,7 @@ export default class StackDemo extends React.Component {
       'coverUp',
       'coverDown',
       'flip',
-      'flip3D',
+      // 'flip3D', // this need special treatment on the stack component itself
     ];
 
     return (

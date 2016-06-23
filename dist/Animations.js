@@ -48,13 +48,13 @@ var Animations = {
     return {
       currentLayer: {
         transition: '0.5s',
-        startStyle: { marginTop: '0px' },
-        endStyle: { marginTop: '-100%' }
+        startStyle: { transform: 'translateY(0%)' },
+        endStyle: { transform: 'translateY(-100%)' }
       },
       nextLayer: {
         transition: '0.5s',
-        startStyle: { marginTop: '-100%' },
-        endStyle: { marginTop: '0px' }
+        startStyle: { transform: 'translateY(100%)' },
+        endStyle: { transform: 'translateY(0%)' }
       }
     };
   },
@@ -63,135 +63,53 @@ var Animations = {
     return {
       currentLayer: {
         transition: '0.5s',
-        startStyle: { marginTop: '0px' },
-        endStyle: { marginTop: '100%' }
+        startStyle: { transform: 'translateY(0%)' },
+        endStyle: { transform: 'translateY(100%)' }
       },
       nextLayer: {
         transition: '0.5s',
-        startStyle: { marginTop: '100%' },
-        endStyle: { marginTop: '0px' }
+        startStyle: { transform: 'translateY(-100%)' },
+        endStyle: { transform: 'translateY(0%)' }
       }
     };
   },
 
   coverLeft: function coverLeft() {
     return {
-      currentlayer: {
-        transition: 'transform 0.5s',
-        startStyle: {
-          transform: 'translateX(0%)'
-        },
-        endStyle: {
-          transform: 'translateX(100%)'
-        }
-      },
       nextLayer: {
-        transition: 'transform 0.5s',
-        startStyle: {
-          transform: 'translateX(100%)'
-        },
-        endStyle: {
-          transform: 'translateX(0%)'
-        }
+        transition: '0.5s',
+        startStyle: { transform: 'translateX(100%)' },
+        endStyle: { transform: 'translateX(0%)' }
       }
     };
   },
 
   coverRight: function coverRight() {
     return {
-      currentlayer: {
-        transition: 'transform 0.5s',
-        startStyle: {
-          transform: 'translateX(0%)'
-        },
-        endStyle: {
-          transform: 'translateX(100%)'
-        }
-      },
       nextLayer: {
         transition: 'transform 0.5s',
-        startStyle: {
-          transform: 'translateX(-100%)'
-        },
-        endStyle: {
-          transform: 'translateX(0%)'
-        }
+        startStyle: { transform: 'translateX(-100%)' },
+        endStyle: { transform: 'translateX(0%)' }
       }
     };
   },
 
   coverUp: function coverUp() {
     return {
-      currentlayer: {
-        transition: 'transform 0.5s',
-        startStyle: {
-          transform: 'translateY(0%)'
-        },
-        endStyle: {
-          transform: 'translateY(-100%)'
-        }
-      },
       nextLayer: {
         transition: 'transform 0.5s',
-        startStyle: {
-          transform: 'translateY(-100%)'
-        },
-        endStyle: {
-          transform: 'translateY(0%)'
-        }
+        startStyle: { transform: 'translateY(100%)' },
+        endStyle: { transform: 'translateY(0%)' }
       }
     };
   },
 
   coverDown: function coverDown() {
     return {
-      currentlayer: {
-        transition: 'transform 0.5s',
-        startStyle: {
-          transform: 'translateY(0%)'
-        },
-        endStyle: {
-          transform: 'translateY(100%)'
-        }
-      },
       nextLayer: {
         transition: ' transform 0.5s',
-        startStyle: {
-          transform: 'translateY(100%)'
-        },
-        endStyle: {
-          transform: 'translateY(0%)'
-        }
-      }
-    };
-  },
-
-  shiftLeft: function shiftLeft() {
-    return {
-      currentLayer: {
-        transition: '0.5s',
-        startStyle: { marginLeft: '0px' },
-        endStyle: { marginLeft: '-100%' }
-      },
-      nextLayer: {
-        transition: '0.5s',
-        startStyle: { marginLeft: '100%' },
-        endStyle: { marginLeft: '0%' }
-      }
-    };
-  },
-
-  shiftRight: function shiftRight() {
-    return {
-      currentLayer: {
-        transition: '0.5s',
-        startStyle: { marginLeft: '0px' },
-        endStyle: { marginLeft: '100%' }
-      },
-      nextLayer: {
-        transition: '0.5s',
-        startStyle: { marginLeft: '-100%' },
-        endStyle: { marginLeft: '0px' }
+        startStyle: { transform: 'translateY(-100%)' },
+        endStyle: { transform: 'translateY(0%)' }
       }
     };
   },
