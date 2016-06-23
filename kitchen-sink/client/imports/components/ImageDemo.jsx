@@ -25,6 +25,7 @@ export default class ImageDemo extends React.Component {
           src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
           style={style}
           wrapperProps={wrapperProps}
+          imageDidLoad={() => {console.log("imageDidLoad callback called")}}
         />
 
         <h2>loadingSrc</h2>
