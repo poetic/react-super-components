@@ -9,8 +9,8 @@ export default class StackDemo extends React.Component {
       <div key={type}>
         <h1>animation: {type}</h1>
         <ul>
-          <li><Link params={{ [type]: 'green' }}>green</Link></li>
-          <li><Link params={{ [type]: 'blue' }}>blue</Link></li>
+          <li><Link params={{ path: 'stack', [type]: 'green' }}>green</Link></li>
+          <li><Link params={{ path: 'stack', [type]: 'blue' }}>blue</Link></li>
         </ul>
         <Stack
           index={ type }
@@ -43,9 +43,9 @@ export default class StackDemo extends React.Component {
       <div>
         <h1>Stack Without animation (index: no-animation)</h1>
         <ul>
-          <li><Link params={{ 'no-animation': 'green' }}>green</Link></li>
-          <li><Link params={{ 'no-animation': 'blue' }}>blue</Link></li>
-          <li><Link params={{ 'no-animation': 'red' }}>red</Link></li>
+          <li><Link params={{ path: 'stack', 'no-animation': 'green' }}>green</Link></li>
+          <li><Link params={{ path: 'stack', 'no-animation': 'blue' }}>blue</Link></li>
+          <li><Link params={{ path: 'stack', 'no-animation': 'red' }}>red</Link></li>
         </ul>
         <Stack index={ 'no-animation' }>
           <AnimationLayer index={ 'green' } />
