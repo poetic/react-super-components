@@ -1,5 +1,6 @@
 # React Super Components
 
+[![travis][travis-image]][travis-url]
 [![npm][npm-image]][npm-url]
 [![semantic-release][semantic-release-image]][semantic-release-url]
 
