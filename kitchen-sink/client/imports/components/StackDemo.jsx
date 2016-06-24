@@ -13,7 +13,7 @@ export default class StackDemo extends React.Component {
           <li><Link params={{ path: 'stack', [type]: 'blue' }}>blue</Link></li>
         </ul>
         <Stack
-          index={ type }
+          indexKey={ type }
           style={{ color: 'white', height: '100px' }}
           animations={[{ from: 'green', to: 'blue', use: Animations[type] }]}
         >
@@ -47,7 +47,7 @@ export default class StackDemo extends React.Component {
           <li><Link params={{ path: 'stack', 'no-animation': 'blue' }}>blue</Link></li>
           <li><Link params={{ path: 'stack', 'no-animation': 'red' }}>red</Link></li>
         </ul>
-        <Stack index={ 'no-animation' }>
+        <Stack indexKey={ 'no-animation' }>
           <AnimationLayer index={ 'green' } />
           <AnimationLayer index={ 'blue' } />
           <AnimationLayer index={ 'red' } />

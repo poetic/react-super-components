@@ -7,7 +7,7 @@ import StackDemo from './StackDemo';
 import Stack from '../lib/Stack';
 
 export default () => (
-  <Stack index='path'>
+  <Stack indexKey='path'>
     <Index index='' />
     <ImageDemo index='image' />
     <SubscriptionsDemo index='subscription' />
