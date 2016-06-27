@@ -14,10 +14,6 @@ var _Stack = require('./Stack');
 
 var _Stack2 = _interopRequireDefault(_Stack);
 
-var _Layer = require('./Layer');
-
-var _Layer2 = _interopRequireDefault(_Layer);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -27,21 +23,22 @@ exports.default = function (props) {
   var loadingElement = props.loadingElement;
   var errorElement = props.errorElement;
   var displayElement = props.displayElement;
+  var wrapperProps = props.wrapperProps;
 
-  var other = _objectWithoutProperties(props, ['status', 'loadingElement', 'errorElement', 'displayElement']);
+  var other = _objectWithoutProperties(props, ['status', 'loadingElement', 'errorElement', 'displayElement', 'wrapperProps']);
+
+  var _loadingElement = loadingElement ? _react2.default.cloneElement(loadingElement, { index: 'loading' }) : _react2.default.createElement(DefaultLoadingComponent, _extends({ index: 'loading' }, other));
+
+  var _errorElement = errorElement ? _react2.default.cloneElement(errorElement, { index: 'error' }) : _react2.default.createElement(DefaultLoadingComponent, _extends({ index: 'error' }, other));
+
+  var _displayElement = _react2.default.cloneElement(displayElement, { index: 'display' });
 
   return _react2.default.createElement(
     _Stack2.default,
-    { activeLayerId: status },
-    _react2.default.createElement(_Layer2.default, { id: 'loading', component: function component() {
-        return loadingElement || _react2.default.createElement(DefaultLoadingComponent, other);
-      } }),
-    _react2.default.createElement(_Layer2.default, { id: 'error', component: function component() {
-        return errorElement || _react2.default.createElement(DefaultLoadingComponent, other);
-      } }),
-    _react2.default.createElement(_Layer2.default, { id: 'display', component: function component() {
-        return displayElement;
-      } })
+    _extends({ activeLayerIndex: status }, wrapperProps),
+    _loadingElement,
+    _errorElement,
+    _displayElement
   );
 };
 

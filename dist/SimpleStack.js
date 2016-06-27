@@ -12,38 +12,56 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ErrorComponent = function (_React$Component) {
-  _inherits(ErrorComponent, _React$Component);
+var string = _react.PropTypes.string;
+var array = _react.PropTypes.array;
 
-  function ErrorComponent() {
-    _classCallCheck(this, ErrorComponent);
+var SimpleStack = function (_React$Component) {
+  _inherits(SimpleStack, _React$Component);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(ErrorComponent).apply(this, arguments));
+  function SimpleStack() {
+    _classCallCheck(this, SimpleStack);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(SimpleStack).apply(this, arguments));
   }
 
-  _createClass(ErrorComponent, [{
+  _createClass(SimpleStack, [{
     key: 'render',
     value: function render() {
+      var _props = this.props;
+      var activeLayerIndex = _props.activeLayerIndex;
+      var children = _props.children;
+
+      var other = _objectWithoutProperties(_props, ['activeLayerIndex', 'children']);
+
+      var activeLayer = children.find(function (child) {
+        return child.props.index === activeLayerIndex;
+      }) || children.find(function (child) {
+        return child.props.index === '*';
+      });
+
       return _react2.default.createElement(
         'div',
-        null,
-        'An Error has occured:',
-        this.props.error.message
+        other,
+        activeLayer
       );
     }
   }]);
 
-  return ErrorComponent;
+  return SimpleStack;
 }(_react2.default.Component);
 
-ErrorComponent.propTypes = {
-  error: _react2.default.PropTypes.object
-};
+exports.default = SimpleStack;
 
-exports.default = ErrorComponent;
+
+SimpleStack.PropTypes = {
+  activeLayerIndex: string.isRequired,
+  children: array.isRequired
+};

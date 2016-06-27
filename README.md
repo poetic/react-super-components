@@ -1,5 +1,16 @@
 # React Super Components
 
+[![travis][travis-image]][travis-url]
+[![npm][npm-image]][npm-url]
+[![semantic-release][semantic-release-image]][semantic-release-url]
+
+[travis-image]:            https://travis-ci.org/poetic/react-super-components.svg
+[travis-url]:              https://travis-ci.org/poetic/react-super-components
+[npm-image]: https://img.shields.io/npm/v/react-super-components.svg
+[npm-url]: https://npmjs.org/package/react-super-components
+[semantic-release-image]:  https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-release-url]:    https://github.com/semantic-release/semantic-release
+
 Super Components are a set of React components that are data-aware and follow native design patterns for optimal performance.
 
 ## Data Aware

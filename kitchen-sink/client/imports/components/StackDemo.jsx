@@ -1,24 +1,73 @@
-import React from 'react'
+import React from 'react';
 import Stack from '../lib/Stack';
-import Layer from '../lib/Layer';
-import ParamStore from 'param-store';
+import { Link } from 'param-store';
+import Animations from '../lib/Animations';
 
 export default class StackDemo extends React.Component {
-  render () {
+  animationDemoElement(type) {
     return (
-      <div>
-        <h1>Stack Without animation (id: x)</h1>
+      <div key={type}>
+        <h1>animation: {type}</h1>
         <ul>
-          <li><button onClick={() => {ParamStore.set({x: 'first'})}}>first</button></li>
-          <li><button onClick={() => {ParamStore.set({x: 'second'})}}>second</button></li>
-          <li><button onClick={() => {ParamStore.set({x: 'third'})}}>third</button></li>
+          <li><Link params={{ path: 'stack', [type]: 'green' }}>green</Link></li>
+          <li><Link params={{ path: 'stack', [type]: 'blue' }}>blue</Link></li>
         </ul>
-        <Stack id='x' defaultActiveLayerId='first' style={{backgroundColor: 'yellow'}}>
-          <Layer id='first' component={() => <div>FIRST</div>}/>
-          <Layer id='second' component={() => <div>SECOND</div>}/>
-          <Layer id='third' component={() => <div>THIRD</div>}/>
+        <Stack
+          indexKey={ type }
+          style={{ color: 'white', height: '100px' }}
+          animations={[{ from: 'green', to: 'blue', use: Animations[type] }]}
+        >
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
         </Stack>
       </div>
-    )
+    );
   }
+
+  render() {
+    const animationTypes = [
+      'crossFade',
+      'toLeft',
+      'toRight',
+      'toUp',
+      'toDown',
+      'coverLeft',
+      'coverRight',
+      'coverUp',
+      'coverDown',
+      'flip',
+      // 'flip3D', // this need special treatment on the stack component itself
+    ];
+
+    return (
+      <div>
+        <h1>Stack Without animation (index: no-animation)</h1>
+        <ul>
+          <li><Link params={{ path: 'stack', 'no-animation': 'green' }}>green</Link></li>
+          <li><Link params={{ path: 'stack', 'no-animation': 'blue' }}>blue</Link></li>
+          <li><Link params={{ path: 'stack', 'no-animation': 'red' }}>red</Link></li>
+        </ul>
+        <Stack indexKey={ 'no-animation' }>
+          <AnimationLayer index={ 'green' } />
+          <AnimationLayer index={ 'blue' } />
+          <AnimationLayer index={ 'red' } />
+        </Stack>
+        { animationTypes.map(this.animationDemoElement) }
+      </div>
+    );
+  }
+}
+
+function AnimationLayer(props) {
+  const style = {
+    backgroundColor: props.index,
+    width: '100vw',
+    height: '100px',
+    color: 'white',
+    fontSize: '20px',
+    textAlign: 'center',
+    lineHeight: '100px',
+  };
+
+  return <div style={style} {...props}>{props.index}</div>;
 }

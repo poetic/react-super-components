@@ -85,8 +85,9 @@ var Image = function (_React$Component) {
       var loadingComponent = _props.loadingComponent;
       var errorSrc = _props.errorSrc;
       var errorComponent = _props.errorComponent;
+      var wrapperProps = _props.wrapperProps;
 
-      var other = _objectWithoutProperties(_props, ['src', 'loadingSrc', 'loadingComponent', 'errorSrc', 'errorComponent']);
+      var other = _objectWithoutProperties(_props, ['src', 'loadingSrc', 'loadingComponent', 'errorSrc', 'errorComponent', 'wrapperProps']);
 
       var status = this.state.status;
 
@@ -111,7 +112,8 @@ var Image = function (_React$Component) {
         status: status,
         displayElement: displayElement,
         loadingElement: loadingElement,
-        errorElement: errorElement
+        errorElement: errorElement,
+        wrapperProps: wrapperProps
       }, other));
     }
   }]);
@@ -127,7 +129,8 @@ Image.propTypes = {
   loadingSrc: _react.PropTypes.string,
   loadingComponent: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.object]),
   errorSrc: _react.PropTypes.string,
-  errorComponent: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.object])
+  errorComponent: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.object]),
+  wrapperProps: _react.PropTypes.object
 };
 
 exports.default = Image;

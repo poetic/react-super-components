@@ -9,6 +9,13 @@ export default class ImageDemo extends React.Component {
       objectFit: 'cover',
     };
 
+    const wrapperProps = {
+      style: {
+        width: '100%',
+        height: '100%',
+      },
+    };
+
     return (
       <div>
         <h1>Image</h1>
@@ -17,6 +24,8 @@ export default class ImageDemo extends React.Component {
         <Image
           src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
           style={style}
+          wrapperProps={wrapperProps}
+          imageDidLoad={() => {console.log("imageDidLoad callback called")}}
         />
 
         <h2>loadingSrc</h2>

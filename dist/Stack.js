@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -17,6 +19,14 @@ var _lodash2 = _interopRequireDefault(_lodash);
 var _paramStore = require('param-store');
 
 var _paramStore2 = _interopRequireDefault(_paramStore);
+
+var _SimpleStack = require('./SimpleStack');
+
+var _SimpleStack2 = _interopRequireDefault(_SimpleStack);
+
+var _AnimatedStack = require('./AnimatedStack');
+
+var _AnimatedStack2 = _interopRequireDefault(_AnimatedStack);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37,7 +47,12 @@ var Stack = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Stack).call(this, props));
 
-    _this.state = { activeLayerId: _paramStore2.default.get(props.id) };
+    _this.state = {};
+
+    // only set index as state and change it when we have a index prop
+    if (props.index) {
+      _this.state.activeLayerIndex = _paramStore2.default.get(props.index);
+    }
     return _this;
   }
 
@@ -46,11 +61,13 @@ var Stack = function (_React$Component) {
     value: function componentWillMount() {
       var _this2 = this;
 
-      this.listener = _paramStore2.default.listen(this.props.id, function (_ref) {
-        var changedParams = _ref.changedParams;
+      if (this.props.index) {
+        this.listener = _paramStore2.default.listen(this.props.index, function (_ref) {
+          var changedParams = _ref.changedParams;
 
-        _this2.setState({ activeLayerId: changedParams[_this2.props.id] });
-      });
+          _this2.setState({ activeLayerIndex: changedParams[_this2.props.index] });
+        });
+      }
     }
   }, {
     key: 'componentWillUnmount',
@@ -58,32 +75,43 @@ var Stack = function (_React$Component) {
       _paramStore2.default.unlisten(this.listener);
     }
   }, {
-    key: 'activeLayerId',
-    value: function activeLayerId() {
-      return _lodash2.default.find([this.props.activeLayerId, this.state.activeLayerId, this.props.defaultActiveLayerId], _lodash2.default.isString);
+    key: 'isAnimated',
+    value: function isAnimated() {
+      return _lodash2.default.get(this.props, 'animations.length');
     }
   }, {
-    key: 'activeLayer',
-    value: function activeLayer() {
-      var _this3 = this;
-
-      return _lodash2.default.find(this.props.children, function (child) {
-        return child.props.id === _lodash2.default.toString(_this3.activeLayerId());
-      });
+    key: 'getFirstLayerIndex',
+    value: function getFirstLayerIndex() {
+      return _lodash2.default.first(this.props.children).props.index;
     }
   }, {
-    key: 'animatedLayers',
-    value: function animatedLayers() {
-      return null;
+    key: 'getActiveLayerIndex',
+    value: function getActiveLayerIndex() {
+      return _lodash2.default.find([this.props.activeLayerIndex, this.state.activeLayerIndex, this.props.defaultActiveLayerIndex, this.getFirstLayerIndex()], _lodash2.default.isString);
     }
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        this.props.animations ? this.animatedLayers() : this.activeLayer()
-      );
+      var other = _lodash2.default.omit(this.props, ['index', 'children', 'animations', 'activeLayerIndex']);
+
+      var _props = this.props;
+      var children = _props.children;
+      var animations = _props.animations;
+
+      var activeLayerIndex = this.getActiveLayerIndex();
+
+      if (this.isAnimated()) {
+        return _react2.default.createElement(_AnimatedStack2.default, _extends({
+          children: children,
+          animations: animations,
+          activeLayerIndex: activeLayerIndex
+        }, other));
+      } else {
+        return _react2.default.createElement(_SimpleStack2.default, _extends({
+          children: children,
+          activeLayerIndex: activeLayerIndex
+        }, other));
+      }
     }
   }]);
 
@@ -94,8 +122,24 @@ exports.default = Stack;
 
 
 Stack.PropTypes = {
-  id: string,
-  children: array.isRequired,
+  index: string,
+  children: function children(props, propName, componentName) {
+    var errorContext = 'Invalid prop `' + propName + '` supplied to `' + componentName + '`. ';
+
+    if (!props.children) {
+      return new Error(errorContext + 'Children can not be null.');
+    }
+
+    if (!props.children.length) {
+      return new Error(errorContext + 'You must provide at least one child.');
+    }
+
+    props.children.forEach(function (child) {
+      if (!_lodash2.default.isString(child.props.index)) {
+        return new Error(errorContext + 'Each child must have an index prop.');
+      }
+    });
+  },
   animations: array,
-  activeLayerId: string
+  activeLayerIndex: string
 };

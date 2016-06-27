@@ -42,15 +42,23 @@ const MainLayout = (props) => {
   )
 }
 
-<Layout component={MainLayout} id='main-layout'>
+<Layout component={MainLayout} key='main-layout'>
   <Stack
     layoutRegion='top'
     animations={animations}
-    id='main'
-    defaultActiveLayerId='users'>
-    <Layer id='users' component={Users} componentProps={{onClick: () => console.log('CLICKed')}} />
-    <Layer id='cars' component={Cars}/>
+    key='main'
+    defaultActiveLayerIndex='users'>
+    <Users key='users' />
+    <Cars key='cars' />
   </Stack>
-  <Layer layoutRegion='bottom'/>
+  <Bottom layoutRegion='bottom'/>
 </Layout>
+```
+
+```
+deal with different senarios:
+1. have reverse
+2. no current layer
+3. no next layer
+4. a way to create new default animations
 ```
