@@ -179,13 +179,15 @@ var AnimatedStack = function (_React$Component) {
           var layersStylesStart = _this2.layersStylesForAnimation(defaultStyles, currentIndex, nextIndex, animationObject, 'startStyle');
           _this2.setState({ layersStyles: layersStylesStart });
 
+          // NOTE: maybe we should use animation instead of transition
+          // since here we need timeout for brower to konw the change of style
           setTimeout(function () {
             var layersStylesEnd = _this2.layersStylesForAnimation(defaultStyles, currentIndex, nextIndex, animationObject, 'endStyle');
             _this2.setState({
               isInTransition: true,
               layersStyles: layersStylesEnd
             });
-          });
+          }, 50);
         }();
 
         if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;

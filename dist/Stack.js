@@ -49,27 +49,22 @@ var Stack = function (_React$Component) {
 
     _this.state = {};
 
-    // only set index as state and change it when we have a index prop
-    if (props.index) {
-      _this.state.activeLayerIndex = _paramStore2.default.get(props.index);
+    var indexKey = props.indexKey;
+
+
+    if (indexKey) {
+      _this.state.activeLayerIndex = _paramStore2.default.get(indexKey);
+
+      _this.listener = _paramStore2.default.listen(indexKey, function (_ref) {
+        var changedParams = _ref.changedParams;
+
+        _this.setState({ activeLayerIndex: changedParams[indexKey] });
+      });
     }
     return _this;
   }
 
   _createClass(Stack, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      var _this2 = this;
-
-      if (this.props.index) {
-        this.listener = _paramStore2.default.listen(this.props.index, function (_ref) {
-          var changedParams = _ref.changedParams;
-
-          _this2.setState({ activeLayerIndex: changedParams[_this2.props.index] });
-        });
-      }
-    }
-  }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       _paramStore2.default.unlisten(this.listener);
@@ -92,23 +87,19 @@ var Stack = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var other = _lodash2.default.omit(this.props, ['index', 'children', 'animations', 'activeLayerIndex']);
+      var other = _lodash2.default.omit(this.props, ['index', 'animations', 'activeLayerIndex']);
 
-      var _props = this.props;
-      var children = _props.children;
-      var animations = _props.animations;
+      var animations = this.props.animations;
 
       var activeLayerIndex = this.getActiveLayerIndex();
 
       if (this.isAnimated()) {
         return _react2.default.createElement(_AnimatedStack2.default, _extends({
-          children: children,
           animations: animations,
           activeLayerIndex: activeLayerIndex
         }, other));
       } else {
         return _react2.default.createElement(_SimpleStack2.default, _extends({
-          children: children,
           activeLayerIndex: activeLayerIndex
         }, other));
       }

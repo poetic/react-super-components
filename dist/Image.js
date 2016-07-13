@@ -49,32 +49,54 @@ var Image = function (_React$Component) {
   }
 
   _createClass(Image, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var src = this.props.src;
+
+      var image = new window.Image();
+      image.src = src;
+      if (image.complete) {
+        this.setState({ status: 'display' });
+      }
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.$imageNode = (0, _jquery2.default)(_reactDom2.default.findDOMNode(this));
+      var status = this.state.status;
 
+      if (status === 'display') {
+        var imageDidLoad = this.props.imageDidLoad;
+
+        if (imageDidLoad) imageDidLoad();
+        return;
+      }
+      this.$imageNode = (0, _jquery2.default)(_reactDom2.default.findDOMNode(this));
       this.$imageNode.on('inview', function (event, isInView) {
         _this2.$imageNode.off('inview');
 
         var image = new window.Image();
         image.onload = function (e) {
-          // NOTE: the timeout is meant to exagerate the loading time
-          window.setTimeout(function () {
-            _this2.setState({ status: 'display' });
-          }, 1000);
+          _this2.setState({ status: 'display' });
+          var imageDidLoad = _this2.props.imageDidLoad;
+
+          if (imageDidLoad) imageDidLoad();
         };
         image.onerror = function () {
           _this2.setState({ status: 'error' });
+          var imageDidLoad = _this2.props.imageDidLoad;
+
+          if (imageDidLoad) imageDidLoad(Error('image failed to load'));
         };
+
         image.src = _this2.props.src;
       });
     }
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      this.$imageNode.off('inview');
+      if (this.$imageNode) this.$imageNode.off('inview');
     }
   }, {
     key: 'render',
@@ -130,7 +152,8 @@ Image.propTypes = {
   loadingComponent: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.object]),
   errorSrc: _react.PropTypes.string,
   errorComponent: _react.PropTypes.oneOfType([_react.PropTypes.func, _react.PropTypes.object]),
-  wrapperProps: _react.PropTypes.object
+  wrapperProps: _react.PropTypes.object,
+  imageDidLoad: _react.PropTypes.func
 };
 
 exports.default = Image;

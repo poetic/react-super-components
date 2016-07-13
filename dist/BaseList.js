@@ -38,33 +38,6 @@ var List = function (_React$Component) {
   }
 
   _createClass(List, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      var currentData = this.props.data;
-      var newData = nextProps.data;
-
-      if (currentData.length === newData.length) {
-        if (!_lodash2.default.isEqual(currentData, newData)) {
-          this._virtualScroll.recomputeRowHeights();
-        }
-      }
-    }
-  }, {
-    key: 'groupDataAndAddHeaders',
-    value: function groupDataAndAddHeaders(data, groupBy) {
-      var groupedDataObject = _lodash2.default.groupBy(data, groupBy);
-      var groupedDataObjectKeys = Object.keys(groupedDataObject);
-
-      var groupedData2DArrayWithHeaders = groupedDataObjectKeys.map(function (key) {
-        var array = groupedDataObject[key];
-        var header = { type: 'header', title: key };
-
-        return _lodash2.default.concat([header], array);
-      });
-
-      return _lodash2.default.flatten(groupedData2DArrayWithHeaders);
-    }
-  }, {
     key: 'sortData',
     value: function sortData(data, sortBy) {
       return _lodash2.default.sortBy(data, sortBy);
@@ -113,18 +86,10 @@ var List = function (_React$Component) {
     }
   }, {
     key: 'rowRenderer',
-    value: function rowRenderer(_ref) {
-      var index = _ref.index;
-      var data = _ref.data;
-      var hasKey = _ref.hasKey;
-
+    value: function rowRenderer(index, data) {
       var itemType = this.checkTypesAndReturnMatchingItemType(index, data);
       var ListItemComponent = itemType.component;
       var props = _extends({ index: index, data: data }, itemType.componentProps);
-
-      if (hasKey) {
-        props.key = index;
-      }
 
       return _react2.default.createElement(ListItemComponent, props);
     }
@@ -140,37 +105,10 @@ var List = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var _props2 = this.props;
-      var className = _props2.className;
-      var thresholdRows = _props2.thresholdRows;
-
       var data = this.checkForModificationsAndReturnModifiedData(this.props.data);
-
-      return _react2.default.createElement(
-        _reactVirtualized.AutoSizer,
-        null,
-        function (_ref2) {
-          var height = _ref2.height;
-          var width = _ref2.width;
-          return _react2.default.createElement(_reactVirtualized.VirtualScroll, {
-            className: className,
-            height: height,
-            overscanRowsCount: thresholdRows,
-            ref: function ref(_ref3) {
-              _this2._virtualScroll = _ref3;
-            },
-            rowsCount: data.length,
-            rowHeight: function rowHeight(index) {
-              return _this2.rowHeight(index, data);
-            },
-            rowRenderer: function rowRenderer(index) {
-              return _this2.rowRenderer({ index: index, data: data });
-            },
-            scrollToIndex: _this2.props.scrollIndex,
-            width: width
-          });
-        }
-      );
+      return data.map(function (dataItem) {
+        return _this2.rowRenderer(dataItem);
+      });
     }
   }]);
 
