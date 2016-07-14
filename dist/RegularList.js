@@ -36,6 +36,9 @@ var RegularList = function (_List) {
   }
 
   _createClass(RegularList, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps() {}
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
