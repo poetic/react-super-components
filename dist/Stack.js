@@ -87,7 +87,7 @@ var Stack = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var other = _lodash2.default.omit(this.props, ['index', 'animations', 'activeLayerIndex']);
+      var other = _lodash2.default.omit(this.props, ['index', 'indexKey', 'animations', 'activeLayerIndex']);
 
       var animations = this.props.animations;
 
