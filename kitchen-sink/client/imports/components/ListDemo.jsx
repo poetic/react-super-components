@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Options from './superlist/Options';
 import { List } from '../lib/index.js';
 import { Header, ShortListItem, TallListItem } from './superlist/ListItems.jsx';
@@ -6,6 +6,7 @@ import { Header, ShortListItem, TallListItem } from './superlist/ListItems.jsx';
 class ListDemo extends React.Component {
   constructor() {
     super();
+
     this.state = {
       groupData: false,
       list: [],
@@ -14,6 +15,10 @@ class ListDemo extends React.Component {
       sortData: false,
       thresholdRows: 10,
     };
+  }
+
+  componentDidMount() {
+    this.props.updateActiveComponent('main');
   }
 
   setGroupData() {
@@ -134,7 +139,7 @@ class ListDemo extends React.Component {
     const listToDisplay = this.state.listToDisplay;
 
     return (
-      <div>
+      <div className={this.props.isActiveClass}>
         <h1>SuperList</h1>
         <Options
           changeDisplayedList={list => this.changeDisplayedList(list)}
@@ -148,6 +153,11 @@ class ListDemo extends React.Component {
     );
   }
 }
+
+ListDemo.propTypes = {
+  updateActiveComponent: PropTypes.func.isRequired,
+  isActiveClass: PropTypes.string.isRequired,
+};
 
 export default ListDemo;
 

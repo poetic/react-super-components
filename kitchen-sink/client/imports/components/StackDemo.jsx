@@ -69,5 +69,5 @@ function AnimationLayer(props) {
     lineHeight: '100px',
   };
 
-  return <div style={style} {...props}>{props.index}</div>;
+  return <div style={style}>{props.index}</div>;
 }
