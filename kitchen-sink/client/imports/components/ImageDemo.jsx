@@ -16,33 +16,34 @@ export default class ImageDemo extends React.Component {
       },
     };
 
-    const testImgSrc = 'http://www.placecage.com/c/3500/2000';
-
     return (
       <div>
         <h1>Image</h1>
 
         <h2>Default</h2>
         <Image
-          src={testImgSrc}
+          src='http://www.placecage.com/c/3500/2000'
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
-          className="evanSucks"
+          wrapperProps={wrapperProps}
+          className="testClass"
         />
 
         <h2>loadingSrc</h2>
         <Image
-          src={testImgSrc}
+          src='http://www.placecage.com/c/3500/2000'
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
-          loadingSrc="http://www.jqueryscript.net/images/Minimal-jQuery-Loading-Overlay-Spinner-Plugin-Easy-Overlay.jpg"
           style={style}
+          wrapperProps={wrapperProps}
+          loadingSrc="http://www.jqueryscript.net/images/Minimal-jQuery-Loading-Overlay-Spinner-Plugin-Easy-Overlay.jpg"
         />
 
         <h2>Error</h2>
         <Image
           src="http://nonexist-image.jpg"
-          style={style}
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
+          style={style}
+          wrapperProps={wrapperProps}
         />
 
         <div style={{ height: '100vh' }}></div>
@@ -52,6 +53,7 @@ export default class ImageDemo extends React.Component {
           src="https://bugs.tizen.org/jira/secure/attachment/13459/1mb.png"
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
+          wrapperProps={wrapperProps}
           lazy={true}
         />
 
@@ -62,10 +64,10 @@ export default class ImageDemo extends React.Component {
           src="http://www.mountain-moments.co.uk/web%20components/posters/South%20Glen%20Shiel%20Ridge.jpg"
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
+          wrapperProps={wrapperProps}
           lazy={true}
           offset={600}
         />
-
       </div>
     );
   }
