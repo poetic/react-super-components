@@ -9,7 +9,7 @@ export default class ImageDemo extends React.Component {
       objectFit: 'cover',
     };
 
-    const wrapperProps = {
+    const wrapperStyles = {
       style: {
         width: '100%',
         height: '100%',
@@ -22,39 +22,52 @@ export default class ImageDemo extends React.Component {
 
         <h2>Default</h2>
         <Image
-          src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
-          style={style}
-          wrapperProps={wrapperProps}
+          src='http://www.placecage.com/c/3500/2000'
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
+          style={style}
+          wrapperStyles={wrapperStyles}
+          className="testClass"
         />
 
         <h2>loadingSrc</h2>
         <Image
-          src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
+          src='http://www.placecage.com/c/3500/2000'
+          imageDidLoad={() => {console.log("imageDidLoad callback called")}}
+          style={style}
+          wrapperStyles={wrapperStyles}
           loadingSrc="http://www.jqueryscript.net/images/Minimal-jQuery-Loading-Overlay-Spinner-Plugin-Easy-Overlay.jpg"
-          style={style}
         />
 
-        <h2>LoadingComponent</h2>
-        <Image
-          src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
-          LoadingComponent={(props) => <div {...props}>LOADING...</div>}
-          style={style}
-        />
-
-        <h2>Error (for now error is the same as loading)</h2>
+        <h2>Error</h2>
         <Image
           src="http://nonexist-image.jpg"
+          imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
+          wrapperStyles={wrapperStyles}
         />
 
         <div style={{ height: '100vh' }}></div>
-        <h2>Lazy loading by default</h2>
+
+        <h2>Lazy loading default</h2>
         <Image
-          src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
+          src="https://bugs.tizen.org/jira/secure/attachment/13459/1mb.png"
+          imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
+          wrapperStyles={wrapperStyles}
+          lazy={true}
         />
 
+        <div style={{ height: '100vh' }}></div>
+
+        <h2>Lazy loading with offset</h2>
+        <Image
+          src="http://www.mountain-moments.co.uk/web%20components/posters/South%20Glen%20Shiel%20Ridge.jpg"
+          imageDidLoad={() => {console.log("imageDidLoad callback called")}}
+          style={style}
+          wrapperStyles={wrapperStyles}
+          lazy={true}
+          offset={600}
+        />
       </div>
     );
   }
