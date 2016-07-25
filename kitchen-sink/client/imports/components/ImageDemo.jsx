@@ -24,7 +24,6 @@ export default class ImageDemo extends React.Component {
         <Image
           src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
           style={style}
-          wrapperProps={wrapperProps}
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
         />
 
@@ -35,14 +34,7 @@ export default class ImageDemo extends React.Component {
           style={style}
         />
 
-        <h2>LoadingComponent</h2>
-        <Image
-          src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
-          LoadingComponent={(props) => <div {...props}>LOADING...</div>}
-          style={style}
-        />
-
-        <h2>Error (for now error is the same as loading)</h2>
+        <h2>Error</h2>
         <Image
           src="http://nonexist-image.jpg"
           style={style}
