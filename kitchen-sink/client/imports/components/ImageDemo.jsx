@@ -16,20 +16,24 @@ export default class ImageDemo extends React.Component {
       },
     };
 
+    const testImgSrc = 'http://www.placecage.com/c/3500/2000';
+
     return (
       <div>
         <h1>Image</h1>
 
         <h2>Default</h2>
         <Image
-          src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
-          style={style}
+          src={testImgSrc}
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
+          style={style}
+          className="evanSucks"
         />
 
         <h2>loadingSrc</h2>
         <Image
-          src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
+          src={testImgSrc}
+          imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           loadingSrc="http://www.jqueryscript.net/images/Minimal-jQuery-Loading-Overlay-Spinner-Plugin-Easy-Overlay.jpg"
           style={style}
         />
@@ -38,13 +42,28 @@ export default class ImageDemo extends React.Component {
         <Image
           src="http://nonexist-image.jpg"
           style={style}
+          imageDidLoad={() => {console.log("imageDidLoad callback called")}}
         />
 
         <div style={{ height: '100vh' }}></div>
-        <h2>Lazy loading by default</h2>
+
+        <h2>Lazy loading default</h2>
         <Image
-          src="http://trichilofoods.com/site/wp-content/uploads/2015/06/veggies.jpg"
+          src="https://bugs.tizen.org/jira/secure/attachment/13459/1mb.png"
+          imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
+          lazy={true}
+        />
+
+        <div style={{ height: '100vh' }}></div>
+
+        <h2>Lazy loading with offset</h2>
+        <Image
+          src="http://www.mountain-moments.co.uk/web%20components/posters/South%20Glen%20Shiel%20Ridge.jpg"
+          imageDidLoad={() => {console.log("imageDidLoad callback called")}}
+          style={style}
+          lazy={true}
+          offset={600}
         />
 
       </div>
