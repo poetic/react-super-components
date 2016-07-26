@@ -87,6 +87,12 @@ var List = function (_React$Component) {
           return itemType;
         }
 
+        if (typesToMatch.includes('default')) {
+          var _itemType = _lodash2.default.find(itemTypes, { type: 'default' });
+
+          return _itemType;
+        }
+
         throw new Error('Invalid prop `data` supplied to `List`. An object of `data` has a type property' + ' that does not match a passed in type from `itemTypes`.');
       }
 
@@ -192,12 +198,14 @@ List.propTypes = {
 
     if (_lodash2.default.isArray(props.itemTypes)) {
       data.forEach(function (dataItem) {
-        if (!_lodash2.default.isObject(dataItem)) {
-          throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` to be an array of objects.'));
-        } else if (!dataItem.type) {
-          throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. An object of ' + ('`' + propName + '` is missing the required property `type`.'));
-        } else if (!_lodash2.default.isString(dataItem.type)) {
-          throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. An object of ' + ('`' + propName + '` has a TypeError for the required property `type`.'));
+        if (!_lodash2.default.find(props.itemTypes, { type: 'default' })) {
+          if (!_lodash2.default.isObject(dataItem)) {
+            throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. ' + ('Expected `' + propName + '` to be an array of objects if no default ') + 'itemType is passed.');
+          } else if (!dataItem.type) {
+            throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. An object of ' + ('`' + propName + '` is missing the required property `type`.'));
+          } else if (!_lodash2.default.isString(dataItem.type)) {
+            throw new Error('Invalid prop `' + propName + '` supplied to `' + componentName + '`. An object of ' + ('`' + propName + '` has a TypeError for the required property `type`.'));
+          }
         }
       });
     }
