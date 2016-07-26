@@ -151,9 +151,9 @@ var Image = function (_React$Component) {
       var lazy = _props2.lazy;
       var offset = _props2.offset;
       var imageDidLoad = _props2.imageDidLoad;
-      var wrapperStyles = _props2.wrapperStyles;
+      var wrapperProps = _props2.wrapperProps;
 
-      var other = _objectWithoutProperties(_props2, ['src', 'loadingSrc', 'style', 'lazy', 'offset', 'imageDidLoad', 'wrapperStyles']);
+      var other = _objectWithoutProperties(_props2, ['src', 'loadingSrc', 'style', 'lazy', 'offset', 'imageDidLoad', 'wrapperProps']);
 
       var status = this.state.status;
 
@@ -172,7 +172,7 @@ var Image = function (_React$Component) {
 
       return _react2.default.createElement(
         _Stack2.default,
-        { activeLayerIndex: status, style: wrapperStyles },
+        _extends({ activeLayerIndex: status }, wrapperProps),
         loadingElement(),
         errorElement,
         displayElement
