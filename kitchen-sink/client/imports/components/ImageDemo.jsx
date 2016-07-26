@@ -9,7 +9,7 @@ export default class ImageDemo extends React.Component {
       objectFit: 'cover',
     };
 
-    const wrapperStyles = {
+    const wrapperProps = {
       style: {
         width: '100%',
         height: '100%',
@@ -25,7 +25,7 @@ export default class ImageDemo extends React.Component {
           src='http://www.placecage.com/c/3500/2000'
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
-          wrapperStyles={wrapperStyles}
+          wrapperProps={wrapperProps}
           className="testClass"
         />
 
@@ -34,7 +34,7 @@ export default class ImageDemo extends React.Component {
           src='http://www.placecage.com/c/3500/2000'
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
-          wrapperStyles={wrapperStyles}
+          wrapperProps={wrapperProps}
           loadingSrc="http://www.jqueryscript.net/images/Minimal-jQuery-Loading-Overlay-Spinner-Plugin-Easy-Overlay.jpg"
         />
 
@@ -43,7 +43,7 @@ export default class ImageDemo extends React.Component {
           src="http://nonexist-image.jpg"
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
-          wrapperStyles={wrapperStyles}
+          wrapperProps={wrapperProps}
         />
 
         <div style={{ height: '100vh' }}></div>
@@ -53,7 +53,7 @@ export default class ImageDemo extends React.Component {
           src="https://bugs.tizen.org/jira/secure/attachment/13459/1mb.png"
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
-          wrapperStyles={wrapperStyles}
+          wrapperProps={wrapperProps}
           lazy={true}
         />
 
@@ -64,7 +64,7 @@ export default class ImageDemo extends React.Component {
           src="http://www.mountain-moments.co.uk/web%20components/posters/South%20Glen%20Shiel%20Ridge.jpg"
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
-          wrapperStyles={wrapperStyles}
+          wrapperProps={wrapperProps}
           lazy={true}
           offset={600}
         />
