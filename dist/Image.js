@@ -89,8 +89,6 @@ var Image = function (_React$Component) {
       } else {
         this.state = { status: 'loading' };
       }
-
-      this.image = image;
     }
   }, {
     key: 'componentDidMount',
@@ -114,7 +112,9 @@ var Image = function (_React$Component) {
     value: function addListeners(imageNode) {
       var _this3 = this;
 
-      this.image.onload = function () {
+      var image = new window.Image();
+
+      image.onload = function () {
         _this3.setState({ status: 'display' });
         if (imageNode) imageNode.off('inview');
 
@@ -123,12 +123,12 @@ var Image = function (_React$Component) {
         if (imageDidLoad) imageDidLoad();
       };
 
-      this.image.onerror = function () {
+      image.onerror = function () {
         _this3.setState({ status: 'error' });
       };
 
       // used to reinitialize img source
-      this.image.src = this.props.src;
+      image.src = this.props.src;
     }
   }, {
     key: 'reload',
