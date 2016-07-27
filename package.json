@@ -39,8 +39,8 @@
   },
   "dependencies": {
     "jquery": "^2.2.2",
-    "jquery.appear": "^1.0.1",
-    "react-virtualized": "^6.1.1",
-    "react-addons-shallow-compare": "^15.0.1"
+    "jquery-inview": "^1.1.2",
+    "react-addons-shallow-compare": "^15.0.1",
+    "react-virtualized": "^6.1.1"
   }
 }

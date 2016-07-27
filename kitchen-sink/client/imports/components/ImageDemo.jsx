@@ -59,14 +59,13 @@ export default class ImageDemo extends React.Component {
 
         <div style={{ height: '100vh' }}></div>
 
-        <h2>Lazy loading with offset</h2>
+        <h2>Another Lazy loading</h2>
         <Image
           src="http://www.mountain-moments.co.uk/web%20components/posters/South%20Glen%20Shiel%20Ridge.jpg"
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
           wrapperProps={wrapperProps}
           lazy={true}
-          offset={600}
         />
       </div>
     );

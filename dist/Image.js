@@ -20,7 +20,7 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-require('jquery.appear');
+require('jquery-inview');
 
 var _Stack = require('./Stack');
 
@@ -97,28 +97,26 @@ var Image = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var _props = this.props;
-      var lazy = _props.lazy;
-      var _props$offset = _props.offset;
-      var offset = _props$offset === undefined ? 0 : _props$offset;
+      var lazy = this.props.lazy;
 
+      var imageNode = (0, _jquery2.default)(_reactDom2.default.findDOMNode(this));
 
       if (lazy) {
-        var imageNode = (0, _jquery2.default)(_reactDom2.default.findDOMNode(this));
-        imageNode.appear(function () {
-          return _this2.addListeners();
-        }, { accX: 0, accY: offset });
+        imageNode.on('inview', function () {
+          return _this2.addListeners(imageNode);
+        });
       } else {
         this.addListeners();
       }
     }
   }, {
     key: 'addListeners',
-    value: function addListeners() {
+    value: function addListeners(imageNode) {
       var _this3 = this;
 
       this.image.onload = function () {
         _this3.setState({ status: 'display' });
+        if (imageNode) imageNode.off('inview');
 
         var imageDidLoad = _this3.props.imageDidLoad;
 
@@ -144,16 +142,15 @@ var Image = function (_React$Component) {
     value: function render() {
       var _this4 = this;
 
-      var _props2 = this.props;
-      var src = _props2.src;
-      var loadingSrc = _props2.loadingSrc;
-      var style = _props2.style;
-      var lazy = _props2.lazy;
-      var offset = _props2.offset;
-      var imageDidLoad = _props2.imageDidLoad;
-      var wrapperProps = _props2.wrapperProps;
+      var _props = this.props;
+      var src = _props.src;
+      var loadingSrc = _props.loadingSrc;
+      var style = _props.style;
+      var lazy = _props.lazy;
+      var imageDidLoad = _props.imageDidLoad;
+      var wrapperProps = _props.wrapperProps;
 
-      var other = _objectWithoutProperties(_props2, ['src', 'loadingSrc', 'style', 'lazy', 'offset', 'imageDidLoad', 'wrapperProps']);
+      var other = _objectWithoutProperties(_props, ['src', 'loadingSrc', 'style', 'lazy', 'imageDidLoad', 'wrapperProps']);
 
       var status = this.state.status;
 
@@ -193,8 +190,7 @@ Image.propTypes = {
   style: _react.PropTypes.object,
   className: _react.PropTypes.string,
   imageDidLoad: _react.PropTypes.func,
-  lazy: _react.PropTypes.bool,
-  offset: _react.PropTypes.number
+  lazy: _react.PropTypes.bool
 };
 
 exports.default = Image;
