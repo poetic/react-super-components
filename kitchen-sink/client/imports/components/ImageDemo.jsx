@@ -14,6 +14,7 @@ export default class ImageDemo extends React.Component {
         width: '100%',
         height: '100%',
       },
+      className: 'test-wrapper',
     };
 
     return (
