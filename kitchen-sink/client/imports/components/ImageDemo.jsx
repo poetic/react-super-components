@@ -38,7 +38,7 @@ export default class ImageDemo extends React.Component {
           loadingSrc="http://www.jqueryscript.net/images/Minimal-jQuery-Loading-Overlay-Spinner-Plugin-Easy-Overlay.jpg"
         />
 
-        <h2>Error</h2>
+        <h2>Error - tap to reload</h2>
         <Image
           src="http://nonexist-image.jpg"
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
@@ -46,22 +46,20 @@ export default class ImageDemo extends React.Component {
           wrapperProps={wrapperProps}
         />
 
-        <div style={{ height: '100vh' }}></div>
-
-        <h2>Lazy loading default</h2>
+        <h2>errorSrc - tap to reload</h2>
         <Image
-          src="https://bugs.tizen.org/jira/secure/attachment/13459/1mb.png"
+          src="http://nonexist-image.jpg"
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
           wrapperProps={wrapperProps}
-          lazy={true}
+          errorSrc="https://cdn2.iconfinder.com/data/icons/picons-basic-2/57/basic2-085_warning_attention-512.png"
         />
 
         <div style={{ height: '100vh' }}></div>
 
-        <h2>Another Lazy loading</h2>
+        <h2>Lazy loading</h2>
         <Image
-          src="http://www.mountain-moments.co.uk/web%20components/posters/South%20Glen%20Shiel%20Ridge.jpg"
+          src="https://bugs.tizen.org/jira/secure/attachment/13459/1mb.png"
           imageDidLoad={() => {console.log("imageDidLoad callback called")}}
           style={style}
           wrapperProps={wrapperProps}
