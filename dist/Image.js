@@ -20,7 +20,7 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-require('jquery.appear');
+require('jquery-inview');
 
 var _Stack = require('./Stack');
 
@@ -102,23 +102,24 @@ var Image = function (_React$Component) {
       var _props$offset = _props.offset;
       var offset = _props$offset === undefined ? 0 : _props$offset;
 
+      var imageNode = (0, _jquery2.default)(_reactDom2.default.findDOMNode(this));
 
       if (lazy) {
-        var imageNode = (0, _jquery2.default)(_reactDom2.default.findDOMNode(this));
-        imageNode.appear(function () {
-          return _this2.addListeners();
-        }, { accX: 0, accY: offset });
+        imageNode.on('inview', function () {
+          return _this2.addListeners(imageNode);
+        });
       } else {
         this.addListeners();
       }
     }
   }, {
     key: 'addListeners',
-    value: function addListeners() {
+    value: function addListeners(imageNode) {
       var _this3 = this;
 
       this.image.onload = function () {
         _this3.setState({ status: 'display' });
+        if (imageNode) imageNode.off('inview');
 
         var imageDidLoad = _this3.props.imageDidLoad;
 
