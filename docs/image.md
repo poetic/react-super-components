@@ -11,15 +11,15 @@ https://react-super-components.herokuapp.com/image
  *
  * Props:
  * - src (required)
- * - loadingSrc
- * - loadingComponent (loadingComponent takes precedence over loadingSrc)
- * - errorSrc
- * - errorComponent (errorComponent takes precedence over errorSrc)
+ * - loadingSrc (image src or hex color)
+ * - errorFallback (image src or hex color)
+ * - animation (specify animation stack animation type)
+ * - imageDidLoad (function to be called when image loads)
+ * - lazy (boolean - in-view lazy loading)
+ * - blurUp (boolean - cloudinary URLs only - enables blur-up loading)
  *
  * Other props will be pass to the html native img commponent,
- * loadingComponent and errorComponent.
  *
- * When error happens, an error prop will be passed to errorComponent.
  *
  * NOTE: Using 'width' and 'height' in style is highly recommanded.
  */
